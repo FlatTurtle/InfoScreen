@@ -53,7 +53,7 @@
 					</div>
 				<% } %>
 				<div class="SystemPane nmbs"></div>
-				<!--<div class="SystemPane mivb"></div>-->
+				<div class="SystemPane mivb"></div>
 			</div>
 		</div>
     ]]>

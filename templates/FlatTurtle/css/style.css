@@ -135,7 +135,7 @@ header {
 }
 
 .SystemPane {
-	width:100%;
+	width:50%;
 	float:left;
 }
 .SystemPane > div {
@@ -160,7 +160,7 @@ header {
 
 .liveboardsTicker {
 	position:absolute;
-	width:50%;
+	width:48%;
 }
 .liveboardsTicker ol {
 	float:right;

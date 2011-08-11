@@ -43,13 +43,15 @@ private $detectTemplate = false;
  	  $mivb = $stationids["MIVB"];	
 
 	  $mivbarray = array();
+          include("controllers/idtoarray.php");
+
 	  foreach($mivb as $i) {
- 		array_push($mivbarray, array("name" => $i, "distance" => 10));
+              $name = $idtoname[$i];
+ 		array_push($mivbarray, array("name" => $name, "distance" => 10));
 	  }
 
 	  $nmbsarray = array();
 	  foreach($nmbs as $i) {
-		include("controllers/idtoarray.php");
 		$name = $idtoname[$i];
  		array_push($nmbsarray, array("name" => $name, "distance" => 10));
 	  }

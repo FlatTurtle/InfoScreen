@@ -2,8 +2,8 @@
 -- version 3.3.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Jul 19, 2011 at 05:07 PM
+-- Host: localhost
+-- Generation Time: Aug 11, 2011 at 08:08 PM
 -- Server version: 5.1.54
 -- PHP Version: 5.3.5-1ubuntu7.2
 
@@ -38,9 +38,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
 --
 
 INSERT INTO `customers` (`id`, `username`, `password`) VALUES
-(1, 'John', 'password'),
-(2, 'Jane', 'password'),
-(3, 'Jessy', 'password');
+(1, 'John', 'password');
 
 -- --------------------------------------------------------
 
@@ -61,10 +59,7 @@ CREATE TABLE IF NOT EXISTS `infoscreens` (
 --
 
 INSERT INTO `infoscreens` (`id`, `customerid`, `title`, `motd`) VALUES
-(1, 1, 'The Amadeus Square', 'The Amadeus Square'),
-(2, 1, 'Screen B', 'Yeah!'),
-(3, 1, 'Screen C', 'Oh man!?'),
-(4, 1, 'Screen D', 'Hellooooo!');
+(1, 1, 'The Amadeus Square', 'The Amadeus Square');
 
 -- --------------------------------------------------------
 
@@ -84,14 +79,11 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`infoscreenid`, `key`, `value`) VALUES
-(1, 'cycleinterval', '60'),
+(1, 'cycleinterval', '10'),
 (1, 'rowstoshow', '10'),
-(4, 'rowstoshow', '6'),
 (1, 'lang', 'EN'),
-(4, 'cycleinterval', '35'),
-(4, 'lang', 'DE'),
-(1, 'color', '#3366FF'),
-(1, 'logo', 'templates/FlatTurtle/img/amadeussquare.png');
+(1, 'color', '#fb8b1a'),
+(1, 'logo', 'templates/FlatTurtle/img/amadeussquare.jpg');
 
 -- --------------------------------------------------------
 

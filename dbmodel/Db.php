@@ -12,7 +12,7 @@ class Db {
 	// construct database connection
 	function __construct() {
 		$dbhost = 'localhost';
-		$dbuser = 'root';
+		$dbuser = 'flatturtle';
 		$dbpass = '702672rs';
 		$db = 'flatturtle';		
 		
