@@ -11,11 +11,7 @@ class Db {
 	
 	// construct database connection
 	function __construct() {
-		$dbhost = 'localhost';
-		$dbuser = 'flatturtle';
-		$dbpass = '702672rs';
-		$db = 'flatturtle';		
-		
+		include("config.php");	
  		$this->dbconn = new mysqli($dbhost, $dbuser, $dbpass, $db);
 	}
 	
