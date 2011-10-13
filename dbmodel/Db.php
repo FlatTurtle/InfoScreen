@@ -208,7 +208,7 @@ class Db {
 	
 	// make sure database connection is being closed 
 	function __destruct() {
-		$this->dbconn->close();
+		@$this->dbconn->close();
 	}
 	
 	
