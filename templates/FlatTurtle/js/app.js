@@ -328,7 +328,7 @@
 				this.type = (data.vehicle.match(/\.([A-Z]+)\d+$/)||{1:''})[1];
 			}
 			if ( this.system == 'mivb' ) {
-				this.line = (data.vehicle.match(/\d+$/)||{0:''})[0];
+				this.type = (data.vehicle.match(/\d+$/)||{0:''})[0];
 			}
 			if ( this.system == 'airport' ) {
 				this.type = data.type;
@@ -369,6 +369,10 @@
             }
 		    td.append(span);
 		    tr.append(td);
+		    
+		    if(that.destination.length >= 25)
+		    	that.destination = that.destination.substr(0,22)+"...";
+		    
 		    switch(that.system){
 		        case 'nmbs':
 		          tr.append($("<td>").append($("<span>").addClass("lineCode type").append($("<span>").html(that.type))));
@@ -376,7 +380,7 @@
 		          tr.append($("<td>").append($("<span>").addClass("lineCode platform").append($("<span>").html(that.cancelled ? "-" : that.platform ))));
 		          break;
 	            case 'mivb':
-	              tr.append($("<td>").append($("<span>").addClass("lineCode line").append($("<span>").html(that.type))));
+	              tr.append($("<td>").append($("<span>").addClass("lineCode type").append($("<span>").html(that.type))));
 	              tr.append($("<td>").html(that.destination));
 	              break;
 	            case 'airport':

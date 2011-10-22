@@ -8,7 +8,7 @@ $template = "default";
 
 //DataBase
 $dbhost = 'localhost';
-$dbuser = 'flatturtle';
-$dbpass = 'password';
+$dbuser = 'root';
+$dbpass = 'root';
 $db = 'flatturtle';  
 ?>
