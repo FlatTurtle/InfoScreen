@@ -75,7 +75,7 @@
 				<h2>
 					<%! this.name %> 
 					<small>departures</small>
-					<span class="credits">powered by <em>iRail</em></span>
+					<span class="credits">moved by <em>FlatTurtle</em></span>
 				</h2>
 				<div class="liveboardsTicker">
 				</div>

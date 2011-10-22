@@ -380,7 +380,7 @@
 		          tr.append($("<td>").append($("<span>").addClass("lineCode platform").append($("<span>").html(that.cancelled ? "-" : that.platform ))));
 		          break;
 	            case 'mivb':
-	              tr.append($("<td>").append($("<span>").addClass("lineCode type").append($("<span>").html(that.type))));
+	              tr.append($("<td>").append($("<span>").addClass("lineCode platform").append($("<span>").html(that.type))));
 	              tr.append($("<td>").html(that.destination));
 	              break;
 	            case 'airport':
