@@ -111,6 +111,7 @@ class Db {
 		$stationids['NMBS'] = array();
 		$stationids['MIVB'] = array();
 		$stationids['DeLijn'] = array();
+		$stationids['airport'] = array();
 		
 		if($stmt = $this->dbconn->prepare("SELECT stationid, type FROM stations WHERE infoscreenid = ?")) {
 			$stmt->bind_param('i', $infoscreenid);

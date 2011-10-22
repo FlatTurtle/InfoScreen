@@ -54,6 +54,7 @@
 				<% } %>
 				<div class="SystemPane nmbs"></div>
 				<div class="SystemPane mivb"></div>
+				<div class="SystemPane airport"></div>
 			</div>
 		</div>
     ]]>
@@ -144,8 +145,8 @@
     ]]>
 	</script>
 		
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script>!window.jQuery && document.write(unescape('%3Cscript src="templates/FlatTurtle/js/libs/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="templates/FlatTurtle/js/libs/jquery-1.6.4.min.js"%3E%3C/script%3E'))</script>
 	<script src="templates/FlatTurtle/js/plugins.js"></script>
 	<script src="templates/FlatTurtle/js/libs/jqote2.js"></script>
 	<script src="templates/FlatTurtle/js/libs/irail.js"></script>
@@ -181,7 +182,21 @@
 				},';
 				 
 			     }
+?>			],
+			"airport" : [
+		     <?php
+		     foreach($content["Airport"] as $s){
+		echo '	 
+			{
+				
+				"name" : "'. $s["name"].'",
+				"distanceMeters" : "'.$s["distance"].'",
+				"distanceWalking" : "'. $s["walking"].'"
+			},';
+			 
+		     }
 ?>			]
+			
 		}
 	};
 	</script>

@@ -11,6 +11,7 @@
 		this.clock;
 		this.nmbsSystemPane;
 		this.mivbSystemPane;
+		this.airportSystemPane;
 
 		var initialize = function() {
 			this.companyLogo = config.companyLogo;
@@ -24,6 +25,7 @@
 			this.clock = new Clock(rootElement.find(".Clock"));
 			this.nmbsSystemPane = new SystemPane(rootElement.find(".SystemPane.nmbs"), "nmbs", config);
 			this.mivbSystemPane = new SystemPane(rootElement.find(".SystemPane.mivb"), "mivb", config);
+			this.airportSystemPane = new SystemPane(rootElement.find(".SystemPane.airport"), "airport", config);
 		};
 
 		var initializeHtml = function() {
@@ -42,6 +44,7 @@
 			this.clock.destroy();
 			this.nmbsSystemPane.destroy();
 			this.mivbSystemPane.destroy();
+			this.airportSystemPane.destroy();
 			
 			rootElement.empty();
 		}
@@ -142,8 +145,17 @@
 		var initialize = function() {
 			currentLiveBoardIndex = 0;
 			liveBoards = [];
-
-			this.name = system;
+			
+			switch(system) {
+				case "nmbs":
+					this.name = "bus";
+					break;
+				case "mivb":
+					this.name = "train";
+					break;
+				default:
+					this.name = system;
+			}
 			
 			initializeHtml();
 			addBehaviours();
@@ -318,6 +330,9 @@
 			if ( this.system == 'mivb' ) {
 				this.line = (data.vehicle.match(/\d+$/)||{0:''})[0];
 			}
+			if ( this.system == 'airport' ) {
+				this.type = data.type;
+			}
 
 			// TODO: find out how to actually get the cancelled status (not documented in api)
 			// if( Math.floor(Math.random()*4)==0){
@@ -364,6 +379,11 @@
 	              tr.append($("<td>").append($("<span>").addClass("lineCode line").append($("<span>").html(that.type))));
 	              tr.append($("<td>").html(that.destination));
 	              break;
+	            case 'airport':
+	              tr.append($("<td>").css("width",5));
+		          tr.append($("<td>").html(that.destination));
+		          tr.append($("<td>").append($("<span>").addClass("lineCode platform").css("width",85).append($("<span>").html(that.type).css("width",85))).css("width",95));
+		          break;
 	            //case 'delijn':
 		    }
 		    return tr;

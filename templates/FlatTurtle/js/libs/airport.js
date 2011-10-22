@@ -1,25 +1,3 @@
-/**
-* iRail API wrapper using jQuery
-* Copyright (c) 2010 Tim Esselens <tim.esselens@gmail.com>
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-* THE SOFTWARE.
-*/
 
 $.ajaxSetup({beforeSend:function(req){req.setRequestHeader("User-Agent","jQuery Useragent script")}});
 
@@ -108,112 +86,54 @@ var irail = function __irail_namespace($) {
     // ----------------------------------------------------------------------------------------------------------------------------------------
     var _getLiveBoard = function(system, station, direction, callback) {
 				direction = direction.toUpperCase().substr(0,3);
-		
-		if(system != "AIRPORT") {
-		
-	        $.ajax({
-	            type: "GET",
-	            url: 'http://api.irail.be/liveboard/?system=' + system,
-	            data: { format: 'json', station: station, arrdep: direction, lang: _cache.default_lang },
-	            dataType: 'jsonp',
-	            success: function(json) { 
-	
-	                _cache.timestamps.last_server_response = new Date().getTime();
-					
-	
-									switch (direction) {
-										case "DEP" :
-	                		json.departures = json.departures || {departure:[]};
-	
-	                    $.each(json.departures.departure, function(_,d) { d.time = parseInt(d.time,10); d.delay = parseInt(d.delay,10); });
-	
-	                    var dirtxt = { nl: 'VERTREK', en: 'DEPARTURES', fr: 'DEPARTS' };
-	                    var dliveboard = { 
-	                        entries: json.departures.departure,
-	                        timestamp: parseInt(json.timestamp,10), 
-	                        station: json.station, 
-	                        direction: dirtxt[_cache.default_lang] || 'DEPARTURES',
-	                    };
-	                    _cache['liveboards'][station.toLowerCase() + '_departures'] = dliveboard;
-	                    callback(dliveboard);
-										break;
-	                	case "ARR":
-	              			json.arrivals = json.arrivals || {arrival:[]};
-	                    
-	                    $.each(json.arrivals.arrival, function(_,a) { a.time = parseInt(a.time,10); a.delay = parseInt(a.delay,10); });
-	                    var dirtxt = { nl: 'AANKOMST', en: 'ARRIVALS', fr: 'ARRIVEES' };
-	                    var aliveboard = { 
-	                        entries: json.arrivals.arrival, 
-	                        timestamp: parseInt(json.timestamp,10), 
-	                        station: json.station, 
-	                        direction: dirtxt[_cache.default_lang] || 'ARRIVALS',
-	                    };
-	                    _cache['liveboards'][station.toLowerCase() + '_arrivals'] = aliveboard;
-	                    callback(aliveboard);
-										break;
-	                }
-	
-	            },
-	            error: function(xhr, status_str) {
-	                callback(null,xhr);
-	                throw new Error(['could not fullfil request: ', xhr.status, ' ', xhr.responseText ].join(''));
-	            }
-	        });
-		}
-		else {
-			if(direction == "DEP")
-				direction = "departures";
-			else
-				direction = "arrivals";
-			
-			$.ajax({
-	            type: "GET",
-	            url: 'http://www2.jenssegers.be/datatank/Airports/Liveboard/' + station + '.json',
-	            data: { direction: direction, lang: _cache.default_lang },
-	            dataType: 'json',
-	            success: function(json) {
-	            	
-	                _cache.timestamps.last_server_response = new Date().getTime();
-	                
-									switch (direction) {
-										case "departures" :
-	                		json.departures = json.Liveboard || {departure:[]}
-	
-	                    $.each(json.departures, function(_,d) { d.time = parseInt(d.time,10); d.delay = parseInt(d.delay,10); d.station = d.direction.name; d.type = d.vehicle; });
-	                    
-	                    var dirtxt = { nl: 'VERTREK', en: 'DEPARTURES', fr: 'DEPARTS' };
-	                    var dliveboard = { 
-	                        entries: json.departures,
-	                        timestamp: parseInt(json.timestamp,10), 
-	                        station: json.Airport.name, 
-	                        direction: dirtxt[_cache.default_lang] || 'DEPARTURES',
-	                    };
-	                    _cache['liveboards'][station.toLowerCase() + '_departures'] = dliveboard;
-	                    callback(dliveboard);
-										break;
-	                	case "ARR":
-	              			json.arrivals = json.Liveboard || {arrival:[]};
-	                    
-	                    $.each(json.arrivals, function(_,a) { a.time = parseInt(a.time,10); a.delay = parseInt(a.delay,10); d.station = d.direction.name; d.type = d.vehicle; });
-	                    var dirtxt = { nl: 'AANKOMST', en: 'ARRIVALS', fr: 'ARRIVEES' };
-	                    var aliveboard = { 
-	                        entries: json.arrivals, 
-	                        timestamp: parseInt(json.timestamp,10), 
-	                        station: json.Airport.name, 
-	                        direction: dirtxt[_cache.default_lang] || 'ARRIVALS',
-	                    };
-	                    _cache['liveboards'][station.toLowerCase() + '_arrivals'] = aliveboard;
-	                    callback(aliveboard);
-										break;
-	                }
-	
-	            },
-	            error: function(xhr, status_str) {
-	                callback(null,xhr);
-	                throw new Error(['could not fullfil request: ', xhr.status, ' ', xhr.responseText ].join(''));
-	            }
-	        });
-		}
+        $.ajax({
+            type: "GET",
+            url: 'http://api.irail.be/liveboard/?system=' + system,
+            data: { format: 'json', station: station, arrdep: direction, lang: _cache.default_lang },
+            dataType: 'jsonp',
+            success: function(json) { 
+
+                _cache.timestamps.last_server_response = new Date().getTime();
+				
+
+								switch (direction) {
+									case "DEP" :
+                		json.departures = json.departures || {departure:[]};
+
+                    $.each(json.departures.departure, function(_,d) { d.time = parseInt(d.time,10); d.delay = parseInt(d.delay,10); });
+
+                    var dirtxt = { nl: 'VERTREK', en: 'DEPARTURES', fr: 'DEPARTS' };
+                    var dliveboard = { 
+                        entries: json.departures.departure,
+                        timestamp: parseInt(json.timestamp,10), 
+                        station: json.station, 
+                        direction: dirtxt[_cache.default_lang] || 'DEPARTURES',
+                    };
+                    _cache['liveboards'][station.toLowerCase() + '_departures'] = dliveboard;
+                    callback(dliveboard);
+									break;
+                	case "ARR":
+              			json.arrivals = json.arrivals || {arrival:[]};
+                    
+                    $.each(json.arrivals.arrival, function(_,a) { a.time = parseInt(a.time,10); a.delay = parseInt(a.delay,10); });
+                    var dirtxt = { nl: 'AANKOMST', en: 'ARRIVALS', fr: 'ARRIVEES' };
+                    var aliveboard = { 
+                        entries: json.arrivals.arrival, 
+                        timestamp: parseInt(json.timestamp,10), 
+                        station: json.station, 
+                        direction: dirtxt[_cache.default_lang] || 'ARRIVALS',
+                    };
+                    _cache['liveboards'][station.toLowerCase() + '_arrivals'] = aliveboard;
+                    callback(aliveboard);
+									break;
+                }
+
+            },
+            error: function(xhr, status_str) {
+                callback(null,xhr);
+                throw new Error(['could not fullfil request: ', xhr.status, ' ', xhr.responseText ].join(''));
+            }
+        });
     };
 
     // ----------------------------------------------------------------------------------------------------------------------------------------
@@ -275,7 +195,7 @@ var irail = function __irail_namespace($) {
                 direction = direction.match(/arr/i) ? 'ARR' : 'DEP';
 								system = system.toUpperCase();
                 if(! typeof callback == "function") { throw new Error('callback not defined'); }
-                if(["NMBS","MIVB","AIRPORT"].indexOf(system)==-1) { throw new Error('"'+system+'" is not a valid system'); }
+                if(["NMBS","MIVB"].indexOf(system)==-1) { throw new Error('"'+system+'" is not a valid system'); }
                 return _getLiveBoard(system,station,direction,callback);
             }
         },

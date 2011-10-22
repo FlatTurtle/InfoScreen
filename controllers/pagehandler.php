@@ -19,7 +19,6 @@ include_once("dbmodel/Settings.php");
 include_once("dbmodel/Stations.php");
 include_once("dbmodel/Infoscreen.php");
 
-
 //Step 1: Implement the abstract Page class
 //This class will automatically include necessary stuff such like error handling
 class PageHandler extends HttpCall{
@@ -31,7 +30,9 @@ private $detectTemplate = false;
     * @return array will return an associative array of page specific variables.
     */
      protected function loadContent(){
-
+     	
+      error_reporting(E_ALL);
+     	
 	  //Step 2: Get the get vars, change them to the right format & boom
 	  $data = new DataLayer($this->getLang());	          
 
@@ -41,6 +42,7 @@ private $detectTemplate = false;
 	  $stationids = $infoscreen->getStationIds();
 	  $nmbs = $stationids["NMBS"];
  	  $mivb = $stationids["MIVB"];	
+ 	  $airports = $stationids["airport"];
 
 	  $mivbarray = array();
           include("controllers/idtoarray.php");
@@ -55,6 +57,12 @@ private $detectTemplate = false;
 		$name = $idtoname[$i];
  		array_push($nmbsarray, array("name" => $name, "distance" => 10));
 	  }
+	  
+	  $airportarray = array();
+	  foreach($airports as $i) {
+		$name = $i;
+ 		array_push($airportarray, array("name" => $name, "distance" => 10));
+	  }
 	
 
 	//3000m/hour = 50m/minute
@@ -64,8 +72,11 @@ private $detectTemplate = false;
 	for($i = 0; $i < sizeof($nmbsarray); $i++){
 	     $nmbsarray[$i]["walking"] = round($nmbsarray[$i]["distance"]/50);
 	}
+     for($i = 0; $i < sizeof($airportarray); $i++){
+	     $airportarray[$i]["walking"] = round($airportarray[$i]["distance"]/50);
+	}
 
-	$data = array("MIVB" => $mivbarray, "NMBS" => $nmbsarray);
+	$data = array("MIVB" => $mivbarray, "NMBS" => $nmbsarray, "Airport" => $airportarray);
 
 	$content = array();
 	  $content = array_merge($content, $data);  
@@ -76,6 +87,7 @@ private $detectTemplate = false;
 	  $content["cycleinterval"] = $infoscreen->getSettingValue("cycleinterval") == null ? 10 : $infoscreen->getSettingValue("cycleinterval");
 	  $content["logo"] = $infoscreen->getSettingValue("logo") == null ? "templates/FlatTurtle/img/logo.png" : $infoscreen->getSettingValue("logo");
       $content["color"] = $infoscreen->getSettingValue("color") == null ? "#ffffff" : $infoscreen->getSettingValue("color");
+      
 	  return $content;
      }
 
