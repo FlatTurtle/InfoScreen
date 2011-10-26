@@ -148,10 +148,10 @@
 			
 			switch(system) {
 				case "nmbs":
-					this.name = "bus";
+					this.name = "train";
 					break;
 				case "mivb":
-					this.name = "train";
+					this.name = "bus";
 					break;
 				default:
 					this.name = system;
