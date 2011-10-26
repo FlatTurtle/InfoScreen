@@ -168,7 +168,7 @@ var irail = function __irail_namespace($) {
 			
 			$.ajax({
 	            type: "GET",
-	            url: 'http://www2.jenssegers.be/datatank/Airports/Liveboard/' + station + '.json',
+	            url: 'http://data.irail.be/Airports/Liveboard/' + station + '.json',
 	            data: { direction: direction, lang: _cache.default_lang },
 	            dataType: 'json',
 	            success: function(json) {
