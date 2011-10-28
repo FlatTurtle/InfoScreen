@@ -177,9 +177,9 @@ var irail = function __irail_namespace($) {
 	                
 									switch (direction) {
 										case "departures" :
-	                		json.departures = json.Liveboard.Liveboard || {departure:[]}
+	                		json.departures = json.Liveboard || {Liveboard:[]}
 									    
-	                    $.each(json.departures, function(_,d) { d.time = parseInt(d.time,10); d.delay = parseInt(d.delay,10); d.station = d.direction.name; d.type = d.vehicle; });
+	                    $.each(json.departures.Liveboard, function(_,d) { d.time = parseInt(d.time,10); d.delay = parseInt(d.delay,10); d.station = d.direction.name; d.type = d.vehicle; });
 	                    
 	                    var dirtxt = { nl: 'VERTREK', en: 'DEPARTURES', fr: 'DEPARTS' };
 	                    var dliveboard = { 
