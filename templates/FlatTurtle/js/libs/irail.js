@@ -1,4 +1,3 @@
-g182
 /**
 * iRail API wrapper using jQuery
 * Copyright (c) 2010 Tim Esselens <tim.esselens@gmail.com>
