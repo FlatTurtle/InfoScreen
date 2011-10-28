@@ -1,3 +1,4 @@
+g182
 /**
 * iRail API wrapper using jQuery
 * Copyright (c) 2010 Tim Esselens <tim.esselens@gmail.com>
@@ -177,8 +178,8 @@ var irail = function __irail_namespace($) {
 	                
 									switch (direction) {
 										case "departures" :
-	                		json.departures = json.Liveboard || {departure:[]}
-	
+	                		json.departures = json.Liveboard.Liveboard || {departure:[]}
+									    
 	                    $.each(json.departures, function(_,d) { d.time = parseInt(d.time,10); d.delay = parseInt(d.delay,10); d.station = d.direction.name; d.type = d.vehicle; });
 	                    
 	                    var dirtxt = { nl: 'VERTREK', en: 'DEPARTURES', fr: 'DEPARTS' };
