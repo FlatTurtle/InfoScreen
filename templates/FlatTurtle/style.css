@@ -122,7 +122,7 @@ section .pane .delayed {
 }
 
 section .pane .time em:before {
-	content: "›";
+	content: "\203A";
 }
 
 section .pane .time em {
