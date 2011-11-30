@@ -1,0 +1,45 @@
+<div class="pane one-third">
+
+	{{each boards}}
+	<div class="board">
+
+		<h2>
+			airport 
+			<small>${direction}</small>
+			<span class="credits">moved by <em>FlatTurtle</em></span>
+		</h2>
+	
+		<h3>${airport}</h3>
+		
+		<table>
+			<tbody>
+			{{each entries}}
+				<tr>
+					{{if $value.delay}}
+					<td class="delayed">
+						<span class="time">${$value.time}
+							{{if $value.delay}}
+								<em>${$value.delay}</em>
+							{{/if}}
+						</span>
+					</td>
+					{{else}}
+					<td>
+						<span class="time">${$value.time}</span>
+					</td>
+					{{/if}}
+					<td>
+						<span class="label">${$value.type}</span>
+					</td>
+					<td>
+						<span class="station">${$value.airport}</span>
+					</td>
+				</tr>
+			{{/each}}
+			<tbody>
+		</table>
+			
+	</div>
+	{{/each}}
+
+</div>
