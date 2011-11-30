@@ -25,17 +25,15 @@
 		},
 		url : function() {
 			// build the remote source url
-			return "http://www2.jenssegers.be/datatank/Airports/Liveboard/"
+			return "http://data.irail.be/Airports/Liveboard/"
 					+ settings.code + ".json";
 		},
 		parse : function(json) {
 			// parse ajax results
-			json.Liveboard = json.Liveboard || {
-				Liveboard : []
-			}
+			var liveboard = json.Liveboard.departures || json.Liveboard.arrivals;
 
-			for ( var i in json.Liveboard) {
-				var data = json.Liveboard[i];
+			for ( var i in liveboard) {
+				var data = liveboard[i];
 
 				if (data.delay)
 					data.delay = this.formatTime(data.time + data.delay);
@@ -43,11 +41,11 @@
 					data.delay = false;
 
 				data.time = this.formatTime(data.time);
-				data.airport = data.direction.name;
+				data.airport = data.direction;
 				data.type = data.vehicle;
 			}
 
-			return json.Liveboard;
+			return liveboard;
 		},
 		formatTime : function(timestamp) {
 			var time = new Date(timestamp * 1000);
@@ -75,10 +73,6 @@
 				direction : settings.direction,
 				boards : [ {
 					airport : settings.code,
-					entries : this.collection.toJSON()
-				},
-				{
-					airport : "TEST",
 					entries : this.collection.toJSON()
 				}]
 			};
