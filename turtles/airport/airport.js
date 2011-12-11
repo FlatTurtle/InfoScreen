@@ -1,32 +1,32 @@
 (function($) {
-
-	var settings = {
-		code : "BRU",
-		direction : "departures",
-		lang : "en"
-	};
-
+	
 	var model = Backbone.Model.extend({});
 
 	var collection = Backbone.Collection.extend({
 		initialize : function() {
-			this.refresh();
-
-			// bind refresh method to refresh event
+			// prevents loss of 'this' inside methods
+			_.bindAll(this, "refresh");
+			
+			// bind refresh
+			this.bind("born", this.refresh);
 			this.bind("refresh", this.refresh);
+			
+			// automatic collection refresh
+			refreshInterval = window.setInterval(this.refresh, 60000);
 		},
 		refresh : function() {
+			// NOTE: this.options is only available after the born event is triggered
 			this.fetch({
 				data : {
-					direction : settings.direction,
-					lang : settings.lang
+					direction : this.options.direction,
+					lang : this.options.lang
 				}
 			});
 		},
 		url : function() {
 			// build the remote source url
-			return "http://data.irail.be/Airports/Liveboard/"
-					+ settings.code + ".json";
+			return "http://www2.jenssegers.be/datatank3/Airports/Liveboard/"
+					+ this.options.code + ".json";
 		},
 		parse : function(json) {
 			// parse ajax results
@@ -44,7 +44,7 @@
 				data.airport = data.direction;
 				data.type = data.vehicle;
 			}
-
+			
 			return liveboard;
 		},
 		formatTime : function(timestamp) {
@@ -59,34 +59,28 @@
 	var view = Backbone.View.extend({
 		initialize : function() {
 			// prevents loss of 'this' inside methods
-			_.bindAll(this, 'render');
+			_.bindAll(this, "render");
 
+			// bind render
 			this.bind("born", this.render);
 			this.collection.bind("reset", this.render);
-			
-			// create placeholder
-			this.el = $('<section id="airport"></section>');
-			$("#main").append(this.el);
 		},
 		render : function() {
 			var data = {
-				direction : settings.direction,
-				boards : [ {
-					airport : settings.code,
-					entries : this.collection.toJSON()
-				}]
+				direction : this.options.direction,
+				airport : this.options.code,
+				entries : this.collection.toJSON()
 			};
 			
-			var el = this.el;
-
-			$.get('turtles/airport/list.html', function(template) {
-				$(el).html($.tmpl(template, data)).trigger("rendered");
+			var self = this;
+			$.get("turtles/airport/list.html", function(template) {
+				self.el.html($.tmpl(template, data)).trigger("rendered");
 			});
 		}
 	});
 
 	// register turtle
-	Turtles.grow("airport", {
+	Turtles.register("airport", {
 		collection : collection,
 		view : view,
 		model : model

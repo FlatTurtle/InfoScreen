@@ -1,32 +1,24 @@
 (function($){
 
-	var settings = {
-		location : "Gent"
-	};
-
 	var view = Backbone.View.extend({
 		initialize : function() {
+			// bind render event
 			this.bind("born", this.render);
-			
-			this.el = $('<section id="map"></section>');
-			$("#main").append(this.el);
 		},
 		render : function() {
-			var data = {
-				location : settings.location
-			};
-			
-			var el = this.el;
+			var self = this;
 
 			$.get('turtles/map/map.html', function(template) {
-				$(el).html($.tmpl(template, data));
-				$(el).trigger("rendered");
+				self.el.html($.tmpl(template, {
+					location : self.options.location
+				}));
+				self.el.trigger("rendered");
 			});
 		}
 	});
 	
 	// register turtle
-	Turtles.grow("map", {
+	Turtles.register("map", {
 		view : view
 	});
 	

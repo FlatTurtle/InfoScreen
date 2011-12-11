@@ -45,7 +45,7 @@
 	});
 
 	// register turtle
-	Turtles.grow("openstreet", {
+	Turtles.register("openstreet", {
 		view : view
 	});
 
