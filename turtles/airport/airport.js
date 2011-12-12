@@ -25,7 +25,7 @@
 		},
 		url : function() {
 			// build the remote source url
-			return "http://www2.jenssegers.be/datatank3/Airports/Liveboard/"
+			return "http://data.irail.be/Airports/Liveboard/"
 					+ this.options.code + ".json";
 		},
 		parse : function(json) {
