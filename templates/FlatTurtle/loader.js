@@ -1,5 +1,8 @@
-(function($) {
+(function() {
 
+	// container for turtles
+	var rootElement = "#main";
+	
 	/*
 	 * We are extending the main turtles class with a specific grow function for
 	 * our situation. This grow function will automatically load the correct
@@ -9,9 +12,9 @@
 		if (options == null || typeof options != "object")
 			options = {};
 
-		// create placeholder
+		// create placeholder and append it to the root element
 		options.el = $('<section class="' + id + '"></section>');
-		$("#main").append(options.el);
+		$(rootElement).append(options.el);
 
 		if (!this.registered(id)) {
 			var self = this;
@@ -19,7 +22,7 @@
 			$.ajax({
 				url : 'turtles/' + id + '/' + id + '.js',
 				dataType : 'script',
-				async : false, // for now
+				async : false, // for now (currently only way to prevent loading duplicate javascript file loading)
 				success : function() {
 					self.instantiate(id, options);
 				}
@@ -29,26 +32,10 @@
 		}
 	}
 
-	// register on global namespace
+	// register the Turtles object on the global namespace
 	if (!((global = typeof exports !== "undefined" && exports !== null ? exports
 			: window).Turtles != null)) {
 		global.Turtles = new TurtleManager();
 	}
 
-	Turtles.grow("airport", {
-		code : "BRU",
-		direction : "departures",
-		lang : "en"
-	});
-
-	Turtles.grow("airport", {
-		code : "BRU",
-		direction : "arrivals",
-		lang : "en"
-	});
-
-	Turtles.grow("map", {
-		location : "Gent"
-	});
-	
-})(jQuery);
+})();
