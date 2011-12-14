@@ -90,18 +90,19 @@ function TurtleManager() {
 			// construct collection
 			if (typeof module.collection == "function") {
 				if (module.models != null && module.models.constructor == Array)
-					instance.collection = new module.collection(module.models);
+					instance.collection = new module.collection(module.models, options);
 				else
-					instance.collection = new module.collection();
-
-				if (instance.collection.model == null && instance.model != null)
-					instance.collection.model = instance.model;
+					instance.collection = new module.collection(null, options);
 			} else if (typeof module.collection == "object") {
 				instance.collection = module.collection;
 				instance.models = module.models;
 			}
+			
+			// check if model is assigned
+			if (instance.collection.model == null && instance.model != null)
+				instance.collection.model = instance.model;
 
-			// assign options to collection
+			// assign options to collection if not set
 			if(instance.collection != null)
 				instance.collection.options = options;
 
@@ -120,12 +121,12 @@ function TurtleManager() {
 				if (instance.view.model == null)
 					instance.view.model = instance.model;
 
+				// override el with el passed by options
 				if (options.el != null)
-					instance.view.el = el;
+					instance.view.el = options.el;
 
 				// add options to view
-				instance.view.options = _
-						.extend(instance.view.options, options);
+				instance.view.options = _.extend(instance.view.options, options);
 			}
 
 			instances[iid] = instance;

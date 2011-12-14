@@ -3,7 +3,7 @@
 	var model = Backbone.Model.extend({});
 
 	var collection = Backbone.Collection.extend({
-		initialize : function() {
+		initialize : function(models, options) {
 			// prevents loss of 'this' inside methods
 			_.bindAll(this, "refresh");
 			
@@ -15,7 +15,6 @@
 			refreshInterval = window.setInterval(this.refresh, 60000);
 		},
 		refresh : function() {
-			// NOTE: this.options is only available after the born event is triggered
 			this.fetch({
 				data : {
 					direction : this.options.direction,
