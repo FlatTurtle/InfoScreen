@@ -99,7 +99,7 @@ function TurtleManager() {
 			}
 			
 			// check if model is assigned
-			if (instance.collection.model == null && instance.model != null)
+			if (instance.collection != null && instance.collection.model == null && instance.model != null)
 				instance.collection.model = instance.model;
 
 			// assign options to collection if not set
