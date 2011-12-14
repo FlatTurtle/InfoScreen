@@ -9,28 +9,28 @@
 	
 	<table>
 		<tbody>
-		{{each entries}}
-			<tr>
-				{{if $value.delay}}
-				<td class="time delayed">
-					${$value.time}
+			{{each entries}}
+				<tr>
 					{{if $value.delay}}
-						<em>${$value.delay}</em>
+					<td class="time delayed">
+						${$value.time}
+						{{if $value.delay}}
+							<em>${$value.delay}</em>
+						{{/if}}
+					</td>
+					{{else}}
+					<td class="time">
+						${$value.time}
+					</td>
 					{{/if}}
-				</td>
-				{{else}}
-				<td class="time">
-					${$value.time}
-				</td>
-				{{/if}}
-				<td>
-					<span class="label">${$value.type}</span>
-				</td>
-				<td class="station">
-					${$value.airport}
-				</td>
-			</tr>
-		{{/each}}
+					<td>
+						<span class="label">${$value.type}</span>
+					</td>
+					<td class="station">
+						${$value.airport}
+					</td>
+				</tr>
+			{{/each}}
 		<tbody>
 	</table>
 </div>

@@ -23,9 +23,8 @@
 			});
 		},
 		url : function() {
-			// build the remote source url
-			return "http://data.irail.be/Airports/Liveboard/"
-					+ this.options.code + ".json";
+			// remote source url
+			return "http://data.irail.be/Airports/Liveboard/" + this.options.code + ".json";
 		},
 		parse : function(json) {
 			// parse ajax results
@@ -60,7 +59,7 @@
 			// prevents loss of 'this' inside methods
 			_.bindAll(this, "render");
 
-			// bind render
+			// bind render on born and collection reset
 			this.bind("born", this.render);
 			this.collection.bind("reset", this.render);
 		},
@@ -68,7 +67,7 @@
 			var data = {
 				direction : this.options.direction,
 				airport : this.options.code,
-				entries : this.collection.toJSON()
+				entries : this.collection.toJSON(),
 			};
 			
 			var self = this;
