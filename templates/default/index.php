@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <title></title>
-<link rel="stylesheet" href="templates/FlatTurtle/style.css" />
+<link rel="stylesheet" href="templates/default/style.css" />
 </head>
 <body>
 
 <div class="container">
 	<header>
 		<div id="clock"></div>
-		<img src="templates/FlatTurtle/amadeussquare.jpg" />
+		<img src="templates/default/amadeussquare.jpg" />
 	</header>
 
 	<div id="main"></div>
 	
 </div>
 
-<script type="text/javascript" src="lib/jquery.js"></script>
-<script type="text/javascript" src="lib/jquery.tmpl.js"></script>
+<script type="text/javascript" src="core/jquery.js"></script>
 <script type="text/javascript" src="core/underscore.js"></script>
 <script type="text/javascript" src="core/backbone.js"></script>
 <script type="text/javascript" src="core/turtles.js"></script>
-<script type="text/javascript" src="templates/FlatTurtle/interface.js"></script>
-<script type="text/javascript" src="templates/FlatTurtle/loader.js"></script>
+<script type="text/javascript" src="core/jquery.tmpl.js"></script>
+<script type="text/javascript" src="templates/default/loader.js"></script>
+<script type="text/javascript" src="templates/default/interface.js"></script>
 
 <script type="text/javascript">
 <?php
