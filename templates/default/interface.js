@@ -78,8 +78,6 @@ var App = function(rootElement) {
 
 			// multiple turtles in 1 group
 			if (panes > 1) {
-				console.log(group+" has "+panes+" panes");
-				console.log(groups);
 				
 				// first rotate
 				if (groups[group] == null) {
@@ -93,8 +91,6 @@ var App = function(rootElement) {
 					// check if next element exists
 					if (groups[group] >= panes)
 						groups[group] = 0;
-					
-					console.log("rotated "+group+" to index "+groups[group]);
 				}
 				
 				// check if current turtle is the active turtle

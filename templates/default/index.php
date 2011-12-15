@@ -31,7 +31,6 @@ $turtles = array();
 $turtles[] = array("module" => "airport", "options" => array("code" => "BRU", "direction" => "departures", "lang" => "en"));
 $turtles[] = array("module" => "airport", "options" => array("code" => "BRU", "direction" => "arrivals", "lang" => "en"));
 $turtles[] = array("module" => "map", "options" => array("location" => "Gent"));
-$turtles[] = array("module" => "map", "options" => array("location" => "Brussel"));
 
 foreach($turtles as $turtle)
 	echo '	Turtles.grow("'.$turtle["module"].'", '.json_encode($turtle["options"])."); \n";
