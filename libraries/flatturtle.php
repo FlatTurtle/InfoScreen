@@ -5,32 +5,22 @@ define('FT_VERSION', '0.1');
 class FlatTurtle {
     
     private static $instance;
-    
-    private $autoload = array("config", "db");
-    private $loaded = array();
+    private $autoload = array("config", "db", "model");
     
     public function __construct() {
         self::$instance = & $this;
         
+        // initialize the loader
+        include_once("libraries/Loader.php");
+        $this->load = new Loader();
+        
         foreach ($this->autoload as $library)
-            $this->load($library);
+            $this->load->library($library);
     }
     
-    public function load($class) {
-        $class = str_replace('.php', '', trim($class, '/'));
-        $location = "libraries/" . $class . ".php";
-        
-        if (!isset($this->loaded[$class]) && file_exists($location)) {
-            include_once ($location);
-            
-            if (class_exists($class)) {
-                $this->{$class} = new $class();
-                $this->loaded[$class] = true;
-                
-                return true;
-            }
-        }
-        return false;
+    public function __get($name) {
+        if($obj = $this->load->{$name})
+            return $obj;
     }
     
     public static function &get_instance() {

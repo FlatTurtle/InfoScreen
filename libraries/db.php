@@ -1,6 +1,6 @@
 <?php
 
-class db {
+class DB {
     
     // fetched from config
     var $hostname;
@@ -10,6 +10,7 @@ class db {
     var $port;
     
     private $dbconn;
+    private $last_query;
     
     function __construct() {
         // load database config
@@ -30,15 +31,19 @@ class db {
     
     function query($query, $values = null) {
         if ($values != null) {
-            // not yet using statements
+            if (!is_array($values))
+                $values = array($values);
+
             foreach ($values as $value) {
                 $value = $this->escape($value);
-                $count = 1; // fix for: Only variables can be passed by reference
-                $query = str_replace("?", $value, $query, $count);
+                $pos = strpos($query, "?");
+                if ($pos !== false)
+                    $query = substr_replace($query, "'" . $value . "'", $pos, 1);
             }
         }
+        $this->last_query = $query;
         
-        return new db_result($this->dbconn->query($query));
+        return new DB_result($this->dbconn->query($query));
     }
     
     function escape($value) {
@@ -48,13 +53,17 @@ class db {
     function insert_id() {
         return @mysqli_insert_id($this->conn_id);
     }
+    
+    function last_query() {
+        return $this->last_query;
+    }
 }
 
 /*
  * This is a wrapper class for the regular mysqli result. It adds a few user-friendly 
  * functions and still allows you to access the regular methods and properties.
  */
-class db_result {
+class DB_result {
     
     private $result;
     
@@ -62,12 +71,17 @@ class db_result {
         $this->result = $mysqli_result;
     }
     
+    function __destruct() {
+        @$this->result->free;
+    }
+    
     function __call($name, $args) {
-        return call_user_func(array($this->result, $name), $args);
+        if (method_exists($this->result, $name))
+            return call_user_func_array(array($this->result, $name), $args);
     }
     
     function __get($name) {
-        if(isset($this->result->{$name}))
+        if (isset($this->result->{$name}))
             return $this->result->{$name};
     }
     
@@ -77,9 +91,9 @@ class db_result {
     
     function result() {
         $results = array();
-        while($row = $this->row())
+        while ($row = $this->row())
             $results[] = $row;
-            
+        
         return $results;
     }
     
@@ -93,5 +107,9 @@ class db_result {
     
     function row_array() {
         return $this->result->fetch_assoc();
+    }
+    
+    function free_result() {
+        $this->result->free_result();
     }
 }

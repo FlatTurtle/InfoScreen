@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 // fire up the turtles!
-require("libraries/flatturtle.php");
+require("libraries/FlatTurtle.php");
 
 $ft = &get_instance();
 
