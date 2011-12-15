@@ -144,7 +144,7 @@ var App = function(rootElement) {
 			var index = rootElement.find("section." + group).index(turtle);
 			for ( var i = 0; i < panes; i++) {
 				var li = $("<li>");
-				if (i == index) 
+				if (i == index)
 					li.addClass('current');
 				li.html('&nbsp;');
 				ol.append(li);

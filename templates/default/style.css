@@ -158,11 +158,11 @@ section .pane h3 ol {
 	display: block;
 	float: right;
 	margin: 12px 15px 0 0;
+	text-align: right;
 }
 
 section .pane h3 ol li {
-	display: block;
-	float: right;
+	display: inline-block;
 	width: 8px;
 	height: 8px;
 	-moz-border-radius: 4px;
