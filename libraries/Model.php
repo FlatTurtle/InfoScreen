@@ -9,8 +9,8 @@ class Model {
     }
     
     function __get($name) {
-        if (isset($this->ft->{$name}))
-            return $this->ft->{$name};
+        if ($obj = $this->ft->{$name})
+            return $obj;
     }
     
     function __call($name, $args) {
