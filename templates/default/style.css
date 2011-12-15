@@ -148,9 +148,11 @@ section .pane .label {
 }
 
 section .pane .station {
+	display: inline-block;
 	font-weight: bold;
 	line-height: 20px;
 	overflow: hidden;
+	height: 20px;
 }
 
 section .pane h3 ol {
@@ -159,6 +161,7 @@ section .pane h3 ol {
 	float: right;
 	margin: 12px 15px 0 0;
 	text-align: right;
+	line-height: 10px;
 }
 
 section .pane h3 ol li {

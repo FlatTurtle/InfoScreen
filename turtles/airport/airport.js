@@ -31,6 +31,9 @@
 			// parse ajax results
 			var liveboard = json.Liveboard.departures || json.Liveboard.arrivals;
 
+			// get airport name from json
+			this.options.airport = json.Liveboard.location.name;
+			
 			for ( var i in liveboard) {
 				var data = liveboard[i];
 
@@ -77,7 +80,7 @@
 			if(this.template) {
 				var data = {
 					direction : this.options.direction,
-					airport : this.options.code,
+					airport : this.options.airport,
 					entries : this.collection.toJSON(),
 				};
 				
