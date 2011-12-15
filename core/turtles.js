@@ -154,3 +154,8 @@ function TurtleManager() {
 		}
 	}
 }
+
+// basic grow function, we override this in our custom loader
+TurtleManager.prototype.grow = function(id, options) {
+	return this.instantiate(id, options);
+}
