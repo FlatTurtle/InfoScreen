@@ -1,0 +1,38 @@
+<div class="pane one-third">
+	<h2>
+		NMBS 
+		<small>${direction}</small>
+		<span class="credits">moved by <em>FlatTurtle</em></span>
+	</h2>
+
+	<h3>${location}</h3>
+	
+	<table>
+		<tbody>
+			{{each entries}}
+				<tr>
+					{{if $value.delay}}
+					<td class="time delayed">
+						${$value.time}
+						{{if $value.delay}}
+							<em>${$value.delay}</em>
+						{{/if}}
+					</td>
+					{{else}}
+					<td class="time">
+						${$value.time}
+					</td>
+					{{/if}}
+					<td class="station">
+						${$value.direction}
+					</td>
+					<td>
+						{{if $value.platform}}
+						<span class="label">${$value.platform}</span>
+						{{/if}}
+					</td>
+				</tr>
+			{{/each}}
+		<tbody>
+	</table>
+</div>

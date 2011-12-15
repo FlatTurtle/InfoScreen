@@ -30,6 +30,7 @@
 $turtles = array();
 $turtles[] = array("module" => "airport", "options" => array("code" => "BRU", "direction" => "departures", "lang" => "en"));
 $turtles[] = array("module" => "airport", "options" => array("code" => "BRU", "direction" => "arrivals", "lang" => "en"));
+$turtles[] = array("module" => "nmbs", "options" => array("location" => "Gent"));
 $turtles[] = array("module" => "map", "options" => array("location" => "Gent"));
 
 foreach($turtles as $turtle)
