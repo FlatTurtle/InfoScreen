@@ -11,7 +11,8 @@
 			this.bind("born", this.refresh);
 			this.bind("refresh", this.refresh);
 			
-			// automatic collection refresh
+			// automatic collection refresh each minute, this will automatically
+			// trigger the reset event
 			refreshInterval = window.setInterval(this.refresh, 60000);
 		},
 		refresh : function() {
@@ -59,21 +60,29 @@
 			// prevents loss of 'this' inside methods
 			_.bindAll(this, "render");
 
-			// bind render on born and collection reset
-			this.bind("born", this.render);
+			// bind render to collection reset
 			this.collection.bind("reset", this.render);
+			
+			// pre-fetch template file and render when ready
+			var self = this;
+			if(this.template == null) {
+				$.get("turtles/airport/list.html", function(template) {
+					self.template = template;
+					self.render();
+				});
+			}
 		},
 		render : function() {
-			var data = {
-				direction : this.options.direction,
-				airport : this.options.code,
-				entries : this.collection.toJSON(),
-			};
-			
-			var self = this;
-			$.get("turtles/airport/list.html", function(template) {
-				self.el.html($.tmpl(template, data)).trigger("rendered");
-			});
+			// only render when template file is loaded
+			if(this.template) {
+				var data = {
+					direction : this.options.direction,
+					airport : this.options.code,
+					entries : this.collection.toJSON(),
+				};
+				
+				this.el.html($.tmpl(this.template, data)).trigger("rendered");
+			}
 		}
 	});
 

@@ -2,7 +2,6 @@
 
 class DB {
     
-    // fetched from config
     var $hostname;
     var $username;
     var $password;

@@ -2,6 +2,7 @@
 
 class Loader {
     
+    // used to store an object of each loaded class
     private $loaded = array();
     
     public function __get($name) {

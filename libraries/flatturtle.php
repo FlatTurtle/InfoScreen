@@ -10,7 +10,7 @@ class FlatTurtle {
     public function __construct() {
         self::$instance = & $this;
         
-        // initialize the loader
+        // initialize the loader object
         include_once("libraries/Loader.php");
         $this->load = new Loader();
         
@@ -19,11 +19,12 @@ class FlatTurtle {
     }
     
     public function __get($name) {
-        if($obj = $this->load->{$name})
-            return $obj;
+        // objects are stored by the loader
+        return $this->load->$name;
     }
     
     public static function &get_instance() {
+        // singleton method
         if(!isset(self::$instance)) {
             $class = __CLASS__;
             self::$instance = new $class;

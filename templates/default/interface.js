@@ -65,19 +65,23 @@ var App = function(rootElement) {
 
 	// keep track of groups, each items represents a group and its current
 	// active index
-	var groups = [];
+	var groups = {};
 
 	// switch to the next pane
 	var rotate = function() {
-		var rotated = [];
+		var rotated = {};
 		
 		$(rootElement).find("section").each(function() {
 			var turtle = $(this);
 			var group = turtle.attr("class");
 			var panes = rootElement.find("section." + group).size();
 
-			// turtle has multiple panes
+			// multiple turtles in 1 group
 			if (panes > 1) {
+				console.log(group+" has "+panes+" panes");
+				console.log(groups);
+				
+				// first rotate
 				if (groups[group] == null) {
 					groups[group] = 0;
 					rotated[group] = true;
@@ -87,19 +91,29 @@ var App = function(rootElement) {
 					rotated[group] = true;
 					
 					// check if next element exists
-					if (rootElement.find("section." + group + ":nth-child("+ (groups[group] + 1) + ")").length == 0)
+					if (groups[group] >= panes)
 						groups[group] = 0;
+					
+					console.log("rotated "+group+" to index "+groups[group]);
 				}
 				
-				if (rootElement.find("section." + group).index(turtle) == groups[group])
+				// check if current turtle is the active turtle
+				var index = rootElement.find("section." + group).index(turtle);
+				if (index == groups[group]) {
+					// check if active turtle has a ticker
+					if(turtle.find("h3 ol").length == 0)
+						tick(turtle);
+					
 					$(this).show();
+				}
 				else
 					$(this).hide();
-				
-				tick(turtle);
 			}
+			// always show if only 1 turtle in group
+			else
+				turtle.show();
 		});
-	}
+	};
 
 	var initializeHtml = function() {
 		$(rootElement).find("section").each(function() {
@@ -113,45 +127,16 @@ var App = function(rootElement) {
 				tick(turtle);
 			});
 		});
-	}
+	};
 
-	// displays the correct pane
-	var display = function(turtle) {
-		var turtle = turtle;
-		var group = turtle.attr("class");
-
-		if (groups[group] == null)
-			groups[group] = 0;
-		
-		// check if active board exists
-		if (rootElement.find("section." + group + ":nth-child("+ (groups[group] + 1) + ")").length == 0)
-			groups[group] = 0;
-
-		// display correct board
-		rootElement.find("section." + group).each(function() {
-			if ($(this).index() == groups[group])
-				$(this).show();
-			else
-				$(this).hide();
-		});
-
-		tick(turtle);
-	}
-
+	// add ticker to turtle
 	var tick = function(turtle) {
-		var turtle = turtle;
 		var group = turtle.attr("class");
 		var panes = rootElement.find("section." + group).size();
 
-		if (groups[group] == null)
-			groups[group] = 0;
-
 		if (panes > 1) {
-			var active = rootElement.find("section." + group + ":nth-child("
-					+ (groups[group] + 1) + ")");
-
 			// ticker placeholder
-			var header = active.find("h3");
+			var header = turtle.find("h3");
 			if (header.find("ol").length != 0)
 				var ol = header.find("ol").html("");
 			else {
@@ -160,16 +145,16 @@ var App = function(rootElement) {
 			}
 
 			// generate ticker
+			var index = rootElement.find("section." + group).index(turtle);
 			for ( var i = 0; i < panes; i++) {
 				var li = $("<li>");
-				if (groups[group] === i) {
+				if (i == index) 
 					li.addClass('current');
-				}
 				li.html('&nbsp;');
 				ol.append(li);
 			}
 		}
-	}
+	};
 
 	var initialize = function() {
 		initializeHtml();

@@ -11,8 +11,7 @@
 			$.get('turtles/map/map.html', function(template) {
 				self.el.html($.tmpl(template, {
 					location : self.options.location
-				}));
-				self.el.trigger("rendered");
+				})).trigger("rendered");
 			});
 		}
 	});

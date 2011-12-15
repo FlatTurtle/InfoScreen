@@ -36,7 +36,7 @@ header {
 }
 
 section {
-	display: hidden;
+	display: none;
 }
 
 section .pane {
