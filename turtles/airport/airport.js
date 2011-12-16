@@ -31,20 +31,9 @@
 			// parse ajax results
 			var liveboard = json.Liveboard.departures || json.Liveboard.arrivals;
 
-			// get airport name from json
-			this.options.airport = json.Liveboard.location.name;
-			
-			for ( var i in liveboard) {
-				var data = liveboard[i];
-
-				if (data.delay)
-					data.delay = this.formatTime(data.time + data.delay);
-				else
-					data.delay = false;
-
-				data.time = this.formatTime(data.time);
-				data.airport = data.direction;
-				data.type = data.vehicle;
+			for (var i in liveboard) {
+				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
+				liveboard[i].time = this.formatTime(liveboard[i].time);
 			}
 			
 			return liveboard;
@@ -80,7 +69,7 @@
 			if(this.template) {
 				var data = {
 					direction : this.options.direction,
-					airport : this.options.airport,
+					airport : this.options.code,
 					entries : this.collection.toJSON(),
 				};
 				

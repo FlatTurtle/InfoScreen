@@ -1,7 +1,5 @@
 (function($) {
 	
-	var model = Backbone.Model.extend({});
-
 	var collection = Backbone.Collection.extend({
 		initialize : function(models, options) {
 			// prevents loss of 'this' inside methods
@@ -31,20 +29,9 @@
 			// parse ajax results
 			var liveboard = json.Liveboard.departures || json.Liveboard.arrivals;
 
-			// get station name from json
-			this.options.station = json.Liveboard.location.name;
-			
-			for ( var i in liveboard) {
-				var data = liveboard[i];
-
-				if (data.delay)
-					data.delay = this.formatTime(data.time + data.delay);
-				else
-					data.delay = false;
-
-				data.time = this.formatTime(data.time);
-				data.direction = data.direction;
-				data.platform = data.platform.name;
+			for (var i in liveboard) {
+				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
+				liveboard[i].time = this.formatTime(liveboard[i].time);
 			}
 			
 			return liveboard;
@@ -80,7 +67,7 @@
 			if(this.template) {
 				var data = {
 					direction : this.options.direction,
-					station : this.options.station,
+					station : this.options.location,
 					entries : this.collection.toJSON(),
 				};
 				
@@ -92,8 +79,7 @@
 	// register turtle
 	Turtles.register("nmbs", {
 		collection : collection,
-		view : view,
-		model : model
+		view : view
 	});
 
 })(jQuery);

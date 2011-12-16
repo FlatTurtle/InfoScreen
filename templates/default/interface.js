@@ -97,7 +97,7 @@ var App = function(rootElement) {
 				var index = rootElement.find("section." + group).index(turtle);
 				if (index == groups[group]) {
 					// check if active turtle has a ticker
-					if(turtle.find("h3 ol").length == 0)
+					if(turtle.find("h3 ol").length == 0 || turtle.find("h3 ol li").length != panes)
 						tick(turtle);
 					
 					$(this).show();

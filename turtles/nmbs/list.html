@@ -24,14 +24,14 @@
 					</td>
 					{{/if}}
 					<td>
+						{{if $value.platform.name}}
+						<span class="label">${$value.platform.name}</span>
+						{{/if}}
+					</td>
+					<td>
 						<span class="station">
 						${$value.direction}
 						</span>
-					</td>
-					<td>
-						{{if $value.platform}}
-						<span class="label">${$value.platform}</span>
-						{{/if}}
 					</td>
 				</tr>
 			{{/each}}
