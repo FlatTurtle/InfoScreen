@@ -1,12 +1,58 @@
-<?php  
+<?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+/*
+ *---------------------------------------------------------------
+ * ERROR REPORTING
+ *---------------------------------------------------------------
+ */
 
-// fire up the turtles!
-require("libraries/FlatTurtle.php");
+    define('ENVIRONMENT', 'development');
 
-$ft = &get_instance();
+    if (defined('ENVIRONMENT'))
+    {
+    	switch (ENVIRONMENT)
+    	{
+    		case 'development':
+    			error_reporting(E_ALL);
+    		break;
+    	
+    		case 'testing':
+    		case 'production':
+    			error_reporting(0);
+    		break;
+    
+    		default:
+    			exit('The application environment is not set correctly.');
+    	}
+    }
 
-$template = $ft->config->item("template");
-include("templates/".$template."/index.php");
+/*
+ * -------------------------------------------------------------------
+ *  PATH DETECTION FOR RELIABILITY
+ * -------------------------------------------------------------------
+ */
+
+    // the location of this file
+    $base_path = str_replace(pathinfo(__FILE__, PATHINFO_BASENAME), '', __FILE__);
+    define('BASEPATH', str_replace("\\", "/", $base_path));
+    
+    // the location of the system folder
+    $system_path = BASEPATH . "system";
+    
+    if (realpath($system_path) !== FALSE)
+        $system_path = realpath($system_path) . '/';
+    
+    $system_path = rtrim($system_path, '/') . '/';
+    if(!is_dir($system_path))
+        exit('The system folder could not be found, please check your installation.');
+    
+    define('SYSTEMPATH', str_replace("\\", "/", $system_path));
+
+
+/*
+ * -------------------------------------------------------------------
+ *  FIRE UP THE TURTLES!
+ * -------------------------------------------------------------------
+ */
+
+    require_once (SYSTEMPATH . "FlatTurtle.php");

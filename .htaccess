@@ -1,12 +1,12 @@
-AddType text/cache-manifest .mf
-
-AddDefaultCharset UTF-8
-
-# URL Rewrite fu
-Options +FollowSymLinks
-Options -Indexes
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteRule ^$ controllers/pagehandler.php?page=info [QSA,NC,L]
-RewriteRule ^(\d*\.?\d*)/(\d*\.?\d*)/$ controllers/pagehandler.php?page=info&x=$2&y=$1 [QSA,NC,L]
+    RewriteEngine On
+
+    #Removes access to the system folder
+    RewriteCond %{REQUEST_URI} ^system.*
+    RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+    #Redirect all request to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?/$1 [L]
 </IfModule>

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This class contains functions for easier database access
+ * @author Jens Segers
+ */
 class DB {
     
     var $hostname;
@@ -58,9 +62,10 @@ class DB {
     }
 }
 
-/*
+/**
  * This is a wrapper class for the regular mysqli result. It adds a few user-friendly 
  * functions and still allows you to access the regular methods and properties.
+ * @author Jens Segers
  */
 class DB_result {
     

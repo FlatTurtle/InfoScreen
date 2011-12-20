@@ -23,7 +23,7 @@
 
 		if (!this.registered(id)) {
 			var self = this;
-			// load turtle script
+			// load turtle javascript
 			$.ajax({
 				url : 'turtles/' + id + '/' + id + '.js',
 				dataType : 'script',

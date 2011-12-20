@@ -4,8 +4,7 @@
 | Template folder
 |--------------------------------------------------------------------------
 |
-| The name of the template you will be using. This folder needs to contain 
-| an index.php file that will be automatically loaded.
+| The folder name of the default template
 */
 $config['template']	= "default";
 

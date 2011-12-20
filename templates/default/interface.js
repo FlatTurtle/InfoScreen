@@ -70,55 +70,56 @@ var App = function(rootElement) {
 	// switch to the next pane
 	var rotate = function() {
 		var rotated = {};
-		
-		$(rootElement).find("section").each(function() {
-			var turtle = $(this);
-			var group = turtle.attr("class");
-			var panes = rootElement.find("section." + group).size();
 
-			// multiple turtles in 1 group
-			if (panes > 1) {
-				
-				// first rotate
-				if (groups[group] == null) {
-					groups[group] = 0;
-					rotated[group] = true;
-				}
-				else if (!rotated[group]) {
-					groups[group]++;
-					rotated[group] = true;
-					
-					// check if next element exists
-					if (groups[group] >= panes)
-						groups[group] = 0;
-				}
-				
-				// check if current turtle is the active turtle
-				var index = rootElement.find("section." + group).index(turtle);
-				if (index == groups[group]) {
-					// check if active turtle has a ticker
-					if(turtle.find("h3 ol").length == 0 || turtle.find("h3 ol li").length != panes)
-						tick(turtle);
-					
-					$(this).show();
-				}
-				else
-					$(this).hide();
-			}
-			// always show if only 1 turtle in group
-			else
-				turtle.show();
-		});
+		$(rootElement).find("section").each(
+				function() {
+					var turtle = $(this);
+					var group = turtle.attr("class");
+					var panes = rootElement.find("section." + group).size();
+
+					// multiple turtles in 1 group
+					if (panes > 1) {
+
+						// first rotate
+						if (groups[group] == null) {
+							groups[group] = 0;
+							rotated[group] = true;
+						} else if (!rotated[group]) {
+							groups[group]++;
+							rotated[group] = true;
+
+							if (groups[group] >= panes)
+								groups[group] = 0;
+						}
+
+						// check if current turtle is the active turtle
+						var index = rootElement.find("section." + group).index(
+								turtle);
+						if (index == groups[group]) {
+							// check if active turtle has a ticker
+							if (turtle.find("h3 ol").length == 0
+									|| turtle.find("h3 ol li").length != panes)
+								tick(turtle);
+
+							$(this).show();
+						} else
+							$(this).hide();
+					}
+					// always show if only 1 turtle in group
+					else
+						turtle.show();
+				});
 	};
 
 	var initializeHtml = function() {
 		$(rootElement).find("section").each(function() {
 			var turtle = $(this);
-			
+
 			// an initial rotate is called to activate the first turtle
 			rotate(turtle);
-			
-			// when the turtle triggers the 'rendered' event we will add the ticker
+
+			// when the turtle triggers the 'rendered' event we will add the
+			// ticker
 			turtle.bind("rendered", function() {
 				tick(turtle);
 			});
@@ -142,7 +143,7 @@ var App = function(rootElement) {
 
 			// generate ticker
 			var index = rootElement.find("section." + group).index(turtle);
-			for ( var i = 0; i < panes; i++) {
+			for (var i = 0; i < panes; i++) {
 				var li = $("<li>");
 				if (i == index)
 					li.addClass('current');
@@ -158,6 +159,7 @@ var App = function(rootElement) {
 	};
 
 	var addBehaviours = function() {
+		// set rotate timer
 		rotateInterval = window.setInterval(rotate, 8000);
 	};
 
