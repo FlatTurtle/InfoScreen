@@ -26,6 +26,7 @@ class Loader {
         $class = str_replace('.php', '', trim($class));
         $location = $folder . "/" . $class . ".php";
         
+        // only load 1 time
         if (!isset($this->loaded[$class]) && file_exists($location)) {
             include_once ($location);
             

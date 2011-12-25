@@ -17,11 +17,11 @@
 	
 </div>
 
-<script type="text/javascript" src="core/jquery.js"></script>
 <script type="text/javascript" src="core/underscore.js"></script>
+<script type="text/javascript" src="core/jquery.js"></script>
 <script type="text/javascript" src="core/backbone.js"></script>
-<script type="text/javascript" src="core/turtles.js"></script>
 <script type="text/javascript" src="core/jquery.tmpl.js"></script>
+<script type="text/javascript" src="core/turtles.js"></script>
 <script type="text/javascript" src="templates/default/loader.js"></script>
 <script type="text/javascript" src="templates/default/interface.js"></script>
 

@@ -20,12 +20,16 @@
 		// create placeholder and append it to the root element
 		options.el = $('<section class="' + options.group + '"></section>');
 		$(rootElement).append(options.el);
+		
+		// enables remote turtles
+		if (!options.source)
+			options.source = 'turtles/' + id + '/' + id + '.js';
 
 		if (!this.registered(id)) {
 			var self = this;
 			// load turtle javascript
 			$.ajax({
-				url : 'turtles/' + id + '/' + id + '.js',
+				url : options.source,
 				dataType : 'script',
 				async : false, // to prevent duplicate javascript file loading
 				success : function() {
