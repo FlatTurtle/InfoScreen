@@ -1,13 +1,13 @@
 <?php
 
-    define('FT_VERSION', '0.1');
+    define('FT_VERSION', '0.2');
 
 /*
  * ------------------------------------------------------
  *  Load common functions
  * ------------------------------------------------------
  */
-    require_once (SYSTEMPATH . "common.php");
+    require(SYSTEMPATH . "Common.php");
 
 /*
  * ------------------------------------------------------
@@ -23,14 +23,13 @@
 class FlatTurtle {
     
     private static $instance;
-    private $components = array("config", "uri", "db", "model");
+    private $components = array("Config", "URI", "DB", "Model");
     
     public function __construct() {
-        // singleton
         self::$instance = & $this;
         
         // bootstrap the loader
-        include_once (SYSTEMPATH . "loader.php");
+        require(SYSTEMPATH . "Loader.php");
         $this->load = new Loader();
         
         // autoload components

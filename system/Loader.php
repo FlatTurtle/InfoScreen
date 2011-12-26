@@ -10,8 +10,8 @@ class Loader {
     private $loaded = array();
     
     public function __get($name) {
-        if (isset($this->loaded[$name]))
-            return $this->loaded[$name];
+        if (isset($this->loaded[strtolower($name)]))
+            return $this->loaded[strtolower($name)];
     }
     
     public function system($class, $params = null) {
@@ -31,9 +31,16 @@ class Loader {
             include_once ($location);
             
             if (class_exists($class))
-                return $this->loaded[$class] = new $class($params);
+                return $this->loaded[strtolower($class)] = new $class($params);
         }
+        else
+            show_error("Unable to load the requested class: ".$class);
+        
         return null;
+    }
+    
+    public function is_loaded($class) {
+        return isset($this->loaded[strtolower($class)]);
     }
 
 }

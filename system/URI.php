@@ -7,27 +7,27 @@
  */
 class URI {
     
-    var $uri_string = "";
-    var $segments = array();
+    private $uri_string = "";
+    private $segments = array();
     
-    function __construct() {
+    public function __construct() {
         // initialisation
         $this->_detect_uri();
     }
     
-    function segment($n) {
+    public function segment($n) {
         return (!isset($this->segments[$n])) ? FALSE : $this->segments[$n];
     }
     
-    function uri_string() {
+    public function uri_string() {
         return $this->uri_string;
     }
     
-    function segment_array() {
+    public function segment_array() {
         return $this->segments;
     }
     
-    function total_segments() {
+    public function total_segments() {
         return count($this->segments);
     }
     

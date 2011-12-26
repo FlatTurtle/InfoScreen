@@ -12,7 +12,7 @@ if (!function_exists('_exception_handler')) {
             return;
         
         $ft = &get_instance();
-        $ft->load->system("exceptions");
+        $ft->load->system("Exceptions");
         if (($severity & error_reporting()) == $severity)
             $ft->exceptions->show_php_error($severity, $message, $filepath, $line);
     }
@@ -28,7 +28,7 @@ if (!function_exists('_exception_handler')) {
 if (!function_exists('show_error')) {
     function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered') {
         $ft = &get_instance();
-        $ft->load->system("exceptions");
+        $ft->load->system("Exceptions");
         echo $ft->exceptions->show_error($heading, $message, $status_code);
         exit();
     }
@@ -42,7 +42,7 @@ if (!function_exists('show_error')) {
 if (!function_exists('show_404')) {
     function show_404($page = '') {
         $ft = &get_instance();
-        $ft->load->system("exceptions");
+        $ft->load->system("Exceptions");
         echo $ft->exceptions->show_404($page);
         exit();
     }
