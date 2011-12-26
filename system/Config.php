@@ -12,7 +12,7 @@ class Config {
      * Constructor, will load the default config.php file.
      */
     public function __construct() {
-        $this->load("Config");
+        $this->load("config");
     }
     
     /**
@@ -21,7 +21,7 @@ class Config {
      * @return boolean
      */
     public function load($file = '') {
-        $file = ($file == '') ? "Config" : str_replace(".php", "", $file);
+        $file = ($file == '') ? "config" : str_replace(".php", "", $file);
         $file_path = BASEPATH . $file . ".php";
         
         if (file_exists($file_path)) {
@@ -33,8 +33,9 @@ class Config {
                 
                 return TRUE;
             }
-        } else
+        } else {
             showError("Configuration file was not found.");
+        }
     }
     
     /**

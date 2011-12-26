@@ -49,7 +49,7 @@ class DB {
             foreach ($values as $value) {
                 $value = $this->escape($value);
                 $pos = strpos($query, "?");
-                if ($pos !== false) {
+                if ($pos !== FALSE) {
                     $query = substr_replace($query, "'" . $value . "'", $pos, 1);
                 }
             }
