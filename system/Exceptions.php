@@ -47,7 +47,7 @@ class Exceptions {
         return $buffer;
     }
     
-    public private function set_status_header($code = 200, $text = '') {
+    private function set_status_header($code = 200, $text = '') {
         if ($code == '' or !is_numeric($code))
             show_error('Status codes must be numeric', 500);
         
