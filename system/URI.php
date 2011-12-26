@@ -1,8 +1,7 @@
 <?php
 
 /**
- * A class used to access the uri in a user-friendly way. 
- * It will detect the uri using different server global values.
+ * A class used to access the uri in a user-friendly way. It will detect the uri using different server global values
  * @author Jens Segers
  */
 class URI {
@@ -10,30 +9,52 @@ class URI {
     private $uri_string = "";
     private $segments = array();
     
+    /**
+     * Constructor, initialise the URI component
+     */
     public function __construct() {
-        // initialisation
-        $this->_detect_uri();
+        $this->detectUri();
     }
     
+    /**
+     * Retrieve a specific segment. Where n is the segment number you wish to retrieve. Segments are numbered from left to right. Returns FALSE if the segment is missing
+     * @param int $n
+     * @return string
+     */
     public function segment($n) {
         return (!isset($this->segments[$n])) ? FALSE : $this->segments[$n];
     }
     
-    public function uri_string() {
+    /**
+     * Returns a string with the complete URI
+     * @return string
+     */
+    public function uriString() {
         return $this->uri_string;
     }
     
-    public function segment_array() {
+    /**
+     * Returns an array containing the URI segments
+     * @return array
+     */
+    public function segmentArray() {
         return $this->segments;
     }
     
-    public function total_segments() {
+    /**
+     * Returns the total number of segments
+     * @return int
+     */
+    public function totalSegments() {
         return count($this->segments);
     }
     
-    private function _detect_uri() {
-        // try REQUEST_URI
+    /**
+     * Private function that will detect the URI string
+     */
+    private function detectUri() {
         if (isset($_SERVER['REQUEST_URI']) && isset($_SERVER['SCRIPT_NAME'])) {
+            // try REQUEST_URI
             $uri = $_SERVER['REQUEST_URI'];
             if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0) {
                 $uri = substr($uri, strlen($_SERVER['SCRIPT_NAME']));
@@ -62,17 +83,14 @@ class URI {
                 $uri = parse_url($uri, PHP_URL_PATH);
                 $this->uri_string = str_replace(array('//', '../'), '/', trim($uri, '/'));
             }
-        }
-        // try PATH_INFO
-        else if(isset($_SERVER['PATH_INFO']) && trim($_SERVER['PATH_INFO'], '/') != '' && $_SERVER['PATH_INFO'] != "/".SELF) {
+        } elseif (isset($_SERVER['PATH_INFO']) && trim($_SERVER['PATH_INFO'], '/') != '' && $_SERVER['PATH_INFO'] != "/" . SELF) {
+            // try PATH_INFO
             $this->uri_string = $_SERVER['PATH_INFO'];
-        }
-        // try QUERY_STRING
-        else if (isset($_SERVER['QUERY_STRING']) && trim($_SERVER['QUERY_STRING'], '/') != '') {
-    		$this->uri_string = $_SERVER['QUERY_STRING'];
-        }
-        // try GET
-        else if(is_array($_GET) && count($_GET) == 1 && trim(key($_GET), '/') != '') {
+        } elseif (isset($_SERVER['QUERY_STRING']) && trim($_SERVER['QUERY_STRING'], '/') != '') {
+            // try QUERY_STRING
+            $this->uri_string = $_SERVER['QUERY_STRING'];
+        } elseif (is_array($_GET) && count($_GET) == 1 && trim(key($_GET), '/') != '') {
+            // try GET
             $this->uri_string = key($_GET);
         }
         

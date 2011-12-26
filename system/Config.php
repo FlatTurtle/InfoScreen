@@ -1,20 +1,28 @@
 <?php
 
 /**
- * This class contains functions that enable config files to be managed.
+ * The Config class provides a means to retrieve configuration preferences. These preferences can come from the default config file (config.php) or from your own custom config files.
  * @author Jens Segers
  */
 class Config {
     
     private $config = array();
     
+    /**
+     * Constructor, will load the default config.php file.
+     */
     public function __construct() {
-        $this->load("config");
+        $this->load("Config");
     }
     
+    /**
+     * Load a custom config file
+     * @param string $file
+     * @return boolean
+     */
     public function load($file = '') {
-        $file = ($file == '') ? 'config' : str_replace('.php', '', $file);
-        $file_path = BASEPATH . $file . '.php';
+        $file = ($file == '') ? "Config" : str_replace(".php", "", $file);
+        $file_path = BASEPATH . $file . ".php";
         
         if (file_exists($file_path)) {
             include ($file_path);
@@ -23,20 +31,31 @@ class Config {
                 $this->config = array_merge($this->config, $config);
                 unset($config);
                 
-                return true;
+                return TRUE;
             }
         } else
-            show_error("Configuration file was not found.");
+            showError("Configuration file was not found.");
     }
     
+    /**
+     * Retrieve an item from the config, returns FALSE when the item does not exist
+     * @param string $item
+     * @return mixed
+     */
     public function item($item) {
-        if (isset($this->config[$item]))
+        if (isset($this->config[$item])) {
             return $this->config[$item];
+        }
         
-        return false;
+        return FALSE;
     }
     
-    public function set_item($item, $value) {
+    /**
+     * Dynamically set a config item or change an existing one
+     * @param string $item
+     * @param mixed $value
+     */
+    public function set($item, $value) {
         $this->config[$item] = $value;
     }
 

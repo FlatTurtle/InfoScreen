@@ -1,20 +1,20 @@
 <?php
 
-    define('FT_VERSION', '0.2');
+define('FT_VERSION', '0.2');
 
 /*
  * ------------------------------------------------------
  *  Load common functions
  * ------------------------------------------------------
  */
-    require(SYSTEMPATH . "Common.php");
+require (SYSTEMPATH . "Common.php");
 
 /*
  * ------------------------------------------------------
  *  Custom error handler
  * ------------------------------------------------------
  */
-    set_error_handler('_exception_handler');
+set_error_handler('ExceptionHandler');
 
 /**
  * The main FlatTurtle object
@@ -25,17 +25,21 @@ class FlatTurtle {
     private static $instance;
     private $components = array("Config", "URI", "DB", "Model");
     
+    /**
+     * Constructor, bootstrap the framework
+     */
     public function __construct() {
         self::$instance = & $this;
         
         // bootstrap the loader
-        require(SYSTEMPATH . "Loader.php");
+        require (SYSTEMPATH . "Loader.php");
         $this->load = new Loader();
         
         // autoload components
-        foreach ($this->components as $component)
+        foreach ($this->components as $component) {
             $this->load->system($component);
-            
+        }
+        
         /*
          * ------------------------------------------------------
          *  TODO: detect customer, load settings and display
@@ -43,18 +47,26 @@ class FlatTurtle {
          */
         $template = BASEPATH . "templates/" . $this->config->item("default_template") . "/index.php";
         
-        if (file_exists($template))
+        if (file_exists($template)) {
             include ($template);
-        else
-            show_error("The template file " . $template . " was not found.");
+        } else {
+            showError("The template file " . $template . " was not found.");
+        }
     }
     
+    /**
+     * Enables method chaining. Passes the request to the loader object
+     * @param string $name
+     */
     public function __get($name) {
-        // pass request to loader since they are storred there
         return $this->load->$name;
     }
     
-    public static function &get_instance() {
+    /**
+     * Returns the static object
+     * @return FlatTurtle
+     */
+    public static function &getInstance() {
         return self::$instance;
     }
 }
@@ -62,6 +74,6 @@ class FlatTurtle {
 // create the static object
 $ft = new FlatTurtle();
 
-function &get_instance() {
-    return FlatTurtle::get_instance();
+function &getInstance() {
+    return FlatTurtle::getInstance();
 }

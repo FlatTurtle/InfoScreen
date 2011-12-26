@@ -2,11 +2,11 @@
 
 class Infoscreen extends Model {
 	
-    function get_infoscreen($infoscreenid) {
+    function getInfoscreen($infoscreenid) {
         return $this->db->query("SELECT * FROM infoscreens WHERE id = ?", array($infoscreenid))->row();
     }
     
-    function get_infoscreens($customer) {
+    function getInfoscreens($customer) {
         return $this->db->query("SELECT * FROM infoscreens WHERE customerid = ?", array($customer))->result();
     }
     

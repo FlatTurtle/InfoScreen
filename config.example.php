@@ -6,7 +6,7 @@
 |
 | The folder name of the default template
 */
-$config['template']	= "default";
+$config['default_template']	= "default";
 
 
 /*
