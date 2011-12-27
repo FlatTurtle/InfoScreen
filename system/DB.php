@@ -41,6 +41,7 @@ class DB {
      * @return DBResult
      */
     public function query($query, $values = null) {
+        // replace all '?' with the corresponding value
         if ($values != null) {
             if (!is_array($values)) {
                 $values = array($values);
@@ -56,7 +57,12 @@ class DB {
         }
         $this->last_query = $query;
         
-        return new DBResult($this->dbconn->query($query));
+        // query failed
+        if (!$mysqli_result = $this->dbconn->query($query)) {
+            $this->displayError();
+        }
+        
+        return new DBResult($mysqli_result);
     }
     
     /**
@@ -88,6 +94,20 @@ class DB {
      */
     public function lastQuery() {
         return $this->last_query;
+    }
+    
+    /**
+     * Display an appropriate error message when a query has failed
+     * @param string $error
+     */
+    private function displayError($error = "") {
+        if(!$error)
+            $error = $this->dbconn->error;
+        
+        $ft = &getInstance();
+        $ft->load->system("Exceptions");
+        echo $ft->exceptions->showError("A Database Error Occurred", $error);
+        exit();
     }
 }
 

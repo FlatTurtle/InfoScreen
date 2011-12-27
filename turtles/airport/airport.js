@@ -18,14 +18,14 @@
 		refresh : function() {
 			this.fetch({
 				data : {
-					direction : this.options.direction,
-					lang : this.options.lang
+					direction : this.options.direction || "arrivals" ,
+					lang : this.options.lang || "en"
 				}
 			});
 		},
 		url : function() {
 			// remote source url
-			return "http://data.irail.be/Airports/Liveboard/" + this.options.code + ".json";
+			return "http://data.irail.be/Airports/Liveboard/" + this.options.location + ".json";
 		},
 		parse : function(json) {
 			// parse ajax results
@@ -69,7 +69,7 @@
 			if(this.template) {
 				var data = {
 					direction : this.options.direction,
-					airport : this.options.code,
+					airport : this.options.location,
 					entries : this.collection.toJSON(),
 				};
 				

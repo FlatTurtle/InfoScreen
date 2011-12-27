@@ -23,7 +23,7 @@ set_error_handler('ExceptionHandler');
 class FlatTurtle {
     
     private static $instance;
-    private $components = array("Config", "URI", "Model"); // core components
+    private $components = array("Config", "URI", "DB", "Model"); // core components
     
     /**
      * Constructor, bootstrap the framework
@@ -35,7 +35,7 @@ class FlatTurtle {
         require (SYSTEMPATH . "Loader.php");
         $this->load = new Loader();
         
-        // autoload components
+        // autoload core components
         foreach ($this->components as $component) {
             $this->load->system($component);
         }

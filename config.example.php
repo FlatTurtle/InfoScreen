@@ -1,12 +1,14 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Template folder
+| Infoscreen settings
 |--------------------------------------------------------------------------
 |
-| The folder name of the default template
+| The alias of the default infoscreen when no alias is given. And the
+| folder name of the template to use.
 */
-$config['default_template']	= "default";
+$config['default_infoscreen'] = "the-amadeus-square";
+$config['default_template'] = "default";
 
 
 /*
@@ -26,5 +28,3 @@ $config['database']['username'] = 'flatturtle';
 $config['database']['password'] = 'password';
 $config['database']['database'] = 'flatturtle';
 $config['database']['port'] = '';
-
-?>

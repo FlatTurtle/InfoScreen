@@ -15,10 +15,10 @@
 		},
 		refresh : function() {
 			this.fetch({
-				/*data : {
-					direction : this.options.direction,
-					lang : this.options.lang
-				}*/
+				data : {
+					direction : this.options.direction  || "" ,
+					lang : this.options.lang || ""
+				}
 			});
 		},
 		url : function() {

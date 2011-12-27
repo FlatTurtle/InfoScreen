@@ -7,19 +7,31 @@
 class Controller {
     
     /**
-     * Constructor, decides which template to load
+     * Constructor, decides which infoscreen and turtles to be loaded
      */
     public function __construct() {
-        $template = BASEPATH . "templates/" . $this->config->item("default_template") . "/index.php";
-        
-        if (file_exists($template)) {
-            include ($template);
-        } else {
-            showError("The template file " . $template . " was not found.");
+        // get infoscreen alias from uri
+        if (!$alias = $this->uri->segment(1)) {
+            $alias = $this->config->item("default_infoscreen");
         }
+        
+        // load infoscreen model
+        $this->load->model("Infoscreen");
+        
+        // get infoscreen information
+        if (!$infoscreen = $this->infoscreen->get($alias)) {
+            showError("Infoscreen was not found");
+        }
+        
+        // get turtles
+        $turtles = $this->infoscreen->turtles($infoscreen->id);
+        
+        // render the infoscreen
+        $template = "templates/" . $this->config->item("default_template") . "/index.php";
+        $this->load->view($template, array("infoscreen" => $infoscreen, "turtles" => $turtles));
     }
     
-	/**
+    /**
      * Provides easy access to the main object
      * @param string $name
      * @return object
@@ -28,5 +40,5 @@ class Controller {
         $ft = &getInstance();
         return $ft->$name;
     }
-    
+
 }

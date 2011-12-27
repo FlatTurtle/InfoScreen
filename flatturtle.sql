@@ -1,19 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.10deb1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 11, 2011 at 08:08 PM
--- Server version: 5.1.54
--- PHP Version: 5.3.5-1ubuntu7.2
+-- Generation Time: Dec 27, 2011 at 08:32 
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `flatturtle`
@@ -26,12 +20,12 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `customers` (
-  `id` int(11) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` text NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `customers`
@@ -47,62 +41,90 @@ INSERT INTO `customers` (`id`, `username`, `password`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `infoscreens` (
-  `id` int(11) NOT NULL,
-  `customerid` int(11) NOT NULL,
-  `title` text NOT NULL,
-  `motd` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `alias` varchar(255) NOT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `color` varchar(10) DEFAULT NULL,
+  `lang` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `customer_id` (`customer_id`),
+  KEY `alias` (`alias`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `infoscreens`
 --
 
-INSERT INTO `infoscreens` (`id`, `customerid`, `title`, `motd`) VALUES
-(1, 1, 'The Amadeus Square', 'The Amadeus Square');
+INSERT INTO `infoscreens` (`id`, `customer_id`, `title`, `alias`, `logo`, `color`, `lang`) VALUES
+(1, 1, 'The Amadeus Square', 'the-amadeus-square', 'templates/default/amadeussquare.jpg', '#FB8B1A', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Table structure for table `turtles`
 --
 
-CREATE TABLE IF NOT EXISTS `settings` (
-  `infoscreenid` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `turtles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `infoscreen_id` int(11) NOT NULL,
+  `module` varchar(255) NOT NULL,
+  `group` varchar(255) DEFAULT NULL,
+  `source` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `infoscreen_id` (`infoscreen_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `turtles`
+--
+
+INSERT INTO `turtles` (`id`, `infoscreen_id`, `module`, `group`, `source`) VALUES
+(1, 1, 'airport', '', ''),
+(2, 1, 'nmbs', '', ''),
+(3, 1, 'map', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `turtle_options`
+--
+
+CREATE TABLE IF NOT EXISTS `turtle_options` (
+  `turtle_id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(20) NOT NULL,
-  `value` varchar(150) NOT NULL,
-  PRIMARY KEY (`infoscreenid`,`key`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY (`turtle_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `settings`
+-- Dumping data for table `turtle_options`
 --
 
-INSERT INTO `settings` (`infoscreenid`, `key`, `value`) VALUES
-(1, 'cycleinterval', '10'),
-(1, 'rowstoshow', '10'),
-(1, 'lang', 'EN'),
-(1, 'color', '#fb8b1a'),
-(1, 'logo', 'templates/FlatTurtle/img/amadeussquare.jpg');
-
--- --------------------------------------------------------
+INSERT INTO `turtle_options` (`turtle_id`, `key`, `value`) VALUES
+(1, 'location', 'BRU'),
+(2, 'location', 'Gent'),
+(3, 'location', 'Gent');
 
 --
--- Table structure for table `stations`
+-- Constraints for dumped tables
 --
 
-CREATE TABLE IF NOT EXISTS `stations` (
-  `infoscreenid` int(11) NOT NULL,
-  `stationid` varchar(25) NOT NULL,
-  `type` varchar(10) NOT NULL,
-  PRIMARY KEY (`infoscreenid`,`stationid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+--
+-- Constraints for table `infoscreens`
+--
+ALTER TABLE `infoscreens`
+  ADD CONSTRAINT `infoscreens_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE;
 
 --
--- Dumping data for table `stations`
+-- Constraints for table `turtles`
 --
+ALTER TABLE `turtles`
+  ADD CONSTRAINT `turtles_ibfk_1` FOREIGN KEY (`infoscreen_id`) REFERENCES `infoscreens` (`id`) ON DELETE CASCADE;
 
-INSERT INTO `stations` (`infoscreenid`, `stationid`, `type`) VALUES
-(1, 'BE.NMBS.008814001', 'NMBS'),
-(1, 'BE.NMBS.008814118', 'NMBS'),
-(1, 'BE.NMBS.008814373', 'NMBS');
+--
+-- Constraints for table `turtle_options`
+--
+ALTER TABLE `turtle_options`
+  ADD CONSTRAINT `turtle_options_ibfk_1` FOREIGN KEY (`turtle_id`) REFERENCES `turtles` (`id`) ON DELETE CASCADE;

@@ -26,7 +26,7 @@ class Loader {
      * @return object
      */
     public function system($class, $params = null) {
-        return $this->load($class, SYSTEMPATH, $params);
+        return $this->loadClass($class, SYSTEMPATH, $params);
     }
     
     /**
@@ -36,22 +36,60 @@ class Loader {
      * @return object
      */
     public function model($class, $params = null) {
-        return $this->load($class, SYSTEMPATH . "models", $params);
+        return $this->loadClass($class, SYSTEMPATH . "models", $params);
     }
     
     /**
-     * Load any class, display an error message if the class or file is not found
+     * Alias function for load, include a view file with optional parameters
+     * @param string $file
+     * @param array $params
+     * @param bool $return
+     */
+    public function view($file, $params = null, $return = FALSE) {
+        $this->load($file, $params);
+    }
+    
+    /**
+     * Load any file, display an error message if the class or file is not found
+     * @param string $file
+     * @param array $params
+     * @param bool $return
+     * @return string
+     */
+    public function load($file, $params = null, $return = FALSE) {
+        if (!file_exists($file)) {
+            showError('Unable to load the requested file: ' . $file);
+        }
+        
+        // import variables from an array into the current symbol table.
+        if ($params)
+            extract($params);
+        
+        ob_start();
+        include ($file);
+        
+        if ($return === TRUE) {
+            $buffer = ob_get_contents();
+            @ob_end_clean();
+            return $buffer;
+        }
+        
+        ob_end_flush();
+    }
+    
+    /**
+     * Load any class and create one object, display an error message if the class or file is not found
      * @param string $class
      * @param string $folder
      * @param array $params
      * @return object
      */
-    public function load($class, $folder, $params = null) {
+    public function loadClass($class, $folder, $params = null) {
         $class = str_replace('.php', '', trim($class));
         $location = $folder . "/" . $class . ".php";
         
-        if (isset($this->loaded[$class])) {
-            return $this->loaded[$class];
+        if ($this->isLoaded($class)) {
+            return $this->loaded[strtolower($class)];
         } elseif (file_exists($location)) {
             include_once ($location);
             
@@ -61,7 +99,7 @@ class Loader {
                 showError("Unable to load the requested class: " . $class);
             }
         } else {
-            showError("Unable to load the requested class: " . $class);
+            showError("Unable to locate the requested class: " . $class);
         }
         
         return null;
