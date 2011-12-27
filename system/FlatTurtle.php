@@ -23,7 +23,7 @@ set_error_handler('ExceptionHandler');
 class FlatTurtle {
     
     private static $instance;
-    private $components = array("Config", "URI", "DB", "Model");
+    private $components = array("Config", "URI", "Model"); // core components
     
     /**
      * Constructor, bootstrap the framework
@@ -40,18 +40,8 @@ class FlatTurtle {
             $this->load->system($component);
         }
         
-        /*
-         * ------------------------------------------------------
-         *  TODO: detect customer, load settings and display
-         * ------------------------------------------------------
-         */
-        $template = BASEPATH . "templates/" . $this->config->item("default_template") . "/index.php";
-        
-        if (file_exists($template)) {
-            include ($template);
-        } else {
-            showError("The template file " . $template . " was not found.");
-        }
+        // and final, start the controller
+        $this->load->system("Controller");
     }
     
     /**

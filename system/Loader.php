@@ -50,11 +50,15 @@ class Loader {
         $class = str_replace('.php', '', trim($class));
         $location = $folder . "/" . $class . ".php";
         
-        if (!isset($this->loaded[$class]) && file_exists($location)) {
+        if (isset($this->loaded[$class])) {
+            return $this->loaded[$class];
+        } elseif (file_exists($location)) {
             include_once ($location);
             
             if (class_exists($class)) {
                 return $this->loaded[strtolower($class)] = new $class($params);
+            } else {
+                showError("Unable to load the requested class: " . $class);
             }
         } else {
             showError("Unable to load the requested class: " . $class);
