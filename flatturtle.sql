@@ -92,10 +92,10 @@ INSERT INTO `turtles` (`id`, `infoscreen_id`, `module`, `group`, `source`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `turtle_options` (
-  `turtle_id` int(11) NOT NULL AUTO_INCREMENT,
+  `turtle_id` int(11) NOT NULL,
   `key` varchar(20) NOT NULL,
   `value` varchar(255) NOT NULL,
-  PRIMARY KEY (`turtle_id`)
+  KEY `turtle_id` (`turtle_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --

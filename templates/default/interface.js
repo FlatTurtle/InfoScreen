@@ -71,11 +71,11 @@ var App = function(rootElement) {
 	var rotate = function() {
 		var rotated = {};
 
-		$(rootElement).find("section").each(
+		$(rootElement).find(".turtle").each(
 				function() {
 					var turtle = $(this);
-					var group = turtle.attr("class");
-					var panes = rootElement.find("section." + group).size();
+					var group = turtle.data("group");
+					var panes = rootElement.find(".turtle[data-group=" + group + "]").size();
 
 					// multiple turtles in 1 group
 					if (panes > 1) {
@@ -93,12 +93,10 @@ var App = function(rootElement) {
 						}
 
 						// check if current turtle is the active turtle
-						var index = rootElement.find("section." + group).index(
-								turtle);
+						var index = rootElement.find(".turtle[data-group=" + group + "]").index(turtle);
 						if (index == groups[group]) {
 							// check if active turtle has a ticker
-							if (turtle.find("h3 ol").length == 0
-									|| turtle.find("h3 ol li").length != panes)
+							if (turtle.find("h3 ol").length == 0 || turtle.find("h3 ol li").length != panes)
 								tick(turtle);
 
 							$(this).show();
@@ -112,7 +110,7 @@ var App = function(rootElement) {
 	};
 
 	var initializeHtml = function() {
-		$(rootElement).find("section").each(function() {
+		$(rootElement).find(".turtle").each(function() {
 			var turtle = $(this);
 
 			// an initial rotate is called to activate the first turtle
@@ -128,8 +126,8 @@ var App = function(rootElement) {
 
 	// add ticker to turtle
 	var tick = function(turtle) {
-		var group = turtle.attr("class");
-		var panes = rootElement.find("section." + group).size();
+		var group = turtle.data("group");
+		var panes = rootElement.find(".turtle[data-group=" + group + "]").size();
 
 		if (panes > 1) {
 			// ticker placeholder
@@ -142,7 +140,7 @@ var App = function(rootElement) {
 			}
 
 			// generate ticker
-			var index = rootElement.find("section." + group).index(turtle);
+			var index = rootElement.find(".turtle[data-group=" + group + "]").index(turtle);
 			for (var i = 0; i < panes; i++) {
 				var li = $("<li>");
 				if (i == index)
