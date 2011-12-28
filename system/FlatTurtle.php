@@ -47,6 +47,7 @@ class FlatTurtle {
     /**
      * Enables method chaining. Passes the request to the loader object
      * @param string $name
+     * @return object
      */
     public function __get($name) {
         return $this->load->$name;

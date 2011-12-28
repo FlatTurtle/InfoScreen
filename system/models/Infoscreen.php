@@ -22,7 +22,7 @@ class Infoscreen extends Model {
      * @return array
      */
     function turtles($infoscreen_id) {
-        $query = $this->db->query("SELECT * FROM turtles WHERE infoscreen_id = ?", array($infoscreen_id));
+        $query = $this->db->query("SELECT * FROM turtles WHERE infoscreen_id = ?", $infoscreen_id);
         $turtles = $query->result();
         
         foreach ($turtles as &$turtle) {
@@ -45,7 +45,7 @@ class Infoscreen extends Model {
      * @return array
      */
     function turtleOptions($turtle_id) {
-        $query = $this->db->query("SELECT * FROM turtle_options WHERE turtle_id = ?", array($turtle_id));
+        $query = $this->db->query("SELECT * FROM turtle_options WHERE turtle_id = ?", $turtle_id);
         return $query->result();
     }
 }

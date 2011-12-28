@@ -18,7 +18,7 @@
 			options.group = id;
 
 		// create placeholder and append it to the root element
-		options.el = $('<section class="' + options.group + '"></section>');
+		options.el = $('<section class="turtle ' + options.group + '"></section>');
 		$(rootElement).append(options.el);
 		
 		// enables remote turtles

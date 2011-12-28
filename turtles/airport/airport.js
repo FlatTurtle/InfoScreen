@@ -68,7 +68,7 @@
 			// only render when template file is loaded
 			if(this.template) {
 				var data = {
-					direction : this.options.direction,
+					direction : this.options.direction || "arrivals",
 					airport : this.options.location,
 					entries : this.collection.toJSON(),
 				};
