@@ -63,50 +63,39 @@ var App = function(rootElement) {
 	var rootElement = rootElement;
 	var rotateInterval, refreshInterval;
 
-	// keep track of groups, each items represents a group and its current
-	// active index
+	// keep track of groups, each items represents a group and its current active index
 	var groups = {};
 
 	// switch to the next pane
 	var rotate = function() {
-		var rotated = {};
+		$(rootElement).find(".group").each(function() {
+			var group = $(this).attr("id");
+			var panes = $(this).find(".turtle").size();
 
-		$(rootElement).find(".turtle").each(
-				function() {
-					var turtle = $(this);
-					var group = turtle.data("group");
-					var panes = rootElement.find(".turtle[data-group=" + group + "]").size();
-
-					// multiple turtles in 1 group
-					if (panes > 1) {
-
-						// first rotate
-						if (groups[group] == null) {
-							groups[group] = 0;
-							rotated[group] = true;
-						} else if (!rotated[group]) {
-							groups[group]++;
-							rotated[group] = true;
-
-							if (groups[group] >= panes)
-								groups[group] = 0;
-						}
-
-						// check if current turtle is the active turtle
-						var index = rootElement.find(".turtle[data-group=" + group + "]").index(turtle);
-						if (index == groups[group]) {
-							// check if active turtle has a ticker
-							if (turtle.find("h3 ol").length == 0 || turtle.find("h3 ol li").length != panes)
-								tick(turtle);
-
-							$(this).show();
-						} else
-							$(this).hide();
-					}
-					// always show if only 1 turtle in group
-					else
-						turtle.show();
-				});
+			if(panes > 1) {
+				if (groups[group] == null)
+					groups[group] = 0;
+				
+				// hide active turtle
+				var active = $(".group#" + group +" .turtle:nth-child(" + (groups[group] + 1) + ")");
+				active.hide();
+				
+				// rotate
+				groups[group]++;
+				if (groups[group] >= panes) {
+					groups[group] = 0;
+				}
+				
+				// check if active turtle has a ticker
+				var active = $(".group#" + group +" .turtle:nth-child(" + (groups[group] + 1) + ")");
+				if (active.find("h3 ol").length == 0 || active.find("h3 ol li").length != panes) {
+					tick(active);
+				}
+				
+				// show active
+				active.show();
+			}
+		});
 	};
 
 	var initializeHtml = function() {
@@ -116,8 +105,7 @@ var App = function(rootElement) {
 			// an initial rotate is called to activate the first turtle
 			rotate(turtle);
 
-			// when the turtle triggers the 'rendered' event we will add the
-			// ticker
+			// when the turtle triggers the 'rendered' event we will add the ticker
 			turtle.bind("rendered", function() {
 				tick(turtle);
 			});
@@ -126,25 +114,27 @@ var App = function(rootElement) {
 
 	// add ticker to turtle
 	var tick = function(turtle) {
-		var group = turtle.data("group");
-		var panes = rootElement.find(".turtle[data-group=" + group + "]").size();
+		var group = turtle.parent().attr("id");
+		var panes = $(".group#" + group + " .turtle").size();
 
 		if (panes > 1) {
 			// ticker placeholder
 			var header = turtle.find("h3");
-			if (header.find("ol").length != 0)
+			if (header.find("ol").length != 0) {
 				var ol = header.find("ol").html("");
+			}
 			else {
 				var ol = $("<ol>");
 				header.append(ol);
 			}
 
 			// generate ticker
-			var index = rootElement.find(".turtle[data-group=" + group + "]").index(turtle);
+			var index = turtle.index();
 			for (var i = 0; i < panes; i++) {
 				var li = $("<li>");
-				if (i == index)
+				if (i == index) {
 					li.addClass('current');
+				}
 				li.html('&nbsp;');
 				ol.append(li);
 			}

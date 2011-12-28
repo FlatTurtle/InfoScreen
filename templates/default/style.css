@@ -45,42 +45,20 @@ header #logo {
 	overflow: hidden;
 }
 
-
-/* ===================================================
-   Turtle grid system
-   ================================================ */
-
-.turtle > div {
-	float: left;
-}
-
-.turtle .one-fourth {
-	width: 25%;
-}
-
-.turtle .one-third {
-	width: 33.33%;
-}
-
-.turtle .half {
-	width: 50%;
-}
-
-.turtle .two-thirds {
-	width: 66.66%;
-}
-
-.turtle .full {
-	width: 100%;
-}
-
-
 /* ===================================================
    Turtle styles
    ================================================ */
 
+.group {
+	float: left;
+}
+
 .turtle {
 	display: none;
+}
+
+.group .turtle:first-child {
+	display: block;
 }
 
 .turtle h2 {
@@ -109,7 +87,7 @@ header #logo {
 	display: none;
 }
 
-.turtle:last-child h2 .credits {
+.group:last-child h2 .credits {
 	display: inline;
 }
 

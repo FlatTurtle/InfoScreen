@@ -27,7 +27,7 @@ class Infoscreen extends Model {
         
         foreach ($turtles as &$turtle) {
             // standard options
-            $turtle->options = array("group" => $turtle->group, "source" => $turtle->source);
+            $turtle->options = array("colspan" => $turtle->colspan, "group" => $turtle->group, "source" => $turtle->source);
             
             // optional options
             $options = $this->turtleOptions($turtle->id);

@@ -1,38 +1,36 @@
-<div class="one-third">
-	<h2>
-		airport 
-		<small>${direction}</small>
-		<span class="credits">moved by <em>FlatTurtle</em></span>
-	</h2>
+<h2>
+	airport 
+	<small>${direction}</small>
+	<span class="credits">moved by <em>FlatTurtle</em></span>
+</h2>
 
-	<h3 class="color">${airport}</h3>
-	
-	<table>
-		<tbody>
-			{{each entries}}
-				<tr>
+<h3 class="color">${airport}</h3>
+
+<table>
+	<tbody>
+		{{each entries}}
+			<tr>
+				{{if $value.delay}}
+				<td class="time delayed">
+					${$value.time}
 					{{if $value.delay}}
-					<td class="time delayed">
-						${$value.time}
-						{{if $value.delay}}
-							<em>${$value.delay}</em>
-						{{/if}}
-					</td>
-					{{else}}
-					<td class="time">
-						${$value.time}
-					</td>
+						<em>${$value.delay}</em>
 					{{/if}}
-					<td>
-						<span class="label">${$value.vehicle}</span>
-					</td>
-					<td>
-						<span class="text">
-						${$value.direction}
-						</span>
-					</td>
-				</tr>
-			{{/each}}
-		<tbody>
-	</table>
-</div>
+				</td>
+				{{else}}
+				<td class="time">
+					${$value.time}
+				</td>
+				{{/if}}
+				<td>
+					<span class="label">${$value.vehicle}</span>
+				</td>
+				<td>
+					<span class="text">
+					${$value.direction}
+					</span>
+				</td>
+			</tr>
+		{{/each}}
+	<tbody>
+</table>
