@@ -1,6 +1,6 @@
 <?php
 
-define('FT_VERSION', '0.2');
+define("FT_VERSION", "0.2");
 
 /*
  * ------------------------------------------------------
@@ -14,7 +14,7 @@ require (SYSTEMPATH . "Common.php");
  *  Custom error handler
  * ------------------------------------------------------
  */
-set_error_handler('ExceptionHandler');
+set_error_handler("ExceptionHandler");
 
 /**
  * The main FlatTurtle object
@@ -25,6 +25,7 @@ class FlatTurtle {
     private static $instance;
     private $components = array("Config", "URI", "DB", "Model"); // core components
     
+
     /**
      * Constructor, bootstrap the framework
      */

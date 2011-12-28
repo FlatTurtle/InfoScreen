@@ -1,6 +1,18 @@
 <?php
 
 /**
+ * Base url
+ *
+ * Easy access to the base url
+ */
+if (!function_exists("baseUrl")) {
+    function baseUrl() {
+        $ft = &getInstance();
+        return $ft->config->item("base_url");
+    }
+}
+
+/**
  * Exception Handler
  *
  * This is the custom exception handler that is declaired at the top of FlatTurtle.php.

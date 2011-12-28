@@ -13,16 +13,14 @@
 				{{if $value.delay}}
 				<td class="time delayed">
 					${$value.time}
-					{{if $value.delay}}
-						<em>${$value.delay}</em>
-					{{/if}}
+					<em>${$value.delay}</em>
 				</td>
 				{{else}}
 				<td class="time">
 					${$value.time}
 				</td>
 				{{/if}}
-				<td>
+				<td width="85">
 					<span class="label">${$value.vehicle}</span>
 				</td>
 				<td>

@@ -58,7 +58,7 @@ class Loader {
      */
     public function load($file, $params = null, $return = FALSE) {
         if (!file_exists($file)) {
-            showError('Unable to load the requested file: ' . $file);
+            showError("Unable to load the requested file: " . $file);
         }
         
         // import variables from an array into the current symbol table.
@@ -85,7 +85,7 @@ class Loader {
      * @return object
      */
     public function loadClass($class, $folder, $params = null) {
-        $class = str_replace('.php', '', trim($class));
+        $class = str_replace(".php", "", trim($class));
         $location = $folder . "/" . $class . ".php";
         
         if ($this->isLoaded($class)) {

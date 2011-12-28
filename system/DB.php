@@ -101,7 +101,7 @@ class DB {
      * @param string $error
      */
     private function displayError($error = "") {
-        if(!$error)
+        if (!$error)
             $error = $this->dbconn->error;
         
         $ft = &getInstance();

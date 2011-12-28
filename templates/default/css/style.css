@@ -8,8 +8,8 @@ html,body {
 }
 
 body {
-	color: #333333;
-	background: none repeat scroll 0 0 #FFFFFF;
+	color: #333;
+	background: none repeat scroll 0 0 #FFF;
 	overflow: hidden;
 	font: 13px/1.231 sans-serif;
 	margin: 0;
@@ -63,8 +63,8 @@ header #logo {
 
 .turtle h2 {
 	margin: 0;
-	background: none repeat scroll 0 0 #333333;
-	color: #FFFFFF;
+	background-color: #333;
+	color: #FFF;
 	font-size: 28px;
 	height: 28px;
 	line-height: 28px;
@@ -93,7 +93,7 @@ header #logo {
 
 .turtle h3 {
 	margin: 0;
-	color: #FFFFFF;
+	color: #FFF;
 	font-size: 25px;
 	height: 32px;
 	line-height: 32px;
@@ -111,7 +111,7 @@ header #logo {
 }
 
 .turtle td {
-	color: #333333;
+	color: #333;
 	font-size: 18px;
 	height: 55px !important;
 	overflow: hidden;
@@ -140,11 +140,11 @@ header #logo {
 }
 
 .turtle .label {
-	background: none repeat scroll 0 0 #676767;
+	background-color: #676767;
 	border-bottom: 3px solid #D9D9D9;
 	border-radius: 5px;
 	display: block;
-	color: #FFFFFF;
+	color: #FFF;
 	padding: 5px 3px;
 	text-align: center;
 	vertical-align: bottom;
@@ -179,8 +179,7 @@ header #logo {
 	height: 8px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
-	/* background:#006788; */
-	background: #000000;
+	background-color: #000;
 	margin-left: 10px;
 }
 

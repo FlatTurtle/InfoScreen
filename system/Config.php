@@ -12,7 +12,20 @@ class Config {
      * Constructor, will load the default config.php file.
      */
     public function __construct() {
-        $this->load("config");
+        $this->load();
+        
+        // auto detect the base url if not set
+        if (!$this->item("base_url")) {
+            if (isset($_SERVER["HTTP_HOST"])) {
+                $base_url = isset($_SERVER["HTTPS"]) && strtolower($_SERVER["HTTPS"]) !== "off" ? "https" : "http";
+                $base_url .= "://" . $_SERVER["HTTP_HOST"];
+                $base_url .= str_replace(basename($_SERVER["SCRIPT_NAME"]), "", $_SERVER["SCRIPT_NAME"]);
+            } else {
+                $base_url = "http://localhost/";
+            }
+            
+            $this->set("base_url", $base_url);
+        }
     }
     
     /**
@@ -20,8 +33,8 @@ class Config {
      * @param string $file
      * @return boolean
      */
-    public function load($file = '') {
-        $file = ($file == '') ? "config" : str_replace(".php", "", $file);
+    public function load($file = "") {
+        $file = ($file == "") ? "config" : str_replace(".php", "", $file);
         $file_path = BASEPATH . $file . ".php";
         
         if (file_exists($file_path)) {

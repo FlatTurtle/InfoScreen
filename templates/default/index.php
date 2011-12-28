@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?></title>
-    <link rel="stylesheet" href="templates/default/style.css" />
+    <base href="<?php echo baseUrl(); ?>">
+    <link rel="stylesheet" href="templates/default/css/style.css" />
     
     <style type="text/css">
     .color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
@@ -25,10 +26,10 @@
 <script src="core/underscore.js"></script>
 <script src="core/jquery.js"></script>
 <script src="core/backbone.js"></script>
-<script src="core/jquery.tmpl.js"></script>
 <script src="core/turtles.js"></script>
-<script src="templates/default/loader.js"></script>
-<script src="templates/default/interface.js"></script>
+<script src="templates/default/js/jquery.tmpl.js"></script>
+<script src="templates/default/js/loader.js"></script>
+<script src="templates/default/js/interface.js"></script>
 
 <script type="text/javascript">
 <?php
