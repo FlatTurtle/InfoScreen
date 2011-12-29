@@ -1,3 +1,6 @@
+// we use this global variable to check weither the google maps api has been loaded
+var mapsReady = false;
+
 (function($){
 
 	var view = Backbone.View.extend({
@@ -7,7 +10,7 @@
 			
 			// load the google maps api, since google loads their api asynchronously we will 
 			// need a timer to check if the api has been loaded.
-			$.getScript("http://maps.googleapis.com/maps/api/js?sensor=false&callback=false");
+			$.getScript("http://maps.googleapis.com/maps/api/js?sensor=false&callback=mapsLoaded");
 		},
 		render : function() {
 			var self = this;
@@ -24,7 +27,7 @@
 			var self = this;
 			
 			// render the map if the google object exists
-			if(typeof(google) == 'object' && typeof(google.maps) == 'object') {
+			if(mapsReady) {
 				self.renderMap();
 			}
 			// otherwise, check again later
@@ -33,9 +36,6 @@
 			}
 		},
 		renderMap : function() {
-			console.log(this);
-			console.log(google);
-			
 			var canvas = this.el.find("#canvas")[0];
 			
 			// api options
@@ -54,10 +54,6 @@
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					map.setCenter(results[0].geometry.location);
-					var marker = new google.maps.Marker({
-						map : map,
-						position : results[0].geometry.location
-					});
 				}
 			});
 			
@@ -73,3 +69,8 @@
 	});
 	
 })(jQuery);
+
+// the callback function for the google maps api
+function mapsLoaded() {
+	mapsReady = true;
+}
