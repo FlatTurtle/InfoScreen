@@ -1,8 +1,6 @@
 /* ===================================================
    Main layout
    ================================================ */
-
-
 html,body {
 	font-family: Helvetica;
 }
@@ -43,12 +41,17 @@ header #logo {
 	height: 128px;
 	width: 1000px;
 	overflow: hidden;
+	vertical-align: middle;
+	line-height: 120px;
+}
+
+header #logo img {
+	vertical-align: middle;
 }
 
 /* ===================================================
    Turtle styles
    ================================================ */
-
 .group {
 	float: left;
 }
@@ -163,7 +166,6 @@ header #logo {
 /* ===================================================
    Turtle ticker
    ================================================ */
-
 .turtle h3 ol {
 	width: 30%;
 	display: block;
