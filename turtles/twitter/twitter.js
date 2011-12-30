@@ -14,28 +14,14 @@
 			refreshInterval = window.setInterval(this.refresh, 60000);
 		},
 		refresh : function() {
-			this.fetch({
-				data : {
-					q : this.options.hashtag  || "flatturtle"
-				}
-			});
+			this.fetch();
 		},
 		url : function() {
 			// remote source url
-			return 'http://data.irail.be/feeds/twitter/' + this.options.hashtag + ".json";
+			return 'http://data.irail.be/feeds/twitter/' + (this.options.hashtag || "irail") + ".json";
 		},
 		parse : function(json) {
-			// parse ajax results
-			var liveboard = json.twitter.results;
-
-			for (var i in liveboard) {
-				liveboard[i].time = this.formatTime(liveboard[i].created_at);
-			}
-			
-			return liveboard;
-		},
-		formatTime : function(timestamp) {
-			return timestamp;
+			return json.twitter.results;
 		}
 	});
 
@@ -60,7 +46,7 @@
 			// only render when template file is loaded
 			if(this.template) {
 				var data = {
-					hashtag : this.options.hashtag,
+					hashtag : this.options.hashtag || "flatturtle",
 					entries : this.collection.toJSON(),
 				};
 				
