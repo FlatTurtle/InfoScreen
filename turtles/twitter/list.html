@@ -1,0 +1,25 @@
+<h2>
+	Twitter 
+	<span class="credits">moved by <em>FlatTurtle</em></span>
+</h2>
+
+<h3 class="color">#${hashtag}</h3>
+
+<table>
+	<tbody>
+		{{each entries}}
+			<tr>
+				<td width="40">
+					{{if $value.time}}
+					<span class="label">${$value.time}</span>
+					{{/if}}
+				</td>
+				<td>
+					<span class="text">
+					${$value.text}
+					</span>
+				</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
