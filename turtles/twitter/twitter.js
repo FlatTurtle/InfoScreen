@@ -9,6 +9,10 @@
 			this.bind("born", this.refresh);
 			this.bind("refresh", this.refresh);
 			
+			// default hashtag
+			if(!options.hashtag)
+				options.hashtag = "flatturtle";
+			
 			// automatic collection refresh each minute, this will automatically
 			// trigger the reset event
 			refreshInterval = window.setInterval(this.refresh, 60000);
@@ -18,7 +22,7 @@
 		},
 		url : function() {
 			// remote source url
-			return 'http://data.irail.be/feeds/twitter/' + (this.options.hashtag || "irail") + ".json";
+			return 'http://data.irail.be/feeds/twitter/' + this.options.hashtag + ".json";
 		},
 		parse : function(json) {
 			return json.twitter.results;
@@ -46,7 +50,7 @@
 			// only render when template file is loaded
 			if(this.template) {
 				var data = {
-					hashtag : this.options.hashtag || "flatturtle",
+					hashtag : this.options.hashtag,
 					entries : this.collection.toJSON(),
 				};
 				
