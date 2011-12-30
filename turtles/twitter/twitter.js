@@ -26,7 +26,7 @@
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json;
+			var liveboard = json.results;
 
 			for (var i in liveboard) {
 				liveboard[i].time = this.formatTime(liveboard[i].created_at);
