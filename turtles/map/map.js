@@ -1,16 +1,15 @@
-// we use this global variable to check weither the google maps api has been loaded
-var mapsReady = false;
-
 (function($){
-
+	
 	var view = Backbone.View.extend({
 		initialize : function() {
 			// bind render event
 			this.bind("born", this.render);
 			
-			// load the google maps api, since google loads their api asynchronously we will 
-			// need a timer to check if the api has been loaded.
-			$.getScript("http://maps.googleapis.com/maps/api/js?sensor=false&callback=mapsLoaded");
+			// are we already loading the google maps api?
+			if(typeof(window.mapsReady) == "undefined") {
+				window.mapsReady = false;
+				$.getScript("http://maps.googleapis.com/maps/api/js?sensor=false&callback=mapsLoaded");
+			}
 		},
 		render : function() {
 			var self = this;
@@ -19,23 +18,26 @@ var mapsReady = false;
 					location : self.options.location
 				})).trigger("rendered");
 				
-				// check if the google api is ready
+				// is the google api ready?
 				self.checkReady();
 			});
 		},
+		// since google loads their google maps services in an asynchronous way 
+		// we need to manually check if the api is loaded or not
 		checkReady : function() {
 			var self = this;
 			
-			// render the map if the google object exists
-			if(mapsReady) {
+			// is the google api ready?
+			if(window.mapsReady) {
 				self.renderMap();
 			}
-			// otherwise, check again later
+			// try again later
 			else {
 				var t = setTimeout(function() { self.checkReady(); }, 1000);
 			}
 		},
 		renderMap : function() {
+			// the canvas container
 			var canvas = this.el.find("#canvas")[0];
 			
 			// api options
@@ -70,7 +72,9 @@ var mapsReady = false;
 	
 })(jQuery);
 
-// the callback function for the google maps api
-function mapsLoaded() {
-	mapsReady = true;
+// callback when the google maps api is ready
+if (typeof mapsLoaded != 'function') {
+	function mapsLoaded() {
+		window.mapsReady = true;
+	}
 }
