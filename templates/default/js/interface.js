@@ -73,41 +73,46 @@ var App = function(rootElement) {
 			var panes = $(this).find(".turtle").size();
 
 			if(panes > 1) {
-				if (groups[group] == null)
+				// first rotate
+				if (groups[group] == null) {
 					groups[group] = 0;
-				
-				// hide active turtle
-				var active = $(".group#" + group +" .turtle:nth-child(" + (groups[group] + 1) + ")");
-				active.hide();
-				
-				// rotate
-				groups[group]++;
-				if (groups[group] >= panes) {
-					groups[group] = 0;
+					
+					var active = $(this).find(".turtle:nth-child(" + (groups[group] + 1) + ")");
+					if (active.find("h3 ol").length == 0 || active.find("h3 ol li").length != panes) {
+						tick(active);
+					}
+					active.show();
 				}
-				
-				// check if active turtle has a ticker
-				var active = $(".group#" + group +" .turtle:nth-child(" + (groups[group] + 1) + ")");
-				if (active.find("h3 ol").length == 0 || active.find("h3 ol li").length != panes) {
-					tick(active);
+				else {
+					// hide active turtle
+					var active = $(this).find(".turtle:nth-child(" + (groups[group] + 1) + ")");
+					active.hide();
+					
+					// rotate
+					groups[group]++;
+					if (groups[group] >= panes) {
+						groups[group] = 0;
+					}
+					
+					// check if active turtle has a ticker
+					var active = $(this).find(".turtle:nth-child(" + (groups[group] + 1) + ")");
+					if (active.find("h3 ol").length == 0 || active.find("h3 ol li").length != panes) {
+						tick(active);
+					}
+					active.show();
 				}
-				
-				// show active
-				active.show();
 			}
 		});
 	};
 
 	var initializeHtml = function() {
+		// an initial rotate to activate the first turtle
+		rotate();
+		
+		// bind the turtle's rendered event to add the ticker
 		$(rootElement).find(".turtle").each(function() {
-			var turtle = $(this);
-
-			// an initial rotate is called to activate the first turtle
-			rotate(turtle);
-
-			// when the turtle triggers the 'rendered' event we will add the ticker
-			turtle.bind("rendered", function() {
-				tick(turtle);
+			$(this).bind("rendered", function() {
+				tick($(this));
 			});
 		});
 	};

@@ -8,9 +8,9 @@ function TurtleManager() {
 	instances = {};
 
 	// trigger an event for one or all turtles
-	this.trigger = function(instanceid, event) {
+	this.trigger = function(module, event) {
 		if (event == null) {
-			event = instanceid;
+			event = module;
 			_(instances).each(function(instance, instanceid) {
 				if (typeof instance.collection == "object")
 					instance.collection.trigger(event);
@@ -18,20 +18,22 @@ function TurtleManager() {
 					instance.view.trigger(event);
 			});
 		} else {
-			if (instance = instances[instanceid]) {
-				if (typeof instance.collection == "object")
-					instance.collection.trigger(event);
-				if (typeof instance.view == "object")
-					instance.view.trigger(event);
-			}
+			_(instances).each(function(instance, instanceid) {
+				if (instance.module = module) {
+					if (typeof instance.collection == "object")
+						instance.collection.trigger(event);
+					if (typeof instance.view == "object")
+						instance.view.trigger(event);
+				}
+			});
 		}
 	}
 
 	// bind an external function to an event for one or all turtles
-	this.bind = function(instanceid, event, func) {
+	this.bind = function(module, event, func) {
 		if (func == null) {
 			func = event;
-			event = instanceid;
+			event = module;
 			_(instances).each(function(instance, instanceid) {
 				if (typeof instance.collection == "object")
 					instance.collection.bind(event, func);
@@ -39,12 +41,14 @@ function TurtleManager() {
 					instance.view.bind(event, func);
 			});
 		} else {
-			if (instance = instances[instanceid]) {
-				if (typeof instance.collection == "object")
-					instance.collection.bind(event, func);
-				if (typeof instance.view == "object")
-					instance.view.bind(event, func);
-			}
+			_(instances).each(function(instance, instanceid) {
+				if (instance.module = module) {
+					if (typeof instance.collection == "object")
+						instance.collection.bind(event, func);
+					if (typeof instance.view == "object")
+						instance.view.bind(event, func);
+				}
+			});
 		}
 	}
 
@@ -128,10 +132,14 @@ function TurtleManager() {
 				// add options to view
 				instance.view.options = _.extend(instance.view.options, options);
 			}
+			
+			// trigger born event
+			if (typeof instance.collection == "object")
+				instance.collection.trigger("born");
+			if (typeof instance.view == "object")
+				instance.view.trigger("born");
 
 			instances[instanceid] = instance;
-			this.trigger(instanceid, "born");
-
 			return instanceid;
 		}
 		return false;
@@ -140,7 +148,13 @@ function TurtleManager() {
 	// destroy a turtle instance, the 'destroy' event is triggered on the turtle
 	this.destroy = function(instanceid) {
 		if (instance = instances[instanceid]) {
-			instance.trigger(instanceid, "destroy");
+			
+			// trigger destroy event
+			if (typeof instance.collection == "object")
+				instance.collection.trigger("destroy");
+			if (typeof instance.view == "object")
+				instance.view.trigger("destroy");
+			
 			if (instance.collection != null
 					&& instance.collection.models != null) {
 				_(instance.collection.models).each(function(model) {

@@ -5,6 +5,9 @@
 			// bind render event
 			this.bind("born", this.render);
 			
+			// render map when api is loaded
+			this.bind("mapsReady", this.renderMap);
+			
 			// are we already loading the google maps api?
 			if(typeof(window.mapsReady) == "undefined") {
 				window.mapsReady = false;
@@ -18,23 +21,11 @@
 					location : self.options.location
 				})).trigger("rendered");
 				
-				// is the google api ready?
-				self.checkReady();
+				// is the google api ready? else wait untill the mapsReady trigger is activated
+				if(window.mapsReady) {
+					self.renderMap();
+				}
 			});
-		},
-		// since google loads their google maps services in an asynchronous way 
-		// we need to manually check if the api is loaded or not
-		checkReady : function() {
-			var self = this;
-			
-			// is the google api ready?
-			if(window.mapsReady) {
-				self.renderMap();
-			}
-			// try again later
-			else {
-				var t = setTimeout(function() { self.checkReady(); }, 1000);
-			}
 		},
 		renderMap : function() {
 			// the canvas container
@@ -76,5 +67,8 @@
 if (typeof mapsLoaded != 'function') {
 	function mapsLoaded() {
 		window.mapsReady = true;
+		
+		// trigger for all map turtles
+		Turtles.trigger("map", "mapsReady");
 	}
 }
