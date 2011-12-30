@@ -26,7 +26,7 @@
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json.results;
+			var liveboard = json.twitter.results;
 
 			for (var i in liveboard) {
 				liveboard[i].time = this.formatTime(liveboard[i].created_at);
@@ -60,7 +60,7 @@
 			// only render when template file is loaded
 			if(this.template) {
 				var data = {
-					station : this.options.hashtag,
+					hashtag : this.options.hashtag,
 					entries : this.collection.toJSON(),
 				};
 				
