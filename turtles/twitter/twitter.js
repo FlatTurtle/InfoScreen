@@ -22,14 +22,13 @@
 		},
 		url : function() {
 			// remote source url
-			return 'http://search.twitter.com/search.json'
+			return 'http://data.irail.be/feeds/twitter/' + this.options.hashtag + ".json";
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json.results;
+			var liveboard = json;
 
 			for (var i in liveboard) {
-				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
 				liveboard[i].time = this.formatTime(liveboard[i].created_at);
 			}
 			
