@@ -163,14 +163,15 @@ header #logo img {
 	display: inline-block;
 	font-weight: bold;
 	line-height: 20px;
+	height: 20px;
 	overflow: hidden;
 	vertical-align: middle;
 }
 
 .turtle small.text {
-	line-height: 15px;
-	font-size: 13px;
-	height: 45px;
+	line-height: 20px;
+	font-size: 15px;
+	height: 40px;
 	font-weight: normal;
 }
 
