@@ -22,8 +22,26 @@
 			});
 		},
 		url : function() {
+
+		    var currentTime = new Date()
+                    var month = currentTime.getMonth() + 1
+		    var day = currentTime.getDate()
+		    var year = currentTime.getFullYear()
+		    var minutes = currentTime.getMinutes()
+		    var hours = currentTime.getHours()
+		    if (minutes < 10){
+			minutes = "0" + minutes
+		    }
+		    if (hours < 10){
+			hours = "0" + hours
+		    }
+		    if(month < 10)
+			month = "0" + month
+		    if(day <10){
+			day = "0" + day
+		    }
 			// remote source url
-			return 'http://data.irail.be/NMBS/Liveboard/' + this.options.location + '.json'
+			return 'http://data.irail.be/NMBS/Liveboard/' + this.options.location+ "/" + year + "/" + month + "/" + day + "/" +hours + "/" + minutes + '.json'
 		},
 		parse : function(json) {
 			// parse ajax results
