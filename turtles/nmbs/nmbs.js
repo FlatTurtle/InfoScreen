@@ -23,7 +23,25 @@
 		},
 		url : function() {
 			var today = new Date();
-			var query = this.options.location + "/" + today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getHours() + "/" +  + today.getMinutes();
+            var month = today.getMonth() + 1;
+		    var day = today.getDate();
+		    var year = today.getFullYear();
+		    var minutes = today.getMinutes();
+		    var hours = today.getHours();
+		    
+		    if (minutes < 10)
+		    	minutes = "0" + minutes;
+		    
+		    if (hours < 10)
+		    	hours = "0" + hours;
+
+		    if(month < 10)
+		    	month = "0" + month;
+		    	
+		    if(day <10)
+		    	day = "0" + day;
+			
+			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" +  minutes;
 			
 			// remote source url
 			return "http://data.irail.be/NMBS/Liveboard/" + query + ".json";
