@@ -11,17 +11,16 @@ var Clock = function(rootElement) {
 	};
 
 	var time = function() {
-		var now = new Date(), hours = now.getHours(), minutes = now
-				.getMinutes();
+		var now = new Date(), hours = now.getHours(), minutes = now.getMinutes();
 		if (ticker) {
 			ticker = false;
 			return (hours < 10 ? '0' : '') + hours
-					+ "<span style='visibility:visible;'>:</span>"
+					+ '<span style="visibility:visible;">:</span>'
 					+ (minutes < 10 ? '0' : '') + minutes;
 		} else {
 			ticker = true;
 			return (hours < 10 ? '0' : '') + hours
-					+ "<span style='visibility:hidden;'>:</span>"
+					+ '<span style="visibility:hidden;">:</span>'
 					+ (minutes < 10 ? '0' : '') + minutes;
 		}
 	};
@@ -61,7 +60,7 @@ var Clock = function(rootElement) {
 var App = function(rootElement) {
 
 	var rootElement = rootElement;
-	var rotateInterval, refreshInterval;
+	var rotateInterval;
 
 	// keep track of groups, each items represents a group and its current active index
 	var groups = {};
@@ -126,7 +125,7 @@ var App = function(rootElement) {
 			// ticker placeholder
 			var header = turtle.find("h3");
 			if (header.find("ol").length != 0) {
-				var ol = header.find("ol").html("");
+				var ol = header.find("ol").empty();
 			}
 			else {
 				var ol = $("<ol>");
@@ -138,9 +137,9 @@ var App = function(rootElement) {
 			for (var i = 0; i < panes; i++) {
 				var li = $("<li>");
 				if (i == index) {
-					li.addClass('current');
+					li.addClass("current");
 				}
-				li.html('&nbsp;');
+				li.html("&nbsp;");
 				ol.append(li);
 			}
 		}
@@ -158,7 +157,6 @@ var App = function(rootElement) {
 
 	var removeBehaviours = function() {
 		window.clearInterval(rotateInterval);
-		window.clearInterval(refreshInterval);
 	};
 
 	this.destroy = function() {
