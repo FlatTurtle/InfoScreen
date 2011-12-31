@@ -49,6 +49,9 @@
 			return "http://data.irail.be/Airports/Liveboard/" + query + ".json";
 		},
 		parse : function(json) {
+			if(!this.options.airport)
+				this.options.airport = json.Liveboard.location.name;
+			
 			// parse ajax results
 			var liveboard = json.Liveboard.departures || json.Liveboard.arrivals;
 
@@ -90,7 +93,7 @@
 			if(this.template) {
 				var data = {
 					direction : this.options.direction || "departures",
-					airport : this.options.location,
+					airport : this.options.airport || this.options.location,
 					entries : this.collection.toJSON(),
 				};
 				
