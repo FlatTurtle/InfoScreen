@@ -24,8 +24,11 @@
 			});
 		},
 		url : function() {
+			var today = new Date();
+			var query = this.options.location + "/" + today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getHours() + "/" +  + today.getMinutes();
+			
 			// remote source url
-			return "http://data.irail.be/Airports/Liveboard/" + this.options.location + ".json";
+			return "http://data.irail.be/Airports/Liveboard/" + query + ".json";
 		},
 		parse : function(json) {
 			// parse ajax results
