@@ -53,6 +53,9 @@
 			for (var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
 				liveboard[i].time = this.formatTime(liveboard[i].time);
+				
+				if(!liveboard[i].platform.name)
+					liveboard[i].platform.name = "-";
 			}
 			
 			return liveboard;
