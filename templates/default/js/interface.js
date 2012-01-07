@@ -154,12 +154,18 @@ var App = function(rootElement) {
 			
 			// add animation
 			var active = ol.find("li.current");
-			active.css("-moz-animation", "spinner " + interval/1000 + "s 1");
-			active.css("-webkit-animation", "spinner " + interval/1000 + "s 1");
-			active.css("-ms-animation", "spinner " + interval/1000 + "s 1");
 			
-			// restart animation
-			active.before(active.clone(true)).remove();
+			// remove animation (needed to restart animation)
+			active.css("-moz-animation", "none");
+			active.css("-webkit-animation", "none");
+			active.css("-ms-animation", "none");
+			
+			// add animation
+			setTimeout(function() {
+				active.css("-moz-animation", "spinner " + interval/1000 + "s 1");
+				active.css("-webkit-animation", "spinner " + interval/1000 + "s 1");
+				active.css("-ms-animation", "spinner " + interval/1000 + "s 1");
+			}, 10);
 			
 			/* -moz-animation: spinner 8s 1;
 			 * -webkit-animation: spinner 8s 1;
