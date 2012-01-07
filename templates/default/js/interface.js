@@ -95,11 +95,11 @@ var App = function(rootElement) {
 						groups[group] = 0;
 					}
 					
-					// check if active turtle has a ticker
+					// activate the ticker for the current turtle
 					var active = $(this).find(".turtle:nth-child(" + (groups[group] + 1) + ")");
-					if (active.find("h3 ol").length == 0 || active.find("h3 ol li").length != panes) {
-						tick(active);
-					}
+					tick(active);
+					
+					// display the active turtle
 					active.show();
 				}
 			}
@@ -122,37 +122,48 @@ var App = function(rootElement) {
 	var tick = function(turtle) {
 		var group = turtle.parent().attr("id");
 		var panes = $(".group#" + group + " .turtle").size();
-
+		
 		if (panes > 1) {
-			// ticker placeholder
 			var header = turtle.find("h3");
-			if (header.find("ol").length != 0) {
-				var ol = header.find("ol").empty();
-			}
-			else {
+			
+			// ticker placeholder
+			if (header.find("ol").length == 0) {
 				var ol = $("<ol>");
 				header.append(ol);
 			}
-
-			// generate ticker
-			var index = turtle.index();
-			for (var i = 0; i < panes; i++) {
-				var li = $("<li>");
-				if (i == index) {
-					li.addClass("current");
-					li.css("-moz-animation", "spinner " + interval/1000 + "s infinite");
-					li.css("-webkit-animation", "spinner " + interval/1000 + "s infinite");
-					li.css("-ms-animation", "spinner " + interval/1000 + "s infinite");
-					
-					/*
-					 * -moz-animation: spinner 8s infinite;
-					 * -webkit-animation: spinner 8s infinite;
-					 * -ms-animation: spinner 8s infinite;
-					 */
-				}
-				li.html("&nbsp;");
-				ol.append(li);
+			else {
+				var ol = header.find("ol");
 			}
+			
+			// re-render orbs because number of orbs does not equal number of panes
+			if(ol.find("li").length != panes) {
+				// clear previous orbs
+				ol.empty();
+				
+				// generate ticker
+				var index = turtle.index();
+				for (var i = 0; i < panes; i++) {
+					var li = $("<li>");
+					if (i == index) {
+						li.addClass("current");
+					}
+					li.html("&nbsp;");
+					ol.append(li);
+				}
+			}
+			
+			// add animation
+			var active = ol.find("li.current");
+			active.css("-moz-animation", "spinner " + interval/1000 + "s 1");
+			active.css("-webkit-animation", "spinner " + interval/1000 + "s 1");
+			active.css("-ms-animation", "spinner " + interval/1000 + "s 1");
+			
+			// restart animation
+			active.before(active.clone(true)).remove();
+			
+			/* -moz-animation: spinner 8s 1;
+			 * -webkit-animation: spinner 8s 1;
+			 * -ms-animation: spinner 8s 1; */
 		}
 	};
 
