@@ -178,6 +178,78 @@ header #logo img {
 /* ===================================================
    Turtle ticker
    ================================================ */
+@-webkit-keyframes spinner {
+	0% {
+		border-color: #fff;
+	}
+	25% {
+		border-color: #fff;
+		border-right-color: #000;
+	}
+	50% {
+		border-color: #fff;
+		border-right-color: #000;
+		border-bottom-color: #000;
+	}
+	75% {
+		border-color: #fff;
+		border-right-color: #000;
+		border-bottom-color: #000;
+		border-left-color: #000;
+	}
+	100% {
+		border-color: #000;
+	}
+}
+
+@-moz-keyframes spinner {
+	0% {
+		border-color: #fff;
+	}
+	25% {
+		border-color: #fff;
+		border-right-color: #000;
+	}
+	50% {
+		border-color: #fff;
+		border-right-color: #000;
+		border-bottom-color: #000;
+	}
+	75% {
+		border-color: #fff;
+		border-right-color: #000;
+		border-bottom-color: #000;
+		border-left-color: #000;
+	}
+	100% {
+		border-color: #000;
+	}
+}
+
+@-ms-keyframes spinner {
+	0% {
+		border-color: #fff;
+	}
+	25% {
+		border-color: #fff;
+		border-right-color: #000;
+	}
+	50% {
+		border-color: #fff;
+		border-right-color: #000;
+		border-bottom-color: #000;
+	}
+	75% {
+		border-color: #fff;
+		border-right-color: #000;
+		border-bottom-color: #000;
+		border-left-color: #000;
+	}
+	100% {
+		border-color: #000;
+	}
+}
+
 .turtle h3 ol {
 	width: 30%;
 	display: block;
@@ -189,14 +261,17 @@ header #logo img {
 
 .turtle h3 ol li {
 	display: inline-block;
-	width: 8px;
-	height: 8px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+    width: 6px;
+	height: 6px;
 	background-color: #000;
-	margin-left: 10px;
+	border: 2px solid #000;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    margin-left: 10px;
 }
 
-.turtle h3 ol li.current {
-	background: #FFF;
+.turtle h3 ol li.current  {
+	background-color: #fff;
+	border-color: #fff;
 }

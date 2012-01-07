@@ -59,8 +59,10 @@ var Clock = function(rootElement) {
 
 var App = function(rootElement) {
 
+	var interval = 8000;
+	
 	var rootElement = rootElement;
-	var rotateInterval;
+	var rotateTimer;
 
 	// keep track of groups, each items represents a group and its current active index
 	var groups = {};
@@ -138,6 +140,15 @@ var App = function(rootElement) {
 				var li = $("<li>");
 				if (i == index) {
 					li.addClass("current");
+					li.css("-moz-animation", "spinner " + interval/1000 + "s infinite");
+					li.css("-webkit-animation", "spinner " + interval/1000 + "s infinite");
+					li.css("-ms-animation", "spinner " + interval/1000 + "s infinite");
+					
+					/*
+					 * -moz-animation: spinner 8s infinite;
+					 * -webkit-animation: spinner 8s infinite;
+					 * -ms-animation: spinner 8s infinite;
+					 */
 				}
 				li.html("&nbsp;");
 				ol.append(li);
@@ -152,11 +163,11 @@ var App = function(rootElement) {
 
 	var addBehaviours = function() {
 		// set rotate timer
-		rotateInterval = window.setInterval(rotate, 8000);
+		rotateTimer = window.setInterval(rotate, interval);
 	};
 
 	var removeBehaviours = function() {
-		window.clearInterval(rotateInterval);
+		window.clearInterval(rotateTimer);
 	};
 
 	this.destroy = function() {
