@@ -254,7 +254,7 @@ header #logo img {
 	width: 30%;
 	display: block;
 	float: right;
-	margin: 12px 15px 0 0;
+	margin: 7px 15px 0 0;
 	text-align: right;
 	line-height: 10px;
 }
@@ -265,10 +265,13 @@ header #logo img {
 	height: 6px;
 	background-color: #000;
 	border: 2px solid #000;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
     margin-left: 10px;
+
+    -webkit-transform: rotate(-45deg); 
+	-moz-transform: rotate(-45deg);	
 }
 
 .turtle h3 ol li.current  {

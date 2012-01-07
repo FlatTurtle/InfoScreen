@@ -165,7 +165,7 @@ var App = function(rootElement) {
 				active.css("-moz-animation", "spinner " + interval/1000 + "s 1");
 				active.css("-webkit-animation", "spinner " + interval/1000 + "s 1");
 				active.css("-ms-animation", "spinner " + interval/1000 + "s 1");
-			}, 10);
+			}, 50);
 			
 			/* -moz-animation: spinner 8s 1;
 			 * -webkit-animation: spinner 8s 1;
