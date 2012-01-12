@@ -23,15 +23,15 @@
 	<section id="main"></section>
 </div>
 
-<script type="text/javascript" src="core/underscore.js"></script>
-<script type="text/javascript" src="core/jquery.js"></script>
-<script type="text/javascript" src="core/backbone.js"></script>
-<script type="text/javascript" src="core/turtles.js"></script>
-<script type="text/javascript" src="templates/default/js/jquery.tmpl.js"></script>
-<script type="text/javascript" src="templates/default/js/loader.js"></script>
-<script type="text/javascript" src="templates/default/js/interface.js"></script>
+<script src="core/underscore.js"></script>
+<script src="core/jquery.js"></script>
+<script src="core/backbone.js"></script>
+<script src="core/turtles.js"></script>
+<script src="templates/default/js/jquery.tmpl.js"></script>
+<script src="templates/default/js/loader.js"></script>
+<script src="templates/default/js/interface.js"></script>
 
-<script type="text/javascript">
+<script>
 <?php
 foreach($turtles as $turtle)
 	echo '	Turtles.grow("'.$turtle->module.'", '.json_encode($turtle->options)."); \n";
