@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?></title>
