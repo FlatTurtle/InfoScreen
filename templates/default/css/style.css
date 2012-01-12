@@ -1,8 +1,8 @@
 /* ===================================================
    Main layout
    ================================================ */
-html,body {
-	font-family: Helvetica;
+html {
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-    margin: 0 30px;
+	margin: 0 30px;
 }
 
 header {
@@ -261,20 +261,19 @@ header #logo img {
 
 .turtle h3 ol li {
 	display: inline-block;
-    width: 6px;
+	width: 6px;
 	height: 6px;
 	background-color: #000;
 	border: 2px solid #000;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    margin-left: 10px;
-
-    -webkit-transform: rotate(-45deg); 
-	-moz-transform: rotate(-45deg);	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-left: 10px;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
 }
 
-.turtle h3 ol li.current  {
+.turtle h3 ol li.current {
 	background-color: #fff;
 	border-color: #fff;
 }
