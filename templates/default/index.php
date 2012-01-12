@@ -5,8 +5,8 @@
     <title><?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?></title>
     <base href="<?php echo baseUrl(); ?>">
     <link rel="stylesheet" href="templates/default/css/style.css" />
-    
-    <style type="text/css">
+
+    <style>
     .color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
     </style>
 </head>
