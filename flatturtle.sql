@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `turtles` (
   `infoscreen_id` int(11) NOT NULL,
   `module` varchar(255) NOT NULL,
   `colspan` int(2) NOT NULL DEFAULT '1',
+  `order` int(2) NOT NULL DEFAULT '-1',
   `group` varchar(255) DEFAULT NULL,
   `source` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -81,10 +82,10 @@ CREATE TABLE IF NOT EXISTS `turtles` (
 -- Dumping data for table `turtles`
 --
 
-INSERT INTO `turtles` (`id`, `infoscreen_id`, `module`, `colspan`, `group`, `source`) VALUES
-(1, 1, 'airport', 1, '', ''),
-(2, 1, 'nmbs', 1, '', ''),
-(3, 1, 'map', 1, '', '');
+INSERT INTO `turtles` (`id`, `infoscreen_id`, `module`, `colspan`, `order`, `group`, `source`) VALUES
+(1, 1, 'airport', 1, 1, '', ''),
+(2, 1, 'nmbs', 1, 2, '', ''),
+(3, 1, 'map', 1, 3, '', '');
 
 -- --------------------------------------------------------
 

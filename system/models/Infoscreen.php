@@ -22,7 +22,7 @@ class Infoscreen extends Model {
      * @return array
      */
     function turtles($infoscreen_id) {
-        $query = $this->db->query("SELECT * FROM turtles WHERE infoscreen_id = ?", $infoscreen_id);
+        $query = $this->db->query("SELECT * FROM turtles WHERE infoscreen_id = ? ORDER BY CASE WHEN `order`<0 THEN id ELSE `order` END ASC", $infoscreen_id);
         $turtles = $query->result();
         
         foreach ($turtles as &$turtle) {
