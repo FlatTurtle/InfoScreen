@@ -8,27 +8,41 @@
 
 <table>
 	<tbody>
-		{{each entries}}
+		{{if error}}
 			<tr>
-				{{if $value.delay}}
-				<td class="time delayed">
-					${$value.time}
-					<em>${$value.delay}</em>
-				</td>
-				{{else}}
-				<td class="time">
-					${$value.time}
-				</td>
-				{{/if}}
-				<td width="85">
-					<span class="label">${$value.vehicle}</span>
-				</td>
 				<td>
-					<span class="text">
-					${$value.direction}
-					</span>
+					<span class="error">Unable to contact the server</span>
 				</td>
 			</tr>
-		{{/each}}
+		{{else entries.length}}
+			{{each entries}}
+				<tr>
+					{{if $value.delay}}
+					<td class="time delayed">
+						${$value.time}
+						<em>${$value.delay}</em>
+					</td>
+					{{else}}
+					<td class="time">
+						${$value.time}
+					</td>
+					{{/if}}
+					<td width="85">
+						<span class="label">${$value.vehicle}</span>
+					</td>
+					<td>
+						<span class="text">
+						${$value.direction}
+						</span>
+					</td>
+				</tr>
+			{{/each}}
+		{{else}}
+			<tr>
+				<td>
+					<span class="error">No planes available</span>
+				</td>
+			</tr>
+		{{/if}}
 	</tbody>
 </table>

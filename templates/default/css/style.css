@@ -175,6 +175,12 @@ header #logo img {
 	font-weight: normal;
 }
 
+.turtle .error {
+	color: #999;
+	text-align: center;
+	display: block;
+}
+
 /* ===================================================
    Turtle ticker
    ================================================ */
