@@ -19,7 +19,7 @@ $config["base_url"]	= "";
 | The alias of the default infoscreen when no alias is given. And the
 | folder name of the template to use.
 */
-$config["default_infoscreen"] = "the-amadeus-square";
+$config["default_infoscreen"] = "demo";
 $config["default_template"] = "default";
 
 
