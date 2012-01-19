@@ -59,7 +59,7 @@ var Clock = function(rootElement) {
 
 var App = function(rootElement) {
 
-	var interval = 8000;
+	var interval = 20000;
 	
 	var rootElement = rootElement;
 	var rotateTimer;
