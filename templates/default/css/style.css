@@ -43,6 +43,7 @@ header #logo {
 	overflow: hidden;
 	vertical-align: middle;
 	line-height: 120px;
+	margin-left: 20px;
 }
 
 header #logo img {
