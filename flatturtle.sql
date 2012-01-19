@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `infoscreens` (
 --
 
 INSERT INTO `infoscreens` (`id`, `customer_id`, `title`, `alias`, `logo`, `color`, `lang`) VALUES
-(1, 1, 'The Amadeus Square', 'the-amadeus-square', 'templates/default/img/amadeussquare.jpg', '#FB8B1A', '');
+(1, 1, 'The Amadeus Square', 'demo', 'templates/default/img/amadeussquare.jpg', '#FB8B1A', '');
 
 -- --------------------------------------------------------
 
