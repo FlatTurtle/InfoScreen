@@ -30,9 +30,6 @@
 						error : function() {
 							// will allow the view to detect errors
 							self.options.error = true;
-
-							// try again in 5 seconds
-							window.setTimeout(self.refresh, 5000);
 							
 							// if there are no previous items to show, display error message
 							if(self.length == 0)
