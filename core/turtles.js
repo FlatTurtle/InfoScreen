@@ -55,9 +55,9 @@ function TurtleManager() {
 	// register a turtle module
 	this.register = function(id, module) {
 		if (modules[id] != null)
-			throw "Turtle already registered";
+			throw Error("Turtle already registered");
 		else if (typeof module != "object")
-			throw "Cannot register turtle '" + id + "', invalid module";
+			throw Error("Cannot register turtle '" + id + "', invalid module");
 		else
 			modules[id] = module;
 		
@@ -72,7 +72,7 @@ function TurtleManager() {
 	// creates turtle instances
 	this.instantiate = function(id, options) {
 		if (modules[id] == null)
-			throw "turtle does not exist";
+			throw Error("turtle does not exist");
 		else {
 			// generate unique instance id
 			var instanceid = id + "_" + Math.random().toString(36).substr(6);

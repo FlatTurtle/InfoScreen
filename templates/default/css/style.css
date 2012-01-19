@@ -2,7 +2,7 @@
    Main layout
    ================================================ */
 html {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: Arial, sans-serif;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-	margin: 0 30px;
+	margin: 0;
 }
 
 header {
@@ -101,6 +101,7 @@ header #logo img {
 	height: 32px;
 	line-height: 32px;
 	padding: 9px 0 9px 14px;
+	overflow: hidden;
 }
 
 .turtle table {
@@ -260,7 +261,7 @@ header #logo img {
 	width: 30%;
 	display: block;
 	float: right;
-	margin: 7px 15px 0 0;
+	margin: 10px 0 0 0;
 	text-align: right;
 	line-height: 10px;
 }
@@ -271,10 +272,10 @@ header #logo img {
 	height: 6px;
 	background-color: #000;
 	border: 2px solid #000;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	margin-left: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-right: 10px;
 	-webkit-transform: rotate(-45deg);
 	-moz-transform: rotate(-45deg);
 }
