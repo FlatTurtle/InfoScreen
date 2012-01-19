@@ -12,7 +12,7 @@
 			// default error value
 			options.error = false;
 
-			// automatic collection refresh each minute, this will automatically
+			// automatic collection refresh each minute, this will 
 			// trigger the reset event
 			refreshInterval = window.setInterval(this.refresh, 60000);
 		},
@@ -27,8 +27,12 @@
 					// will allow the view to detect errors
 					self.options.error = true;
 
-					// still render turtle, but with error message
-					self.trigger("reset");
+					// try again in 5 seconds
+					window.setTimeout(self.refresh, 5000);
+					
+					// if there are no previous items to show, display error message
+					if(self.length == 0)
+						self.trigger("reset");
 				}
 			});
 		},
