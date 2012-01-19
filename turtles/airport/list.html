@@ -8,13 +8,7 @@
 
 <table>
 	<tbody>
-		{{if error}}
-			<tr>
-				<td>
-					<span class="error">Unable to contact the server.</span>
-				</td>
-			</tr>
-		{{else entries.length}}
+		{{if entries.length}}
 			{{each entries}}
 				<tr>
 					{{if $value.delay}}
@@ -37,6 +31,12 @@
 					</td>
 				</tr>
 			{{/each}}
+		{{else error}}
+			<tr>
+				<td>
+					<span class="error">Unable to contact the server.</span>
+				</td>
+			</tr>
 		{{else}}
 			<tr>
 				<td>
