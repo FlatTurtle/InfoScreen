@@ -87,12 +87,17 @@ var App = function(rootElement) {
 						active = $(this).find(".turtle").first();
 					}
 					
-					previous.removeClass("active");
-					previous.hide();
+					// lay activen on top of previous
+					previous.css('zIndex', 1);
+					active.css('zIndex', 2);
 					
 					tick(active); // add ticker
+					active.fadeIn(200, function() {
+						previous.hide();
+					});
+					
 					active.addClass("active");
-					active.show();
+					previous.removeClass("active");
 				}
 			}
 		});
