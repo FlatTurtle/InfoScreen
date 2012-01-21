@@ -46,7 +46,7 @@
 		options.el = $('<div class="turtle"></div>');
 		$(group).append(options.el);
 		
-		// enables remote turtles
+		// if a turtle does not have a source, still do a last effort
 		if (!options.source)
 			options.source = 'turtles/' + id + '/' + id + '.js';
 

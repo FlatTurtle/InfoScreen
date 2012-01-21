@@ -24,6 +24,17 @@ $config["default_template"] = "default";
 
 
 /*
+|--------------------------------------------------------------------------
+| Turtle settings
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to set something other than the default
+| turtles/ folder. Use a relative path.
+*/
+$config["turtle_path"] = "";
+
+
+/*
 | -------------------------------------------------------------------
 | Database connectivity settings
 | -------------------------------------------------------------------

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title><?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?></title>
 	<base href="<?php echo baseUrl(); ?>">
-	<link rel="stylesheet" href="templates/default/css/style.css" />
+	<link rel="stylesheet" href="<? echo baseUrl("templates/default/css/style.css"); ?>" />
 	<style>
 		.color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
 	</style>
@@ -22,13 +22,13 @@
 	<section id="main"></section>
 </div>
 
-<script src="core/underscore.js"></script>
-<script src="core/jquery.js"></script>
-<script src="core/backbone.js"></script>
-<script src="core/turtles.js"></script>
-<script src="templates/default/js/jquery.tmpl.js"></script>
-<script src="templates/default/js/loader.js"></script>
-<script src="templates/default/js/interface.js"></script>
+<script src="<? echo baseUrl("core/underscore.js"); ?>"></script>
+<script src="<? echo baseUrl("core/jquery.js"); ?>"></script>
+<script src="<? echo baseUrl("core/backbone.js"); ?>"></script>
+<script src="<? echo baseUrl("core/turtles.js"); ?>"></script>
+<script src="<? echo baseUrl("templates/default/js/jquery.tmpl.js"); ?>"></script>
+<script src="<? echo baseUrl("templates/default/js/loader.js"); ?>"></script>
+<script src="<? echo baseUrl("templates/default/js/interface.js"); ?>"></script>
 
 <script>
 <?php

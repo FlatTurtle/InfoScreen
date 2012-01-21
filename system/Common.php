@@ -6,9 +6,9 @@
  * Easy access to the base url
  */
 if (!function_exists("baseUrl")) {
-    function baseUrl() {
+    function baseUrl($uri = "") {
         $ft = &getInstance();
-        return $ft->config->item("base_url");
+        return rtrim($ft->config->item("base_url"), "/") . "/" . ltrim($uri, "/");
     }
 }
 

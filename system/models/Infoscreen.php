@@ -25,23 +25,31 @@ class Infoscreen extends Model {
         $query = $this->db->query("SELECT * FROM turtles WHERE infoscreen_id = ? ORDER BY CASE WHEN `order`<0 THEN id ELSE `order` END ASC", $infoscreen_id);
         $turtles = $query->result();
         
+        // default turtle path location
+        $turtle_path = $this->config->item("turtle_path");
+        if (!$turtle_path)
+            $turtle_path = "turtles/";
+        
         foreach ($turtles as &$turtle) {
+            // set the turtle source location
+            if (!$turtle->source) {
+                $turtle->source = baseUrl($turtle_path . $turtle->module . "/" . $turtle->module . ".js");
+            }
+            
             // standard options
             $turtle->options = array("colspan" => $turtle->colspan, "group" => $turtle->group, "source" => $turtle->source);
             
             // optional options
             $options = $this->turtleOptions($turtle->id);
-            foreach($options as $option) {
+            foreach ($options as $option) {
                 // if multiple options are found with the same name they are storred in an array
-                if(isset($turtle->options[$option->key])) {
-                    if(is_array($turtle->options[$option->key])) {
+                if (isset($turtle->options[$option->key])) {
+                    if (is_array($turtle->options[$option->key])) {
                         $turtle->options[$option->key][] = $option->value;
-                    }
-                    else {
+                    } else {
                         $turtle->options[$option->key] = array($turtle->options[$option->key], $option->value);
                     }
-                }
-                else {
+                } else {
                     $turtle->options[$option->key] = $option->value;
                 }
             }
