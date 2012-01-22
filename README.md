@@ -149,7 +149,7 @@ License
 
 This branch has been written from scratch and therefor relicensed to: AGPL
 
-(c) 2011 iRail vzw/asbl
+(c) 2011-2012 iRail vzw/asbl
 
 # Installation
 
@@ -167,5 +167,7 @@ You need:
  * Source: <http://github.com/iRail/iRail>
  * Mailing: <http://list.irail.be/>
  * Trac: <http://project.irail.be/>
- * API: <http://api.irail.be/>
+ * API: <http://data.irail.be/>
  * BeTrains: <http://betrains.mobi/>
+ * FlatTurtle: <http://flatturtle.com/>
+ * InfoScreen demo: <http://s.flatturtle.com/stable/demo>
