@@ -279,6 +279,11 @@ section#main {
 	}
 }
 
+.turtle h3 ol, .turtle h3 li {
+	margin: 0;
+	padding: 0;
+}
+
 .turtle h3 ol {
 	display: block;
 	float: right;
@@ -287,7 +292,7 @@ section#main {
 	line-height: 10px;
 }
 
-.turtle h3 ol li {
+.turtle h3 li {
 	display: inline-block;
 	width: 6px;
 	height: 6px;
@@ -301,7 +306,7 @@ section#main {
 	-moz-transform: rotate(-45deg);
 }
 
-.turtle h3 ol li.current {
+.turtle h3 li.current {
 	background-color: #fff;
 	border-color: #fff;
 }
