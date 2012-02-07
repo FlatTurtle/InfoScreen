@@ -58,7 +58,7 @@
 
 			// remote source url
 		        //Todo: add departures or arrivals
-			return "http://data.irail.be/spectql/Airports/Liveboard/" + query + "/departures:json";
+			return "http://data.irail.be/spectql/Airports/Liveboard/" + query + "/departures.limit(15):json";
 		},
 		parse : function(json) {
 			// parse ajax results
