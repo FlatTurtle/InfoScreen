@@ -56,7 +56,7 @@
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url
-			return "http://data.irail.be/NMBS/Liveboard/" + query + ".json";
+			return "http://data.irail.be/spectql/NMBS/Liveboard/" + query + ".limit(15).json";
 		},
 		parse : function(json) {
 			// parse ajax results
@@ -84,8 +84,8 @@
 		initialize : function() {
 			// prevents loss of 'this' inside methods
 			_.bindAll(this, "render");
-
 			// bind render to collection reset
+		    
 			this.collection.bind("reset", this.render);
 
 			// pre-fetch template file and render when ready

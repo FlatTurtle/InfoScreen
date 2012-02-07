@@ -21,7 +21,7 @@
 					location : self.options.location
 				})).trigger("rendered");
 				
-				// is the google api ready? else wait untill the mapsReady trigger is activated
+				// is the google api ready? else wait until the mapsReady trigger is activated
 				if(window.mapsReady) {
 					self.renderMap();
 				}
@@ -33,9 +33,9 @@
 			
 			// api options
 			var options = {
-				zoom : this.options.zoom || 12,
-				disableDefaultUI: true,
-				mapTypeId : google.maps.MapTypeId.ROADMAP
+			    zoom : this.options.zoom || 12,
+			    disableDefaultUI: true,
+			    mapTypeId : google.maps.MapTypeId.ROADMAP
 			};
 			
 			var map = new google.maps.Map(canvas, options);
