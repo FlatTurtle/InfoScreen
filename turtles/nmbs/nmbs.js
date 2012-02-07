@@ -19,10 +19,6 @@
 		refresh : function() {
 			var self = this;
 			self.fetch({
-				data : {
-					direction : self.options.direction || "",
-					lang : self.options.lang || ""
-				},
 				error : function() {
 					// will allow the view to detect errors
 					self.options.error = true;
@@ -55,8 +51,8 @@
 
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
-			// remote source url
-			return "http://data.irail.be/spectql/NMBS/Liveboard/" + query + "/departures.limit(15).json";
+			// remote source url - todo: add departures or arrivals
+			return "http://data.irail.be/spectql/NMBS/Liveboard/" + query + "/departures.limit(15):json";
 		},
 		parse : function(json) {
 			// parse ajax results

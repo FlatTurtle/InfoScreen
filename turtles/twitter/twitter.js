@@ -22,10 +22,10 @@
 		},
 		url : function() {
 			// remote source url
-			return 'http://data.irail.be/feeds/twitter/' + this.options.hashtag + ".json";
+			return 'http://data.irail.be/spectql/twitter/search/' + this.options.hashtag + "/results.limit(15):json";
 		},
 		parse : function(json) {
-			return json.twitter.results;
+			return json.results;
 		}
 	});
 

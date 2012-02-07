@@ -23,8 +23,6 @@
 			var self = this;
 			self.fetch({
 				data : {
-					direction : self.options.direction || "departures",
-					lang : self.options.lang || "en"
 				},
 				error : function() {
 					// will allow the view to detect errors
@@ -59,11 +57,12 @@
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url
-			return "http://data.irail.be/Airports/Liveboard/" + query + ".json";
+		        //Todo: add departures or arrivals
+			return "http://data.irail.be/spectql/Airports/Liveboard/" + query + "departures:json";
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json.Liveboard.departures || json.Liveboard.arrivals;
+			var liveboard = json.departures || json.arrivals;
 
 			// everything ok
 			if (liveboard)
