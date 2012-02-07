@@ -36,11 +36,16 @@
 			$(rootElement).append(group);
 			
 			// update all group widths calculated from the new total columns
+		    var i = 0;
 			$("section.group").each(function() {
+			    
 				var colspan = $(this).data("colspan");
-			    $(this).width((Math.floor((1000 / columns) * colspan)/10) + "%");
+			    if(i< $("section.group").size())
+				$(this).width((Math.floor((1000 / columns) * colspan)/10) + "%");
+			    else
+				$(this).width((Math.floor((1000 / columns) * colspan + 2)/10 ) + "%");
+			    i++;
 			});
-                        $("section.group")[$("section.group").size()-1].width+=0.1;
 		}
 		
 		// create placeholder and append it to the group
