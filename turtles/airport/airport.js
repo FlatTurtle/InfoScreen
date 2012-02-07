@@ -69,7 +69,7 @@
 				this.options.error = false;
 
 			if (!this.options.airport)
-				this.options.airport = json.Liveboard.location.name;
+				this.options.airport = json.location.name;
 
 			for ( var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
