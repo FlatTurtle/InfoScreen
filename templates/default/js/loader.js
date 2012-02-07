@@ -38,8 +38,9 @@
 			// update all group widths calculated from the new total columns
 			$("section.group").each(function() {
 				var colspan = $(this).data("colspan");
-				$(this).width(((100 / columns) * colspan) + "%");
+			    $(this).width((Math.floor((1000 / columns) * colspan)/10) + "%");
 			});
+                        $("section.group")[$("section.group").size()].width+=0.1;
 		}
 		
 		// create placeholder and append it to the group
