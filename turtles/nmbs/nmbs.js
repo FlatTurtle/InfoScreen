@@ -56,11 +56,11 @@
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url
-			return "http://data.irail.be/spectql/NMBS/Liveboard/" + query + ".limit(15).json";
+			return "http://data.irail.be/spectql/NMBS/Liveboard/" + query + "/departures.limit(15).json";
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json.Liveboard.departures || json.Liveboard.arrivals;
+			var liveboard = json.departures || json.Liveboard.arrivals;
 
 			for ( var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
