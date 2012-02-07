@@ -25,7 +25,7 @@
 			return 'http://data.irail.be/spectql/twitter/search/' + this.options.hashtag + "/results.limit(15):json";
 		},
 		parse : function(json) {
-			return json.results;
+			return json.spectql;
 		}
 	});
 

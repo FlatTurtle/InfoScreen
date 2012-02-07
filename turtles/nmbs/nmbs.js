@@ -56,7 +56,7 @@
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json.departures || json.arrivals;
+			var liveboard = json.spectql;
 
 			for ( var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;

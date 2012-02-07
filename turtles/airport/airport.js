@@ -62,7 +62,7 @@
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json.departures || json.arrivals;
+			var liveboard = json.spectql;
 
 			// everything ok
 			if (liveboard)
