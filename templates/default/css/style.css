@@ -55,7 +55,7 @@ header #logo img {
 
 section#main {
 	min-height: 100%;
-    height: auto;
+        height: auto;
 	margin-top: -1em;
 }
 
@@ -133,7 +133,7 @@ section#main {
 }
 
 .turtle tr:nth-child(even) {
-	background-color: #F1F1F1;
+	background-color: #E1E1E1;
 }
 
 .turtle td {
