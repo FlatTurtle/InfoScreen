@@ -1,62 +1,66 @@
 /* ===================================================
    Main layout
    ================================================ */
+
 html {
-	font-family: Arial, sans-serif;
-	height: 100%;
+    font-family: Arial, sans-serif;
+    height: 100%;
 }
 
 body {
-	color: #333;
-	background: none repeat scroll 0 0 #FFF;
-	overflow: hidden;
-	font: 13px/1.231 sans-serif;
-	margin: 0;
-	padding: 0;
-	height: 100%;
+    color: #333;
+    background: none repeat scroll 0 0 #FFF;
+    overflow: hidden;
+    font: 13px/1.231 sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 .container {
-	margin: 0;
-	height: 100%;
+    margin: 0;
+    height: 100%;
 }
 
 header {
-	height: 128px;
-	overflow: hidden;
+    height: 100px;
+    overflow: hidden;
 }
 
 header #clock {
-	color: #fff;
-	border-radius: 14px 0 0 14px;
-	float: right;
-	font-size: 46px;
-	font-weight: bold;
-	height: 46px;
-	line-height: 46px;
-	margin-top: 22px;
-	padding: 13px 14px 13px 0;
-	text-align: right;
-	width: 136px;
+    color: #fff;
+    border-radius: 14px 0 0 14px;
+    float: right;
+    font-size: 46px;
+    font-weight: bold;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 15px;
+    padding: 13px 14px 13px 0;
+    text-align: right;
+    width: 136px;
 }
 
 header #logo {
-	height: 128px;
-	width: 1000px;
-	overflow: hidden;
-	vertical-align: middle;
-	line-height: 120px;
-	margin-left: 20px;
+    height: 100px;
+    width: 1000px;
+    overflow: hidden;
+    vertical-align: middle;
+    line-height: 100px;
+    margin-left: 20px;
 }
 
 header #logo img {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 section#main {
-	min-height: 100%;
+    min-height: 100%;
+    width: 100%;
+    overflow: hidden;
     height: auto;
-	margin-top: -1em;
+    margin-top: -1em;
+    height: auto;
 }
 
 /* ===================================================
@@ -64,249 +68,261 @@ section#main {
    ================================================ */
 
 .group {
-	position: relative;
-	display: inline-block;
-	min-height: 100%;
+    position: relative;
+    display: inline-block;
+    min-height: 100%;
     height: 100%;
 }
 
 .turtle {
-	display: none;
-	position: absolute;
-	z-index: 1;
-	background-color: #FFF;
-	width: 100%;
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #FFF;
+    width: 100%;
 }
 
 .group .turtle:first-child {
-	display: block;
+    display: block;
+}
+
+.group .turtle {
+    border-left: 1px solid #FFF;
+}
+
+.group:first-child .turtle {
+    border-left: 0;
 }
 
 .turtle h2 {
-	margin: 0;
-	background-color: #333;
-	color: #FFF;
-	font-size: 28px;
-	height: 28px;
-	line-height: 28px;
-	padding: 7px 0 7px 14px;
-	text-transform: uppercase;
+    margin: 0;
+    background-color: #333;
+    color: #FFF;
+    font-size: 28px;
+    height: 42px;
+    line-height: 42px;
+    padding-left: 14px;
+    text-transform: uppercase;
+    line-height: 42px;
 }
 
 .turtle h2 small {
-	font-size: 16px;
-	text-transform: none;
+    font-size: 16px;
+    text-transform: none;
 }
 
 .turtle h2 .credits {
-	color: #626262;
-	float: right;
-	font-size: 12px;
-	font-weight: normal;
-	padding-right: 14px;
-	text-transform: none;
-	display: none;
+    color: #626262;
+    float: right;
+    font-size: 12px;
+    font-weight: normal;
+    padding-right: 14px;
+    text-transform: none;
+    display: none;
 }
 
 .group:last-child h2 .credits {
-	display: inline;
+    display: inline;
 }
 
 .turtle h3 {
-	margin: 0;
-	color: #FFF;
-	font-size: 25px;
-	height: 32px;
-	line-height: 32px;
-	padding: 9px 0 9px 14px;
-	overflow: hidden;
+    margin: 0;
+    padding: 0;
+    color: #FFF;
+    font-size: 25px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 14px;
+    overflow: hidden;
 }
 
 .turtle table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
 }
 
 .turtle tr {
-	background-color: #FFF;
+    background-color: #FFF;
 }
 
 .turtle tr:nth-child(even) {
-	background-color: #F1F1F1;
+    background-color: #F1F1F1;
 }
 
 .turtle td {
-	color: #333;
-	font-size: 18px;
-	height: 55px !important;
-	overflow: hidden;
-	padding: 0 5px;
+    color: #333;
+    font-size: 18px;
+    height: 55px !important;
+    overflow: hidden;
+    padding: 0 5px;
 }
 
 .turtle img {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 
 .turtle .time {
-	color: #676767;
-	text-align: right;
-	width: 50px !important;
+    color: #676767;
+    text-align: right;
+    width: 50px !important;
 }
 
 .turtle .delayed {
-	border-left: 5px solid #FA0E00;
+    border-left: 5px solid #FA0E00;
 }
 
 .turtle .time em:before {
-	content: "\203A";
+    content: "\203A";
 }
 
 .turtle .time em {
-	color: #FA0E00;
-	display: block;
-	font-size: 18px;
-	font-style: normal;
+    color: #FA0E00;
+    display: block;
+    font-size: 18px;
+    font-style: normal;
 }
 
 .turtle .label {
-	background-color: #676767;
-	border-bottom: 3px solid #D9D9D9;
-	border-radius: 5px;
-	display: block;
-	color: #FFF;
-	padding: 5px 3px;
-	text-align: center;
-	vertical-align: bottom;
-	border-bottom: 3px solid #D9D9D9;
-	white-space: nowrap;
+    background-color: #676767;
+    border-bottom: 3px solid #D9D9D9;
+    border-radius: 5px;
+    display: block;
+    color: #FFF;
+    padding: 5px 3px;
+    text-align: center;
+    vertical-align: bottom;
+    border-bottom: 3px solid #D9D9D9;
+    white-space: nowrap;
 }
 
 .turtle .text {
-	display: inline-block;
-	font-weight: bold;
-	line-height: 20px;
-	height: 20px;
-	overflow: hidden;
-	vertical-align: middle;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 20px;
+    height: 20px;
+    overflow: hidden;
+    vertical-align: middle;
 }
 
 .turtle small.text {
-	line-height: 20px;
-	font-size: 15px;
-	height: 40px;
-	font-weight: normal;
+    line-height: 20px;
+    font-size: 15px;
+    height: 40px;
+    font-weight: normal;
 }
 
 .turtle .error {
-	color: #999;
-	text-align: center;
-	display: block;
+    color: #999;
+    text-align: center;
+    display: block;
 }
 
 /* ===================================================
    Turtle ticker
    ================================================ */
+
 @-webkit-keyframes spinner {
-	0% {
-		border-color: #fff;
-	}
-	25% {
-		border-color: #fff;
-		border-right-color: #000;
-	}
-	50% {
-		border-color: #fff;
-		border-right-color: #000;
-		border-bottom-color: #000;
-	}
-	75% {
-		border-color: #fff;
-		border-right-color: #000;
-		border-bottom-color: #000;
-		border-left-color: #000;
-	}
-	100% {
-		border-color: #000;
-	}
+    0% {
+        border-color: #fff;
+    }
+    25% {
+        border-color: #fff;
+        border-right-color: #000;
+    }
+    50% {
+        border-color: #fff;
+        border-right-color: #000;
+        border-bottom-color: #000;
+    }
+    75% {
+        border-color: #fff;
+        border-right-color: #000;
+        border-bottom-color: #000;
+        border-left-color: #000;
+    }
+    100% {
+        border-color: #000;
+    }
 }
 
 @-moz-keyframes spinner {
-	0% {
-		border-color: #fff;
-	}
-	25% {
-		border-color: #fff;
-		border-right-color: #000;
-	}
-	50% {
-		border-color: #fff;
-		border-right-color: #000;
-		border-bottom-color: #000;
-	}
-	75% {
-		border-color: #fff;
-		border-right-color: #000;
-		border-bottom-color: #000;
-		border-left-color: #000;
-	}
-	100% {
-		border-color: #000;
-	}
+    0% {
+        border-color: #fff;
+    }
+    25% {
+        border-color: #fff;
+        border-right-color: #000;
+    }
+    50% {
+        border-color: #fff;
+        border-right-color: #000;
+        border-bottom-color: #000;
+    }
+    75% {
+        border-color: #fff;
+        border-right-color: #000;
+        border-bottom-color: #000;
+        border-left-color: #000;
+    }
+    100% {
+        border-color: #000;
+    }
 }
 
 @-ms-keyframes spinner {
-	0% {
-		border-color: #fff;
-	}
-	25% {
-		border-color: #fff;
-		border-right-color: #000;
-	}
-	50% {
-		border-color: #fff;
-		border-right-color: #000;
-		border-bottom-color: #000;
-	}
-	75% {
-		border-color: #fff;
-		border-right-color: #000;
-		border-bottom-color: #000;
-		border-left-color: #000;
-	}
-	100% {
-		border-color: #000;
-	}
+    0% {
+        border-color: #fff;
+    }
+    25% {
+        border-color: #fff;
+        border-right-color: #000;
+    }
+    50% {
+        border-color: #fff;
+        border-right-color: #000;
+        border-bottom-color: #000;
+    }
+    75% {
+        border-color: #fff;
+        border-right-color: #000;
+        border-bottom-color: #000;
+        border-left-color: #000;
+    }
+    100% {
+        border-color: #000;
+    }
 }
 
 .turtle h3 ol, .turtle h3 li {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .turtle h3 ol {
-	display: block;
-	float: right;
-	margin: 10px 0 0 0;
-	text-align: right;
-	line-height: 10px;
+    display: block;
+    float: right;
+    margin: 20px 5px 0 0;
+    text-align: right;
+    line-height: 10px;
 }
 
 .turtle h3 li {
-	display: inline-block;
-	width: 6px;
-	height: 6px;
-	background-color: #000;
-	border: 2px solid #000;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	margin-right: 10px;
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #000;
+    border: 2px solid #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
 }
 
 .turtle h3 li.current {
-	background-color: #fff;
-	border-color: #fff;
+    background-color: #fff;
+    border-color: #fff;
 }
