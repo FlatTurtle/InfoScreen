@@ -111,6 +111,7 @@ var App = function(rootElement) {
 		$(rootElement).find(".turtle").each(function() {
 			$(this).bind("rendered", function() {
 				tick($(this));
+				textfill($(this));
 			});
 		});
 	};
@@ -168,6 +169,11 @@ var App = function(rootElement) {
 			 * -ms-animation: spinner 8s 1; */
 		}
 	};
+	
+	/* adjust font size to fit container */
+	var textfill = function(turtle) {
+		turtle.find(".auto-size").textfill();
+	};
 
 	var initialize = function() {
 		initializeHtml();
@@ -202,5 +208,7 @@ $(document).ready(function() {
 
 	clock = new Clock($("#clock"));
 	app = new App($("#main"));
+	
+	$(".auto-size").textfill();
 
 });
