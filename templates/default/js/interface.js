@@ -159,6 +159,8 @@ var App = function(rootElement) {
 				}
 			}
 			
+			/* REMOVING TICKER ANIMATION TEMPORARY ----------------------
+			
 			// add animation
 			var active = ol.find("li.current");
 			
@@ -174,9 +176,7 @@ var App = function(rootElement) {
 				active.css("-ms-animation", "spinner " + interval/1000 + "s 1");
 			}, 50);
 			
-			/* -moz-animation: spinner 8s 1;
-			 * -webkit-animation: spinner 8s 1;
-			 * -ms-animation: spinner 8s 1; */
+			-------------------------------------------------------------- */
 		}
 	};
 

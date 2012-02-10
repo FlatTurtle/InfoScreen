@@ -306,6 +306,8 @@ section#main {
     line-height: 10px;
 }
 
+/* REMOVING TICKER ANIMATION TEMPORARY ----------------------
+
 .turtle h3 li {
     display: inline-block;
     width: 6px;
@@ -318,6 +320,19 @@ section#main {
     margin-right: 10px;
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
+}
+
+------------------------------------------------------------- */
+
+.turtle h3 li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 
 .turtle h3 li.current {
