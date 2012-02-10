@@ -1,10 +1,10 @@
 <h2>
-	<img src="turtles/airport/flights.gif">
+<img src="turtles/mivb/bus.gif"> 
 	<small>${direction}</small>
 	<span class="credits">moved by <em>FlatTurtle</em></span>
 </h2>
 
-<h3 class="color auto-size"><span>${airport}</span></h3>
+<h3 class="color auto-size"><span>${station}</span></h3>
 
 <table>
 	<tbody>
@@ -21,11 +21,13 @@
 						${$value.time}
 					</td>
 					{{/if}}
-					<td width="85">
-						<span class="label">${$value.vehicle}</span>
+					<td width="40">
+					  <span class="label">
+					  	${$value.platform.name}
+					  </span>
 					</td>
-					<td class="auto-size text">
-						<span>
+					<td class="auto-size">
+						<span class="text">
 						${$value.direction}
 						</span>
 					</td>
@@ -40,7 +42,7 @@
 		{{else}}
 			<tr>
 				<td>
-					<span class="error">No planes available.</span>
+					<span class="error">No trains available.</span>
 				</td>
 			</tr>
 		{{/if}}
