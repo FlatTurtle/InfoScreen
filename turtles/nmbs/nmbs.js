@@ -103,7 +103,11 @@
 					error : this.options.error // have there been any errors?
 				};
 
-				this.el.html($.tmpl(this.template, data)).trigger("rendered");
+				// add html to container
+				this.$el.html($.tmpl(this.template, data));
+				
+				// notify listeners render completed and pass element
+				this.trigger("rendered", this.$el);
 			}
 		}
 	});

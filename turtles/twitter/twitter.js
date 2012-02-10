@@ -54,7 +54,11 @@
 					entries : this.collection.toJSON(),
 				};
 				
-				this.el.html($.tmpl(this.template, data)).trigger("rendered");
+				// add html to container
+				this.$el.html($.tmpl(this.template, data));
+				
+				// notify listeners render completed and pass element
+				this.trigger("rendered", this.$el);
 			}
 		}
 	});

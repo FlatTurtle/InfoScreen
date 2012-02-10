@@ -17,9 +17,12 @@
 		render : function() {
 			var self = this;
 			$.get('turtles/map/map.html', function(template) {
-				self.el.html($.tmpl(template, {
+				self.$el.html($.tmpl(template, {
 					location : self.options.location
-				})).trigger("rendered");
+				}));
+				
+				// notify listeners render completed and pass element
+				self.trigger("rendered", self.$el);
 				
 				// is the google api ready? else wait until the mapsReady trigger is activated
 				if(window.mapsReady) {
@@ -29,7 +32,7 @@
 		},
 		renderMap : function() {
 			// the canvas container
-			var canvas = this.el.find("#canvas")[0];
+			var canvas = this.$el.find("#canvas")[0];
 			
 			// api options
 			var options = {

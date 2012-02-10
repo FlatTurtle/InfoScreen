@@ -127,7 +127,7 @@ function TurtleManager() {
 
 				// override el with el passed by options
 				if (options.el != null)
-					instance.view.el = options.el;
+					instance.view.setElement(options.el);
 
 				// add options to view
 				instance.view.options = _.extend(instance.view.options, options);

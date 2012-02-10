@@ -13,7 +13,7 @@
 			}
 			
 			var fontSize = options.maxSize;
-			var child = $(options.innerTag + ':visible:first', this);
+			var child = $(options.innerTag + ':first', this);
 			var maxHeight = $(this).height();
 			var maxWidth = $(this).width();
 			var textHeight;

@@ -59,12 +59,13 @@ var Clock = function(rootElement) {
 
 var App = function(rootElement) {
 
+	// turtle switch interval in ms, default: 15 seconds
 	var interval = 15000;
 	
 	var rootElement = rootElement;
 	var rotateTimer;
 
-	// switch to the next pane
+	// switch to the next turtle in the group (if > 1)
 	var rotate = function() {
 		$(rootElement).find(".group").each(function() {
 			var panes = $(this).find(".turtle").size();
@@ -83,11 +84,12 @@ var App = function(rootElement) {
 				else {
 					var active = previous.next();
 					
+					// out of bounds
 					if(active.length == 0) {
 						active = $(this).find(".turtle").first();
 					}
 					
-					// lay activen on top of previous
+					// lay active on top of previous
 					previous.css('zIndex', 1);
 					active.css('zIndex', 2);
 					
@@ -99,7 +101,14 @@ var App = function(rootElement) {
 					active.addClass("active");
 					previous.removeClass("active");
 				}
+			} else {
+				// make the only turtle active
+				var active = $(this).find(".turtle").first();
+				active.addClass("active");
 			}
+			
+			// auto font size
+			active.find(".auto-size").textfill();
 		});
 	};
 
@@ -107,13 +116,14 @@ var App = function(rootElement) {
 		// an initial rotate to activate the first turtle
 		rotate();
 		
-		// bind the turtle's rendered event to add the ticker
-		$(rootElement).find(".turtle").each(function() {
-			$(this).bind("rendered", function() {
-				tick($(this));
-				textfill($(this));
-			});
-		});
+		// bind all turtles' rendered event
+		Turtles.bind("rendered", rendered);
+	};
+	
+	// actions to take place when a turtle triggers the rendered event
+	var rendered = function(turtle) {
+		// add or activate ticker
+		tick(turtle);
 	};
 
 	// add ticker to turtle
@@ -169,11 +179,6 @@ var App = function(rootElement) {
 			 * -ms-animation: spinner 8s 1; */
 		}
 	};
-	
-	/* adjust font size to fit container */
-	var textfill = function(turtle) {
-		turtle.find(".auto-size").textfill();
-	};
 
 	var initialize = function() {
 		initializeHtml();
@@ -208,7 +213,5 @@ $(document).ready(function() {
 
 	clock = new Clock($("#clock"));
 	app = new App($("#main"));
-	
-	$(".auto-size").textfill();
 
 });
