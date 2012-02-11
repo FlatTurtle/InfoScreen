@@ -12,10 +12,10 @@
 				<td width="40">
 					<img src="${$value.profile_image_url}" height="40" width="40" />
 				</td>
-				<td>
-					<small class="text">
-					<strong>${$value.from_user}:</strong> ${$value.text}
-					</small>
+				<td class="auto-size small-text">
+					<span>
+					<strong>${$value.from_user}:</strong> {{html $value.text}}
+					</span>
 				</td>
 			</tr>
 		{{/each}}

@@ -25,7 +25,21 @@
 			return 'http://data.irail.be/spectql/twitter/search/' + this.options.hashtag + "/results.limit(15):json";
 		},
 		parse : function(json) {
-			return json.spectql;
+			var tweets = json.spectql;
+
+			// add some colors
+			for (var i in tweets) {
+				// #tags
+				tweets[i].text = tweets[i].text.replace(/(#[^\s]+)/g, '<span class="text-color">$1</span>');
+				
+				// @replies
+				tweets[i].text = tweets[i].text.replace(/(@[^\s]+)/g, '<span class="text-color">$1</span>');
+				
+				// links                                  [   https://www.   |www.| domain.| ... ]
+				tweets[i].text = tweets[i].text.replace(/((https?:\/\/(\w\.)*|\w\.)[^\s]+\.[^\s]+)/g, '<span class="text-color">$1</span>');
+			}
+			
+			return tweets;
 		}
 	});
 

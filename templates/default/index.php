@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="<? echo baseUrl("templates/default/css/style.css"); ?>" />
 	<style>
 		.color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
+        .text-color { color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }	
 	</style>
 </head>
 <body>

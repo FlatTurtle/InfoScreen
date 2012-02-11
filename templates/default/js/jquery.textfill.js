@@ -7,13 +7,14 @@
 		var options = jQuery.extend(defaults, options);
 
 		return this.each(function() {
+			var child = $(options.innerTag + ':first', this);
+			
 			// get max font size
 			if(options.maxSize === undefined) {
-				options.maxSize = $(this).css('font-size').replace(/px/,'');
+				options.maxSize = child.css('font-size').replace(/px/,'');
 			}
 			
 			var fontSize = options.maxSize;
-			var child = $(options.innerTag + ':first', this);
 			var maxHeight = $(this).height();
 			var maxWidth = $(this).width();
 			var textHeight;

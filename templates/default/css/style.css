@@ -45,7 +45,6 @@ header #logo {
     height: 100px;
     width: 1000px;
     overflow: hidden;
-    vertical-align: middle;
     line-height: 100px;
     margin-left: 20px;
 }
@@ -104,13 +103,19 @@ section#main {
     line-height: 42px;
     padding-left: 14px;
     text-transform: uppercase;
-    line-height: 42px;
     overflow: hidden;
 }
 
 .turtle h2 small {
     font-size: 16px;
     text-transform: none;
+}
+
+.turtle h2 img {
+	display: inline;
+    vertical-align: middle;
+    top: -2px;
+    position: relative;
 }
 
 .turtle h2 .credits {
@@ -160,10 +165,6 @@ section#main {
     padding: 0 5px;
 }
 
-.turtle img {
-    vertical-align: middle;
-}
-
 .turtle .time {
     color: #676767;
     text-align: right;
@@ -204,10 +205,9 @@ section#main {
     display: block;
 }
 
-.turtle small.text {
+.turtle .small-text {
     line-height: 20px;
     font-size: 15px;
-    height: 40px;
     font-weight: normal;
 }
 
