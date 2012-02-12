@@ -124,6 +124,9 @@ var App = function(rootElement) {
 	var rendered = function(turtle) {
 		// add or activate ticker
 		tick(turtle);
+		
+		// auto font size
+		turtle.find(".auto-size").textfill();
 	};
 
 	// add ticker to turtle

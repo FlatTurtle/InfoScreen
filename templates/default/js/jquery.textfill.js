@@ -7,7 +7,7 @@
 		var options = jQuery.extend(defaults, options);
 
 		return this.each(function() {
-			var child = $(options.innerTag + ':first', this);
+			var child = $(this).find(options.innerTag + ':first');
 			
 			// get max font size
 			if(options.maxSize === undefined) {
