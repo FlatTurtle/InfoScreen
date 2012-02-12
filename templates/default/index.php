@@ -16,7 +16,7 @@
 	<header>
 		<div id="clock" class="color"></div>
 		<?php if($infoscreen->logo): ?>
-		<div id="logo"><img src="<?php echo $infoscreen->logo; ?>" alt="<?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?>" /></div>
+		<div id="logo"><img src="resize.php?height=100&image=<?php echo urlencode($infoscreen->logo); ?>" alt="<?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?>" /></div>
 		<?php endif; ?>
 	</header>
 
