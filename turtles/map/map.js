@@ -53,7 +53,8 @@
 					
 					var marker = new google.maps.Marker({
 			            map: map,
-			            position: results[0].geometry.location
+				    position: results[0].geometry.location,
+					    icon: new google.maps.MarkerImage("turtles/map/workoffice.php?color=" + $(".color").css("backgroundColor"))
 			        });
 				}
 			});
