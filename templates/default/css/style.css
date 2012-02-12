@@ -43,7 +43,6 @@ header #clock {
 
 header #logo {
     height: 100px;
-    width: 1000px;
     overflow: hidden;
     line-height: 100px;
     margin-left: 20px;
@@ -163,6 +162,10 @@ section#main {
     height: 55px !important;
     overflow: hidden;
     padding: 0 5px;
+}
+
+.turtle img {
+	vertical-align: middle;
 }
 
 .turtle .time {
