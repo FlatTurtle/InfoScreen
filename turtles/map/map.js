@@ -51,10 +51,12 @@
 				if (status == google.maps.GeocoderStatus.OK) {
 					map.setCenter(results[0].geometry.location);
 					
+					console.log("turtles/map/workoffice.php?color=" + encodeURIComponent(infoScreen.color));
+					
 					var marker = new google.maps.Marker({
 			            map: map,
 				    position: results[0].geometry.location,
-					    icon: new google.maps.MarkerImage("turtles/map/workoffice.php?color=" + $(".color").css("backgroundColor"))
+					    icon: new google.maps.MarkerImage("turtles/map/workoffice.php?color=" + encodeURIComponent(infoScreen.color))
 			        });
 				}
 			});

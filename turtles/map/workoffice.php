@@ -33,7 +33,11 @@ function rgb_to_rgb($color){
     return $color;
 }
 
-$color = rgb_to_rgb($color);
+if (stristr($color, '#')) {
+	$color = hex_to_rgb($color);
+} else if (stristr($color, ',')) {
+	$color = rgb_to_rgb($color);
+}
 
 $fromcolor = hex_to_rgb("5781fc");
 
