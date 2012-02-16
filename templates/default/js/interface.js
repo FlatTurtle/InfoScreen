@@ -58,9 +58,6 @@ var Clock = function(rootElement) {
 };
 
 var App = function(rootElement) {
-
-	// turtle switch interval in ms, default: 15 seconds
-	var interval = 15000;
 	
 	var rootElement = rootElement;
 	var rotateTimer;
@@ -190,7 +187,7 @@ var App = function(rootElement) {
 
 	var addBehaviours = function() {
 		// set rotate timer
-		rotateTimer = window.setInterval(rotate, interval);
+		rotateTimer = window.setInterval(rotate, infoScreen.interval);
 	};
 
 	var removeBehaviours = function() {

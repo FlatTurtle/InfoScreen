@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS `infoscreens` (
   `alias` varchar(255) NOT NULL,
   `logo` varchar(255) DEFAULT NULL,
   `color` varchar(10) DEFAULT NULL,
-  `lang` varchar(10) DEFAULT NULL,
+  `lang` varchar(10) DEFAULT 'en',
+  `interval` int(11) NOT NULL DEFAULT '15000',
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`),
   KEY `alias` (`alias`)
@@ -57,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `infoscreens` (
 -- Dumping data for table `infoscreens`
 --
 
-INSERT INTO `infoscreens` (`id`, `customer_id`, `title`, `alias`, `logo`, `color`, `lang`) VALUES
-(1, 1, 'FlatTurtle', 'demo', 'https://static.0x04.com/2012/01/flatturtle.png', '#607E16', '');
+INSERT INTO `infoscreens` (`id`, `customer_id`, `title`, `alias`, `logo`, `color`, `lang`, `interval`) VALUES
+(1, 1, 'FlatTurtle', 'demo', 'https://static.0x04.com/2012/01/flatturtle.png', '#607E16', 'en', 15000);
 
 -- --------------------------------------------------------
 
