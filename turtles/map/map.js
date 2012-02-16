@@ -17,9 +17,12 @@
 		render : function() {
 			var self = this;
 			$.get('turtles/map/map.html', function(template) {
-				self.$el.html($.tmpl(template, {
-					location : self.options.location
-				}));
+				var data = {
+					location : self.options.location,
+					i18n : self.options.i18n
+				};
+				
+				self.$el.html($.tmpl(template, data));
 				
 				// notify listeners render completed and pass element
 				self.trigger("rendered", self.$el);
@@ -51,7 +54,7 @@
 				if (status == google.maps.GeocoderStatus.OK) {
 					map.setCenter(results[0].geometry.location);
 					
-					console.log("turtles/map/workoffice.php?color=" + encodeURIComponent(infoScreen.color));
+					//console.log("turtles/map/workoffice.php?color=" + encodeURIComponent(infoScreen.color));
 					
 					var marker = new google.maps.Marker({
 			            map: map,

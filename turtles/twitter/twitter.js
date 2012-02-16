@@ -66,6 +66,7 @@
 				var data = {
 					hashtag : this.options.hashtag,
 					entries : this.collection.toJSON(),
+					i18n : this.options.i18n
 				};
 				
 				// add html to container

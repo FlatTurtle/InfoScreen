@@ -1,6 +1,10 @@
 <h2>
-	<img src="turtles/airport/flights.gif" alt="Airport" width="32px" height="32px" />
-	<small>${direction}</small>
+	<img src="turtles/airport/plane.gif" alt="Airport" height="28px" />
+	{{if direction == 'departures'}}
+	<small>${i18n.departures}</small>
+	{{else}}
+	<small>${i18n.arrivals}</small>
+	{{/if}}
 	<span class="credits">moved by <em>FlatTurtle</em></span>
 </h2>
 

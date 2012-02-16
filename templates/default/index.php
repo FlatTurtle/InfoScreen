@@ -29,7 +29,7 @@
 <script src="<? echo baseUrl("core/turtles.js"); ?>"></script>
 <script src="<? echo baseUrl("templates/default/js/jquery.tmpl.js"); ?>"></script>
 <script src="<? echo baseUrl("templates/default/js/jquery.textfill.js"); ?>"></script>
-<script src="<? echo baseUrl("templates/default/js/loader.js"); ?>"></script>
+<script src="<? echo baseUrl("templates/default/js/turtles.loader.js"); ?>"></script>
 <script src="<? echo baseUrl("templates/default/js/interface.js"); ?>"></script>
 
 <script>

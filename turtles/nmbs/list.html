@@ -1,6 +1,10 @@
 <h2>
-	<img src="turtles/nmbs/train.gif" width="32px" height="32px" alt="NMBS/SNCB"> 
-	<small>${direction}</small>
+	<img src="turtles/nmbs/train.gif" height="28px" alt="NMBS/SNCB"> 
+	{{if direction == 'departures'}}
+	<small>${i18n.departures}</small>
+	{{else}}
+	<small>${i18n.arrivals}</small>
+	{{/if}}
 	<span class="credits">moved by <em>FlatTurtle</em></span>
 </h2>
 

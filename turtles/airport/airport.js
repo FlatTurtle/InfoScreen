@@ -110,7 +110,8 @@
 					direction : this.options.direction || "departures",
 					airport : this.options.airport || this.options.location,
 					entries : this.collection.toJSON(),
-					error : this.options.error // have there been any errors?
+					error : this.options.error, // have there been any errors?
+					i18n : this.options.i18n
 				};
 				
 				// add html to container
