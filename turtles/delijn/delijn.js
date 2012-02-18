@@ -52,18 +52,16 @@
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url - todo: add departures or arrivals
-			return "http://data.irail.be/spectql/DL/Liveboard/" + query + "/static.limit(15):json";
+			return "http://data.irail.be/DL/Liveboard/" + query + "/static.json";
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json.spectql;
+			var liveboard = json.static;
 
 			for ( var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
 				liveboard[i].time = this.formatTime(liveboard[i].time);
 
-				if (!liveboard[i].platform.name)
-					liveboard[i].platform.name = "-";
 			}
 
 			return liveboard;
