@@ -27,14 +27,25 @@
 		parse : function(json) {
 			var tweets = json.spectql;
 
-			// add some colors
+			// process tweets
 			for (var i in tweets) {
+				// time ago string
+				var minutes = parseInt(tweets[i].created_at.replace("'", ""));
+				if (minutes < 1)
+					tweets[i].ago = i18n.just_now;
+				else if (minutes < 60)
+					tweets[i].ago = minutes + ' ' + i18n.minutes;
+				else if (minutes < 1440)
+					tweets[i].ago = Math.floor( minutes / 60 ) + ' ' + i18n.hours;
+				else if (minutes < 10080)
+					tweets[i].ago = Math.floor( minutes / 1440 ) + ' ' + i18n.days;
+				else
+					tweets[i].ago = i18n.long_time;
+				
 				// #tags
 				tweets[i].text = tweets[i].text.replace(/(#[^\s]+)/g, '<span class="text-color">$1</span>');
-				
 				// @replies
 				tweets[i].text = tweets[i].text.replace(/(@[^\s]+)/g, '<span class="text-color">$1</span>');
-				
 				// links                                  [   https://www.   |www.| domain.| ... ]
 				tweets[i].text = tweets[i].text.replace(/((https?:\/\/(\w\.)*|\w\.)[^\s]+\.[^\s]+)/g, '<span class="text-color">$1</span>');
 			}

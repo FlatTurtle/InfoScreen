@@ -25,7 +25,11 @@
 			options.colspan = 1;
 		}
 
-		// check if the group needs to be created
+		/*
+		 * All turtles instances are grouped in a separate <section> for each turtle group.
+		 * If no group is set from the options the turtle's name is used, otherwise different 
+		 * turtles can be grouped in the same column with this group name.
+		 */
 		var group = $('section.group#' + options.group);
 		if (group.length == 0) {
 			group = $('<section class="group" id="' + options.group + '" data-colspan="' + options.colspan + '"></section>');
@@ -35,7 +39,10 @@
 			
 			$(rootElement).append(group);
 			
-			// update all group widths calculated from the new total columns
+			/*
+			 * This group's width is automatically calculated depending on 
+			 * the total number of columns and the set colspan.
+			 */
 		    var i = 0;
 			$('section.group').each(function() {
 				var colspan = $(this).data('colspan');
@@ -58,7 +65,14 @@
 		if (!options.source)
 			options.source = 'turtles/' + id + '/' + id + '.js';
 
-		// preload the i18n file
+		/*
+		 * Preloading the i18n file. This file needs to be located in a /i18n folder 
+		 * that contains javascript files for each supported language code.
+		 * Example: "turtle/i18n/nl.js" for dutch
+		 * 
+		 * These javascript files are fetched using ajax and the resulting i18n object 
+		 * is passed as an options to your module's components.
+		 */
 		if (infoScreen.lang) {
 			var location = options.source.substring(0, options.source.lastIndexOf('/') + 1) + 'i18n/' + infoScreen.lang + '.js';
 			

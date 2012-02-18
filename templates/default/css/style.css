@@ -211,18 +211,23 @@ section#main {
 }
 
 .turtle .small-text {
-    line-height: normal;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: normal;
     display: block;
     overflow: hidden;
-    height: 40px;
+    line-height: 18px;
+    max-height: 55px;
 }
 
 .turtle .error {
     color: #999;
     text-align: center;
     display: block;
+}
+
+.turtle small {
+	color: #999;
+	font-size: 11px;
 }
 
 /* ===================================================
