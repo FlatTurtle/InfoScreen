@@ -2,7 +2,12 @@
 
 	// container for turtles
 	var rootElement = '#main';
+	
+	// column counter
 	var columns = 0;
+	
+	// default language code
+	var defaultLanguage = 'en';
 
 	/*
 	 * We are extending the main turtles class with a specific grow function for
@@ -74,17 +79,46 @@
 		 * is passed as an options to your module's components.
 		 */
 		if (infoScreen.lang) {
-			var location = options.source.substring(0, options.source.lastIndexOf('/') + 1) + 'i18n/' + infoScreen.lang + '.js';
+			var location = options.source.substring(0, options.source.lastIndexOf('/') + 1) + 'i18n/';
 			
 			$.ajax({
-				url : location,
+				url : location +  infoScreen.lang + '.js',
 				dataType : 'script',
 				async : false, // we need to wait and pass this to the instance
 				success : function() {
 					// i18n object found!
 					if (i18n !== undefined) {
 						options.i18n = i18n;
+					} else {
+						// The requested language file did not contain the i18n object,
+						// using default language as fallback
+						$.ajax({
+							url : location +  defaultLanguage + '.js',
+							dataType : 'script',
+							async : false, // we need to wait and pass this to the instance
+							success : function() {
+								// i18n object found!
+								if (i18n !== undefined) {
+									options.i18n = i18n;
+								}
+							}
+						});
 					}
+				},
+				error : function() {
+					// Error occurred while loading the requested language file,
+					// using default language as fallback
+					$.ajax({
+						url : location +  defaultLanguage + '.js',
+						dataType : 'script',
+						async : false, // we need to wait and pass this to the instance
+						success : function() {
+							// i18n object found!
+							if (i18n !== undefined) {
+								options.i18n = i18n;
+							}
+						}
+					});
 				}
 			});
 		}
