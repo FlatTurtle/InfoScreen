@@ -52,11 +52,12 @@
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url - todo: add departures or arrivals
-			return "http://data.irail.be/DL/Liveboard/" + query + "/static.json";
+			return "http://data.irail.be/DL/Liveboard/" + query + ".json";
 		},
 		parse : function(json) {
+                    this.options.station = json.Liveboard.location.name;
 			// parse ajax results
-			var liveboard = json.static;
+			var liveboard = json.Liveboard.static;
 
 			for ( var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
@@ -96,7 +97,7 @@
 			if (this.template) {
 				var data = {
 					direction : this.options.direction || "departures",
-					station : this.options.location,
+					station : this.options.station,
 					entries : this.collection.toJSON(),
 					error : this.options.error, // have there been any errors?
 					i18n : this.options.i18n
