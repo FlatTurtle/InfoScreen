@@ -106,19 +106,31 @@
 		render : function() {
 			// only render when template file is loaded
 			if (this.template) {
-				var data = {
-					direction : this.options.direction || "departures",
-					airport : this.options.airport || this.options.location,
-					entries : this.collection.toJSON(),
-					error : this.options.error, // have there been any errors?
-					i18n : this.options.i18n
-				};
-				
-				// add html to container
-				this.$el.html($.tmpl(this.template, data));
-				
-				// notify listeners render completed and pass element
-				this.trigger("rendered", this.$el);
+                            //look for the right airport name from code
+                            var airportnameurl = "http://data.irail.be/spectql/Airports/Stations%7Bname,code%7D?code=='"+ this.options.airport +"':json";
+                            var airportname = this.options.airport;
+                            var parent = this;
+                            $.ajax({
+                                url: airportnameurl,
+                                success: function(data){
+                                    airportname = data.spectql[0].name;
+                                    parent.options.airportname = airportname;
+				    var data = {
+					direction : parent.options.direction || "departures",
+					airport : parent.options.airportname || parent.options.location,
+					entries : parent.collection.toJSON(),
+					error : parent.options.error, // have there been any errors?
+					i18n : parent.options.i18n
+				    };
+				    
+				    // add html to container
+				    parent.$el.html($.tmpl(parent.template, data));
+				    
+				    // notify listeners render completed and pass element
+				    parent.trigger("rendered", parent.$el);
+                                }
+                            });
+                          
 			}
 		}
 	});
