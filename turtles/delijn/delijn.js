@@ -57,7 +57,7 @@
 		parse : function(json) {
                     this.options.station = json.Liveboard.location.name;
 			// parse ajax results
-			var liveboard = json.Liveboard.static;
+			var liveboard = json.Liveboard.departures;
 
 			for ( var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
