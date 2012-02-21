@@ -52,7 +52,7 @@
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url - todo: add departures or arrivals
-			return "http://data.irail.be/spectql/NMBS/Liveboard/" + query + "/departures.limit(15):json";
+			return "http://data.irail.be/spectql/NMBS/Liveboard/" + query + "/departures.limit(17):json";
 		},
 		parse : function(json) {
 			// parse ajax results

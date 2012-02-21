@@ -22,7 +22,7 @@
 		},
 		url : function() {
 			// remote source url
-			return 'http://data.irail.be/spectql/twitter/search/' + this.options.hashtag + "/results.limit(15):json";
+			return 'http://data.irail.be/spectql/twitter/search/' + this.options.hashtag + "/results.limit(17):json";
 		},
 		parse : function(json) {
 			var tweets = json.spectql;
