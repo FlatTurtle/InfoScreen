@@ -14,7 +14,7 @@
 			var parent = $(this);
 
 			// check if this has been auto-sized already
-			if (parent.find(settings.wrapperTag + '.' + settings.wrapperClass).length == 0) {
+			if (parent.is(':visible') && parent.find(settings.wrapperTag + '.' + settings.wrapperClass).length == 0) {
 				
 				// wrap children, nice and cosy
 				parent.wrapInner('<' + settings.wrapperTag + ' class="' + settings.wrapperClass + '" />');
