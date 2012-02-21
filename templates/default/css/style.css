@@ -249,9 +249,10 @@ section#main {
     display: block;
 }
 
-.turtle small {
+.turtle .small-text small {
 	color: #999;
 	font-size: 11px;
+	white-space: nowrap;
 }
 
 /* ===================================================

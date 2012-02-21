@@ -64,6 +64,10 @@
 
 				if (!liveboard[i].platform.name)
 					liveboard[i].platform.name = "-";
+				
+				liveboard[i].type = liveboard[i].vehicle.match(/\.([a-zA-Z]+)[0-9]+$/)[1];
+				if (!liveboard[i].type)
+					liveboard[i].type = "-";
 			}
 
 			return liveboard;
