@@ -3,15 +3,38 @@
    ================================================ */
 
 html {
-    font-family: Arial, sans-serif;
+    font-family: 'FreeUniversalRegular';
     height: 100%;
 }
 
+
+
+@font-face {
+    font-family: 'FreeUniversalRegular';
+    src: url('../font/freeuniversal-regular-webfont.eot');
+    src: url('../font/freeuniversal-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/freeuniversal-regular-webfont.woff') format('woff'),
+         url('../font/freeuniversal-regular-webfont.ttf') format('truetype'),
+         url('../font/freeuniversal-regular-webfont.svg#FreeUniversalRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'JuraDemiBold';
+    src: url('../font/jura-demibold-webfont.eot');
+    src: url('../font/jura-demibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/jura-demibold-webfont.woff') format('woff'),
+         url('../font/jura-demibold-webfont.ttf') format('truetype'),
+         url('../font/jura-demibold-webfont.svg#JuraDemiBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     color: #333;
     background: none repeat scroll 0 0 #FFF;
     overflow: hidden;
-    font: 13px/1.231 sans-serif;
+   /* font: 13px/1.231 sans-serif;*/
     margin: 0;
     padding: 0;
     height: 100%;
@@ -118,6 +141,7 @@ section#main {
 }
 
 .turtle h2 .credits {
+    font-family: 'JuraDemiBold'; 
     color: #626262;
     float: right;
     font-size: 12px;
