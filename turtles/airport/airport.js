@@ -105,7 +105,7 @@
 		},
 		render : function() {
 			// only render when template file is loaded
-			if (this.template) {
+			if (this.template && this.options.airport) {
                             //look for the right airport name from code
                             var airportnameurl = "http://data.irail.be/spectql/Airports/Stations%7Bname,code%7D?code=='"+ this.options.airport +"':json";
                             var airportname = this.options.airport;
