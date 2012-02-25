@@ -120,7 +120,7 @@ section#main {
     margin: 0;
     background-color: #333;
     color: #FFF;
-    font-size: 28px;
+    font-size: 34px;
     height: 42px;
     line-height: 42px;
     padding-left: 14px;
@@ -129,7 +129,7 @@ section#main {
 }
 
 .turtle h2 small {
-    font-size: 16px;
+    font-size: 20px;
     text-transform: none;
 }
 
@@ -144,7 +144,7 @@ section#main {
     font-family: 'JuraDemiBold'; 
     color: #626262;
     float: right;
-    font-size: 12px;
+    font-size: 19px;
     font-weight: normal;
     padding-right: 14px;
     text-transform: none;
@@ -159,7 +159,7 @@ section#main {
     margin: 0;
     padding: 0;
     color: #FFF;
-    font-size: 25px;
+    font-size: 29px;
     height: 50px;
     line-height: 50px;
     padding: 0 14px;
@@ -182,7 +182,7 @@ section#main {
 
 .turtle td {
     color: #333;
-    font-size: 18px;
+    font-size: 23px;
     height: 55px !important;
     overflow: hidden;
     padding: 0 5px;
@@ -209,7 +209,7 @@ section#main {
 .turtle .time em {
     color: #FA0E00;
     display: block;
-    font-size: 18px;
+    font-size: 23px;
     font-style: normal;
 }
 
@@ -235,7 +235,7 @@ section#main {
 }
 
 .turtle .small-text {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: normal;
     display: block;
     overflow: hidden;
@@ -251,7 +251,7 @@ section#main {
 
 .turtle .small-text small {
 	color: #999;
-	font-size: 11px;
+	font-size: 14px;
 	white-space: nowrap;
 }
 

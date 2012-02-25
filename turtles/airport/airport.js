@@ -40,7 +40,7 @@
 			var day = today.getDate();
 			var year = today.getFullYear();
 			var minutes = today.getMinutes();
-			var hours = today.getHours();
+		    var hours = (today.getHours() + 2)%24;
 
 			if (minutes < 10)
 				minutes = "0" + minutes;
