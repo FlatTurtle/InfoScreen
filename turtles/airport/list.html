@@ -30,9 +30,14 @@
 					</td>
 					<td>
 						<div class="auto-size text">
-						${$value.airport.name} &nbsp (${$value.airport.code})
+						${$value.airport.city}&nbsp;-&nbsp;${$value.airport.country}
 						</div>
 					</td>
+<!-- Jens, can you fit this in somewhere?					<td width="40" style="padding-right: 10px;">
+					  <span class="label">
+					  	${$value.airport.code}
+					  </span>
+					</td>-->
 				</tr>
 			{{/each}}
 		{{else error}}
