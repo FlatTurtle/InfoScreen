@@ -87,13 +87,16 @@ var App = function(rootElement) {
 					}
 					
 					// lay active on top of previous
-					previous.css('zIndex', 1);
-					active.css('zIndex', 2);
+					//previous.css('zIndex', 1);
+					//active.css('zIndex', 2);
 					
 					tick(active); // add ticker
-					active.fadeIn(200, function() {
+					/*active.fadeIn(200, function() {
 						previous.hide();
-					});
+					});*/
+
+					previous.hide();
+					active.show();
 					
 					active.addClass("active");
 					previous.removeClass("active");
