@@ -199,6 +199,7 @@ section#main {
     color: #676767;
     text-align: right;
     width: 60px;
+    line-height: 100%;
 }
 
 .turtle .delayed {
@@ -212,7 +213,6 @@ section#main {
 .turtle .time em {
     color: #FA0E00;
     display: block;
-    font-size: 23px;
     font-style: normal;
 }
 
