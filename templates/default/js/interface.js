@@ -1,28 +1,24 @@
-var Clock = function(rootElement) {
+var Clock = function(hElement, mElement) {
 
-	var rootElement = rootElement;
+	var hElement = hElement;
+	var mElement = mElement;
 	var interval;
 	var refreshInterval;
 	var that = this;
 	var ticker = true;
 
 	var refresh = function() {
-		$(rootElement).html(time);
+		$(hElement).html(timeH);
+		$(mElement).html(timeM);
 	};
 
-	var time = function() {
-		var now = new Date(), hours = now.getHours(), minutes = now.getMinutes();
-		if (ticker) {
-			ticker = false;
-			return (hours < 10 ? '0' : '') + hours
-					+ '<span style="visibility:visible;">:</span>'
-					+ (minutes < 10 ? '0' : '') + minutes;
-		} else {
-			ticker = true;
-			return (hours < 10 ? '0' : '') + hours
-					+ '<span style="visibility:hidden;">:</span>'
-					+ (minutes < 10 ? '0' : '') + minutes;
-		}
+	var timeH = function() {
+		var now = new Date(), hours = now.getHours();
+	    return (hours < 10 ? '0' : '') + hours;
+	};
+	var timeM = function() {
+		var now = new Date(), minutes = now.getMinutes();
+			return (minutes < 10 ? '0' : '') + minutes;
 	};
 
 	var initialize = function() {
@@ -31,7 +27,8 @@ var Clock = function(rootElement) {
 	};
 
 	var initializeHtml = function() {
-		rootElement.html(that.time);
+		hElement.html(that.timeH);
+            mElement.html(that.timeM);
 	};
 
 	var addBehaviours = function() {
@@ -45,8 +42,11 @@ var Clock = function(rootElement) {
 	this.destroy = function() {
 		removeBehaviours();
 
-		rootElement.empty();
-		rootElement = null;
+		hElement.empty();
+		hElement = null;
+	        mElement.empty();
+		mElement = null;
+	
 	}
 
 	this.update = function() {
@@ -214,7 +214,7 @@ var App = function(rootElement) {
 
 $(document).ready(function() {
 
-	clock = new Clock($("#clock"));
+    clock = new Clock($("#clockhour"), $("#clockminutes"));
 	app = new App($("#main"));
 
 });
