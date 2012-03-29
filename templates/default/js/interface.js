@@ -95,8 +95,13 @@ var App = function(rootElement) {
 						previous.hide();
 					});*/
 
+					// hide the previous turtle and trigger a jQuery event
 					previous.hide();
+					previous.trigger('hidden');
+					
+					// show the active turtle and trigger a jQuery event
 					active.show();
+					active.trigger('shown');
 					
 					active.addClass("active");
 					previous.removeClass("active");
