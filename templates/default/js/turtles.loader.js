@@ -129,8 +129,8 @@
 			});
 		}
 		
-		// this is going to be the turtle instance, soon ... just wait!
-		var instance;
+		// this is going to be the turtle instance id, soon ... just wait!
+		var instanceid;
 		
 		// fetch the turtle script once
 		if (!this.registered(id)) {
@@ -141,15 +141,15 @@
 				dataType : 'script',
 				async : false, // to prevent duplicate javascript file loading
 				success : function() {
-					instance = self.instantiate(id, options);
+					instanceid = self.instantiate(id, options);
 				}
 			});
 		} else {
-			instance = this.instantiate(id, options);
+			instanceid = this.instantiate(id, options);
 		}
 		
 		// pass the instance id as data attribute, just in case
-		options.el.attr('data-iid', instance.iid);
+		options.el.attr('data-instanceid', instanceid);
 	}
 
 	// register the Turtles object on the global namespace
