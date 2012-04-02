@@ -101,7 +101,10 @@
 								if (i18n !== undefined) {
 									options.i18n = i18n;
 								}
-							}
+							},
+                                                    error : function() {
+                                                        options.i18n = {};
+                                                    }
 						});
 					}
 				},
@@ -117,7 +120,10 @@
 							if (i18n !== undefined) {
 								options.i18n = i18n;
 							}
-						}
+						},
+                                            error : function() {
+                                                options.i18n = {};
+                                            }
 					});
 				}
 			});
