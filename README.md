@@ -127,7 +127,7 @@ InfoScreen
 
 The purpose of this project is to give more visibility to public transport around your office. Using an adminscreen you can specify your location and the desired stations you want to display on the screen which may be placed at the entrance.
 
-This is a project started by the Flat Turtle bvba. It's the back-end for our mobility-screen products. Flut Turtle is member of the iRail NPO. The copyright of this software is maintained by the non profit organisation and licensed under AGPL. We do not however include the designs which contain company logos and styles from the companies we work for. You are free however to make this code better and/or to use it for your own project (as long as you respect the AGPL).
+This is a project started by the FlatTurtle bvba. It's the back-end for our mobility-screen products. FlatTurtle is member of the iRail NPO. The copyright of this software is maintained by the non profit organisation and licensed under AGPL. We do not however include the designs which contain company logos and styles from the companies we work for. You are free however to make this code better and/or to use it for your own project (as long as you respect the AGPL).
 
 Development
 -----------
