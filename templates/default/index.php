@@ -16,7 +16,7 @@
 	<header>
 		<div id="clock" class="color"><span id="clockhour"></span><img src="templates/default/img/colon.gif"><span id="clockminutes"></span></div>
 		<?php if($infoscreen->logo): ?>
-		<div id="logo"><img height="97px" src="<?php echo $infoscreen->logo; ?>" alt="<?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?>" /></div>
+		<div id="logo"><img height="80px" src="<?php echo $infoscreen->logo; ?>" alt="<?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?>" /></div>
 		<?php endif; ?>
 	</header>
 
