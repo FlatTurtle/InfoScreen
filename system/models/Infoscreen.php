@@ -67,4 +67,13 @@ class Infoscreen extends Model {
         $query = $this->db->query("SELECT * FROM turtle_options WHERE turtle_id = ?", $turtle_id);
         return $query->result();
     }
+
+    /**
+     * Get all cron jobs
+     */
+    function jobs($infoscreen_id) {
+        $query = $this->db->query("SELECT * FROM jobs JOIN jobtab ON jobs.id like jobtab.job_id WHERE jobtab.infoscreen_id = ?", $infoscreen_id);
+        return $query->result();
+    }
+
 }
