@@ -33,8 +33,7 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 
 INSERT INTO `jobs` (`id`, `jobname`, `javascript`) VALUES
 (1, 'screen_on', 'application.enableScreen(true);'),
-(2, 'screen_off', 'application.enableScreen(true);'),
-(3, 'reload_jobs', 'infoscreen.reloadJobs();');
+(2, 'screen_off', 'application.enableScreen(true);');
 
 -- --------------------------------------------------------
 
