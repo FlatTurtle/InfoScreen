@@ -10,12 +10,12 @@ function cronJobs(jobs){
             try{
                 eval(job.javascript);
             }catch(err){
-
+                //do nothing
             }
         }
         //set next job
         var interval = getNextUnixtimeFromEntry(job.minutes,job.hours,job.day_of_month, job.month, job.day_of_week);
-        setTimeout(function(){executeJob(job, true);}, interval*1000);
+        setTimeout(function(){executeJob(job, Math.round((new Date()).getTime() / 1000),true);}, interval*1000);
     }
 
     /**
