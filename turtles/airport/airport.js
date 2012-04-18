@@ -21,7 +21,8 @@
 		},
 		refresh : function() {
 			var self = this;
-			self.fetch({
+			
+			this.fetch({
 				data : {
 				},
 				error : function() {
@@ -29,8 +30,9 @@
 					self.options.error = true;
 					
 					// if there are no previous items to show, display error message
-					if(self.length == 0)
+					if(self.length == 0) {
 						self.trigger("reset");
+					}
 				}
 			});
 		},
@@ -57,7 +59,7 @@
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url
-		    //Todo: add departures or arrivals
+		    // todo: add departures or arrivals
 			return "http://data.irail.be/spectql/Airports/Liveboard/" + query + "/departures.limit(17):json";
 		},
 		parse : function(json) {
@@ -68,14 +70,11 @@
 			if (liveboard)
 				this.options.error = false;
 
-			if (!this.options.airport)
-			    this.options.airport = this.options.location; //json.location.name;
-
-			for ( var i in liveboard) {
+			for (var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
 				liveboard[i].time = this.formatTime(liveboard[i].time);
 			}
-
+			
 			return liveboard;
 		},
 		formatTime : function(timestamp) {
@@ -94,8 +93,19 @@
 			// bind render to collection reset
 			this.collection.bind("reset", this.render);
 
-			// pre-fetch template file and render when ready
 			var self = this;
+			
+			// get the airport name
+			$.ajax({
+				url: "http://data.irail.be/spectql/Airports/Stations%7Bname,code%7D?code=='" + self.options.location + "':json",
+				dataType: 'json',
+				success: function(data) {
+					self.options.airport = data.spectql[0].name;
+					self.render();
+				}
+			});
+			
+			// pre-fetch template file and render when ready
 			if (this.template == null) {
 				$.get("turtles/airport/list.html", function(template) {
 					self.template = template;
@@ -104,33 +114,23 @@
 			}
 		},
 		render : function() {
+			var self = this;
+			
 			// only render when template file is loaded
 			if (this.template && this.options.airport) {
-                            //look for the right airport name from code
-                            var airportnameurl = "http://data.irail.be/spectql/Airports/Stations%7Bname,code%7D?code=='"+ this.options.airport +"':json";
-                            var airportname = this.options.airport;
-                            var parent = this;
-                            $.ajax({
-                                url: airportnameurl,
-                                success: function(data){
-                                    airportname = data.spectql[0].name;
-                                    parent.options.airportname = airportname;
-				    var data = {
-					direction : parent.options.direction || "departures",
-					airport : parent.options.airportname || parent.options.location,
-					entries : parent.collection.toJSON(),
-					error : parent.options.error, // have there been any errors?
-					i18n : parent.options.i18n
-				    };
-				    
-				    // add html to container
-				    parent.$el.html($.tmpl(parent.template, data));
-				    
-				    // notify listeners render completed and pass element
-				    parent.trigger("rendered", parent.$el);
-                                }
-                            });
-                          
+				var data = {
+					direction : self.options.direction || "departures",
+					airport : self.options.airport || self.options.location,
+					entries : self.collection.toJSON(),
+					error : self.options.error, // have there been any errors?
+					i18n : self.options.i18n
+			    };
+			    
+			    // add html to container
+				self.$el.html($.tmpl(self.template, data));
+			    
+			    // notify listeners render completed and pass element
+				self.trigger("rendered", self.$el);
 			}
 		}
 	});
