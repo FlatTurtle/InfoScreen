@@ -26,9 +26,12 @@ class Controller {
         // get turtles
         $turtles = $this->infoscreen->turtles($infoscreen->id);
         
+        // get cron jobs needed to be run by javascript
+        $jobs = $this->infoscreen->jobs($infoscreen->id);
+        
         // render the infoscreen
         $template = "templates/" . $this->config->item("default_template") . "/index.php";
-        $this->load->view($template, array("infoscreen" => $infoscreen, "turtles" => $turtles));
+        $this->load->view($template, array("infoscreen" => $infoscreen, "turtles" => $turtles, "jobs" => $jobs));
     }
     
     /**

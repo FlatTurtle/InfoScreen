@@ -56,7 +56,7 @@
                 <file name="jquery.tmpl.js" /> 
                 <file name="jquery.textfill.js" />
                 <file name="turtles.loader.js" />
-				<file name="interface.js" />
+                <file name="interface.js" />
             </filelist>
         </concat>
     </target>
@@ -78,7 +78,8 @@
                 <file name="underscore.js" /> 
                 <file name="jquery.js" />
                 <file name="backbone.js" />
-				<file name="turtles.js" />
+                <file name="turtles.js" />
+                <file name="jobs.js" />
             </filelist>
         </concat>
     </target>
@@ -97,7 +98,7 @@
 	<target name="initialize">
         <antcall target="compress_css" />
         <antcall target="compress_js"  />
-		<antcall target="compress_core"  />
+        <antcall target="compress_core"  />
         <echo>Done!</echo>
     </target>
 

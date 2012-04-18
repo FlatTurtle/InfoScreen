@@ -30,7 +30,7 @@
 <?php
 // infoscreen
 echo "	var infoScreen = ".json_encode($infoscreen).";\n";
-
+echo "	var jobs = cronJobs(".json_encode($jobs).");\n";
 // turtles
 foreach($turtles as $turtle)
 	echo '	Turtles.grow("'.$turtle->module.'", '.json_encode($turtle->options).");\n";

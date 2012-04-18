@@ -42,14 +42,14 @@ INSERT INTO `jobs` (`id`, `jobname`, `javascript`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `jobtab` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `infoscreen_id` int(11) NOT NULL,
   `job_id` int(11) NOT NULL,
-  `minutes` varchar(2) NOT NULL,
-  `hours` varchar(2) NOT NULL,
-  `day_of_month` varchar(2) NOT NULL,
-  `month` varchar(2) NOT NULL,
-  `day_of_week` varchar(2) NOT NULL,
+  `minutes` varchar(20) NOT NULL,
+  `hours` varchar(20) NOT NULL,
+  `day_of_month` varchar(20) NOT NULL,
+  `month` varchar(20) NOT NULL,
+  `day_of_week` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `infoscreen_id` (`infoscreen_id`),
   KEY `job_id` (`job_id`)
