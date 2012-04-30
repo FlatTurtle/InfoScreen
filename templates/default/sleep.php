@@ -42,6 +42,8 @@
         <script src="templates/default/js/later.min.js"></script>
         <script>
           <?php
+             // infoscreen
+             echo "          var infoScreen = ".json_encode($infoscreen).";\n";
              echo "          var jobs = cronJobs(".json_encode($jobs).");\n";
           ?>
         </script>

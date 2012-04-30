@@ -32,7 +32,7 @@ class Controller {
         if($secondargument == "sleep"){
             //Your infoscreen is sleeping. Only a splash screen will be shown, but the jobs remain scheduled
             $template = "templates/" . $this->config->item("default_template") . "/sleep.php";
-            $this->load->view($template, array("alias" => $alias, "jobs" => $this->infoscreen->jobs($infoscreen->id)));
+            $this->load->view($template, array("alias" => $alias,"infoscreen" => $infoscreen, "jobs" => $this->infoscreen->jobs($infoscreen->id)));
         }else{
             //get turtles
             $turtles = $this->infoscreen->turtles($infoscreen->id);

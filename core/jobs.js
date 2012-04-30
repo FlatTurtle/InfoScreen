@@ -6,9 +6,9 @@ function cronJobs(jobs){
         scheduleJob(job);
     });
     function scheduleJob(job){
-        var str = "0 " + job.minutes + " " + job.hours + " " + job.day_of_month + " " + job.month + " " + job.day_of_week;
+        var str = job.minutes + " " + job.hours + " " + job.day_of_month + " " + job.month + " " + job.day_of_week;
         //parse the string into a scheduler
-        var scheduler = cronParser().parse(str, true);
+        var scheduler = cronParser().parse(str, false);
         //execute a job every next time
         var thisjob = later();
         thisjob.exec(scheduler, new Date(), executeJob, job);
