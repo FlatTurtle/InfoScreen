@@ -86,22 +86,16 @@ var App = function(rootElement) {
 						active = $(this).find(".turtle").first();
 					}
 					
-					// lay active on top of previous
-					//previous.css('zIndex', 1);
-					//active.css('zIndex', 2);
-					
-					tick(active); // add ticker
-					/*active.fadeIn(200, function() {
-						previous.hide();
-					});*/
+					// add or display ticker
+					tick(active);
 
 					// hide the previous turtle and trigger a jQuery event
 					previous.hide();
-					previous.trigger('hidden');
+					previous.trigger("hidden");
 					
 					// show the active turtle and trigger a jQuery event
 					active.show();
-					active.trigger('shown');
+					active.trigger("shown");
 					
 					active.addClass("active");
 					previous.removeClass("active");
@@ -111,27 +105,12 @@ var App = function(rootElement) {
 				var active = $(this).find(".turtle").first();
 				active.addClass("active");
 			}
-			
-			// auto font size
-			active.find(".auto-size").textfill();
 		});
 	};
 
 	var initializeHtml = function() {
 		// an initial rotate to activate the first turtle
 		rotate();
-		
-		// bind all turtles' rendered event
-		Turtles.bind("rendered", rendered);
-	};
-	
-	// actions to take place when a turtle triggers the rendered event
-	var rendered = function(turtle) {
-		// add or activate ticker
-		tick(turtle);
-		
-		// auto font size
-		turtle.find(".auto-size").textfill();
 	};
 
 	// add ticker to turtle

@@ -8,7 +8,7 @@
 	<span class="credits">moved by <em>FlatTurtle</em></span>
 </h2>
 
-<h3 class="color auto-size"><span>${airport}</span></h3>
+<h3 class="color"><span>${airport}</span></h3>
 
 <table>
 	<tbody>
@@ -25,13 +25,13 @@
 						${$value.time}
 					</td>
 					{{/if}}
-					<td width="85">
-						<span class="label">${$value.vehicle}</span>
+					<td width="100" class="label">
+						<span>${$value.vehicle}</span>
 					</td>
-					<td>
-						<div class="auto-size text">
+					<td class="text">
+						<span>
 						${$value.airport.city}&nbsp;-&nbsp;${$value.airport.country}
-						</div>
+						</span>
 					</td>
 <!-- Jens, can you fit this in somewhere?					<td width="40" style="padding-right: 10px;">
 					  <span class="label">

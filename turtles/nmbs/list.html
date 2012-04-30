@@ -8,7 +8,7 @@
 	<span class="credits">moved by <em>FlatTurtle</em></span>
 </h2>
 
-<h3 class="color auto-size"><span>${station}</span></h3>
+<h3 class="color"><span>${station}</span></h3>
 
 <table>
 	<tbody>
@@ -25,18 +25,18 @@
 						${$value.time}
 					</td>
 					{{/if}}
-					<td width="40">
-					  <span class="label">
+					<td width="40" class="label">
+					  <span>
 					  	${$value.platform.name}
 					  </span>
 					</td>
-					<td>
-						<div class="auto-size text">
+					<td class="text">
+						<span>
 						${$value.direction}
-						</div>
+						</span>
 					</td>
-					<td width="40" style="padding-right: 10px;">
-					  <span class="label">
+					<td width="40" style="padding-right: 10px;" class="label">
+					  <span>
 					  	${$value.type}
 					  </span>
 					</td>
