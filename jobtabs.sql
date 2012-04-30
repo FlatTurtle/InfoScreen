@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `jobname`, `javascript`) VALUES
-(1, 'screen_on', 'application.enableScreen(true);'),
-(2, 'screen_off', 'application.enableScreen(true);');
+(1, 'screen_on', 'window.location = "sleep/%interval%";')
+(2, 'screen_off', 'window.location = "../../";');
 
 -- --------------------------------------------------------
 

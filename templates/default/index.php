@@ -23,6 +23,7 @@
 	<section id="main"></section>
 </div>
 
+<script src="<? echo baseUrl("templates/default/js/later.min.js"); ?>"></script>
 <script src="<? echo baseUrl("core/core.min.js"); ?>"></script>
 <script src="<? echo baseUrl("templates/default/js/application.min.js"); ?>"></script>
 
