@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>FlatTurtle</title>
     <!-- If you're checking out the code and you like what you see at the base uri, you might be interested in a job with us. Contact jobs@flatturtle.com if you're interested! -->
-    <base href="http://s.flatturtle.com/stable/">
+    <base href="<?php echo baseUrl(); ?>">
     <link rel="stylesheet" href="templates/default/css/style.css" />
     <style>
       .color { background-color: #2057A7; }
@@ -37,6 +37,7 @@
         <script src="core/underscore.js"></script>
         <script src="core/jquery.js"></script>
         <script src="core/backbone.js"></script>
+        <script src="core/jobs.js"></script>
         <script src="templates/default/js/jquery.tmpl.js"></script>
         <script src="templates/default/js/later.min.js"></script>
         <script>
