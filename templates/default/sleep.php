@@ -19,16 +19,16 @@
 	    <img border=0 src="http://img.flatturtle.com/flatturtle/logo/FlatTurtle-slogan.png" alt="FlatTurtle.com" />
 	  </a>
 	  <h1>
-            Dear <?php echo $alias; ?>,<br/>
-	    Your turtle is currently fast asleep.<br/>
+	    Your screen is currently fast asleep.<br/>
 	  </h1>
           <h2>Zzzz. Zz. Zzz zz.</h2>
+          <h3>Didn't expect to see this?</h3>
 	  <footer align="center">
 	    <div align="center">
-	      &copy; 2012 FlatTurtle bvba<br/>
-	      tel: +32 (0) 2 669 1001<br/>
+              tel: +32 (0) 2 669 09 99<br/>
               web: http://flatturtle.com<br/>
-	      e-mail: info@flatturtle.com
+	      e-mail: help@flatturtle.com
+	      &copy; 2012 FlatTurtle<br/>
 	    </div>
 	  </footer>
         </div>
