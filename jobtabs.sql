@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `jobname`, `javascript`) VALUES
-(1, 'screen_on', 'try{application.enableScreen(true);}catch(err){}window.location = $("base").attr("href") + infoScreen.alias; ')
+(1, 'screen_on', 'try{application.enableScreen(true);}catch(err){}window.location = $("base").attr("href") + infoScreen.alias; '),
 (2, 'screen_off', 'try{application.enableScreen(false);}catch(err){}window.location = $("base").attr("href") + infoScreen.alias + "/sleep/";');
 
 -- --------------------------------------------------------
