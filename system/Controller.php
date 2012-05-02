@@ -6,7 +6,7 @@
  * @author Pieter Colpaert
  */
 class Controller {
-    
+
     /**
      * Constructor, decides which infoscreen and turtles to be loaded
      */

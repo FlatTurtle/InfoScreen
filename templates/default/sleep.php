@@ -25,10 +25,10 @@
           <h3>Didn't expect to see this?</h3>
 	  <footer align="center">
 	    <div align="center">
-              tel: +32 (0) 2 669 09 99<br/>
+              helpdesk: +32 (0) 2 669 09 99<br/>
               web: http://flatturtle.com<br/>
-	      e-mail: help@flatturtle.com
-	      &copy; 2012 FlatTurtle<br/>
+	      e-mail: help@flatturtle.com<br />
+	      &copy; <?php echo date('Y'); ?> FlatTurtle<br/>
 	    </div>
 	  </footer>
         </div>
