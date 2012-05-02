@@ -10,7 +10,7 @@ function cronJobs(jobs){
         //parse the string into a scheduler
         var scheduler = cronParser().parse(str, false);
         //execute a job every next time
-        var thisjob = later();
+        var thisjob = later(50,true); //50 seconds = min time between 2 occurences, true => use Local time
         thisjob.exec(scheduler, new Date(), executeJob, job);
     }
     function executeJob(job){
