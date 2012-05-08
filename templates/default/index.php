@@ -19,13 +19,15 @@
 		<div id="logo"><img height="80px" src="<?php echo $infoscreen->logo; ?>" alt="<?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?>" /></div>
 		<?php endif; ?>
 	</header>
-
+        <section id="ticker" class="color">
+     <marquee id="newsticker"></marquee>
+        </section>
 	<section id="main"></section>
 </div>
 
-<script src="<? echo baseUrl("templates/default/js/later.min.js"); ?>"></script>
-<script src="<? echo baseUrl("core/core.min.js"); ?>"></script>
-<script src="<? echo baseUrl("templates/default/js/application.min.js"); ?>"></script>
+<script src="<?php echo baseUrl("templates/default/js/later.min.js"); ?>"></script>
+<script src="<?php echo baseUrl("core/core.min.js"); ?>"></script>
+<script src="<?php echo baseUrl("templates/default/js/application.min.js"); ?>"></script>
 
 <script>
 <?php

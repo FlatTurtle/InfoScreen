@@ -73,6 +73,15 @@ header #logo img {
     vertical-align: middle;
 }
 
+section#ticker {
+    height: 50px;
+    width: 100%;
+    color: #FFF;
+    font-size: 34px;
+    overflow: hidden;
+    border-bottom: 4px solid #FFF;
+}
+
 section#main {
     min-height: 100%;
     width: 100%;
@@ -85,8 +94,8 @@ section#main {
    ================================================ */
 
 .group {
-	display: block;
-	float: left;
+    display: block;
+    float: left;
     min-height: 100%;
     height: 100%;
     overflow: hidden;
@@ -112,7 +121,7 @@ section#main {
 }
 
 .group .turtle.active {
-	display: block;
+    display: block;
 }
 
 .group:first-child .turtle {
@@ -137,7 +146,7 @@ section#main {
 }
 
 .turtle h2 img {
-	display: inline;
+    display: inline;
     vertical-align: middle;
     top: -2px;
     position: relative;
