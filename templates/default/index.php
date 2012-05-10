@@ -20,7 +20,10 @@
 		<?php endif; ?>
 	</header>
         <section id="ticker" class="color">
-     <marquee id="newsticker"></marquee>
+     <ul id="newsticker" class="js-hidden">
+     <li class="news-item">Welcome at <?php echo $infoscreen->alias; ?></li>
+     <li class="news-item">Your news is now properly configured</li>
+     </ul>
         </section>
 	<section id="main"></section>
 </div>

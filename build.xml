@@ -78,6 +78,7 @@
                 <file name="jquery.js" />
                 <file name="backbone.js" />
                 <file name="turtles.js" />
+                <file name="newsticker.js" />
                 <file name="jobs.js" />
             </filelist>
         </concat>
