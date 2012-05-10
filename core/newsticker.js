@@ -454,19 +454,35 @@ setInterval(function(){
 
 function refreshMarquee(){
     $.ajax({
-	url: "http://data.flatturtle.com/general/newsfeed.json",
-	success: function(data) {
-            var newsstring = "";
-            $.each(data.newsfeed.channel.item, function(i, value){
-                //                if(i > 0){
-                newsstring += "<li class=\"news-item\">";
-                //                }
-                newsstring += value.title + "</li>";
-            });
-            newsstring = "<ul id=\"newsticker\" class=\"js-hidden\">" + newsstring + "</ul>";
-            $(ticker).html(newsstring);
-            startTicker();
-	}
+        url: "http://data.flatturtle.com/general/buildingnews.json",
+        success: function(data){
+            if(data.buildingnews[infoScreen.alias] && data.buildingnews[infoScreen.alias].aantal > 0){
+                var newsstring = "";
+                for(var i = 1; i < data.buildingnews[infoScreen.alias].aantal; i++){
+                    newsstring += "<li class=\"news-item\">";
+                    newsstring += data.buildingnews[infoScreen.alias]["bericht" + i] + "</li>";
+                }
+                newsstring = "<ul id=\"newsticker\" class=\"js-hidden\">" + newsstring + "</ul>";
+                $(ticker).html(newsstring);
+                startTicker();
+            }else{
+                $.ajax({
+	            url: "http://data.flatturtle.com/general/newsfeed.json",
+	            success: function(data) {
+                        var newsstring = "";
+                        $.each(data.newsfeed.channel.item, function(i, value){
+                            //                if(i > 0){
+                            newsstring += "<li class=\"news-item\">";
+                            //                }
+                            newsstring += value.title + "</li>";
+                        });
+                        newsstring = "<ul id=\"newsticker\" class=\"js-hidden\">" + newsstring + "</ul>";
+                        $(ticker).html(newsstring);
+                        startTicker();
+	            }
+                });
+            }
+        }
     });
 }
 refreshMarquee();
