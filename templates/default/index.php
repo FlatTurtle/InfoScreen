@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title><?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?></title>
 	<base href="<?php echo baseUrl(); ?>">
-	<link rel="stylesheet" href="<? echo baseUrl("templates/default/css/style.min.css"); ?>" />
+	<link rel="stylesheet" href="<?php echo baseUrl("templates/default/css/style.min.css"); ?>" />
 	<style>
 		.color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
         .text-color { color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }	
@@ -23,9 +23,9 @@
 	<section id="main"></section>
 </div>
 
-<script src="<? echo baseUrl("templates/default/js/later.min.js"); ?>"></script>
-<script src="<? echo baseUrl("core/core.min.js"); ?>"></script>
-<script src="<? echo baseUrl("templates/default/js/application.min.js"); ?>"></script>
+<script src="<?php echo baseUrl("templates/default/js/later.min.js"); ?>"></script>
+<script src="<?php echo baseUrl("core/core.min.js"); ?>"></script>
+<script src="<?php echo baseUrl("templates/default/js/application.min.js"); ?>"></script>
 
 <script>
 <?php
