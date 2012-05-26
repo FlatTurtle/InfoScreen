@@ -51,12 +51,15 @@
 
 	    // parse ajax results
 	    var departures = json.DeparturesShuttles[0];
-	    var liveboard;
+	    var liveboard = new Array();
+	    var i = 0;
 	    $.each(departures,function(key,val){
-		var eltime = key;
-		var eldirection = val;
-		
-		liveboard[i].time = this.formatTime(liveboard[i].time);
+		if(key.substr(0,2) >= hours){
+		    liveboard[i] = new Object();
+		    liveboard[i].time = key;
+		    liveboard[i].direction = val;
+		    i++;
+		}
 	    });
 
 	    return liveboard;
