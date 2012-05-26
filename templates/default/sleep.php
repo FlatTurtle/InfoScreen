@@ -19,18 +19,24 @@
 	    <img border=0 src="http://img.flatturtle.com/flatturtle/logo/FlatTurtle-slogan.png" alt="FlatTurtle.com" />
 	  </a>
 	  <h1>
-	    Your screen is currently fast asleep.<br/>
+	    Your screen is currently asleep.<br/>
 	  </h1>
-          <h2>Zzzz. Zz. Zzz zz.</h2>
-          <h3>Didn't expect to see this?</h3>
-	  <footer align="center">
-	    <div align="center">
-              tel: +32 (0) 2 669 09 99<br/>
-              web: http://flatturtle.com<br/>
-	      e-mail: help@flatturtle.com
-	      &copy; 2012 FlatTurtle<br/>
-	    </div>
-	  </footer>
+        <!-- dirty inline css.. to fix -->
+          <span style="color:#2457A7;">Debug information</span>: <br />
+          enableScreen(false); <br /><br />
+
+          <span style="color:#2457A7;">Human readable information</span>: <br />
+          The Display is turned off at a set time, and this error page is displayed.<br />
+          If you can see this error page, it means the display did not correctly turn off.<br />
+          Please get in touch with the FlatTurtle helpdesk.<br /><br /><br />
+          <footer align="center">
+            <div align="center">
+              helpdesk: <span style="color:#0C78BE;">+32 (0) 2 669 09 99</span><br/>
+              e-mail: <span style="color:#0C78BE;">help@flatturtle.com</span><br />
+              web: <span style="color:#0C78BE;">http://flatturtle.com</span><br/>
+              &copy; <?php echo date('Y'); ?> FlatTurtle<br/>
+            </div>
+          </footer>
         </div>
 
 
