@@ -78,7 +78,6 @@
                 <file name="jquery.js" />
                 <file name="backbone.js" />
                 <file name="turtles.js" />
-                <file name="jobs.js" />
             </filelist>
         </concat>
     </target>

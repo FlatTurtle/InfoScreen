@@ -1,0 +1,32 @@
+body {
+  color: #fff;
+  font: 13px/1.5 "Asap", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: none;
+  background: none repeat scroll 0 0 #FFF;
+  overflow: hidden;
+}
+
+a {
+  color: #fff;
+}
+
+p {
+}
+
+strong {
+  font-weight: 700;
+}
+
+header {
+ height: 175px;
+}
+
+header h1, header h2 { display: none; }
+
+#main {
+    text-align: center;
+    background: #2057a7; 
+}
