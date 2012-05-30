@@ -52,18 +52,18 @@
 			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url - todo: add departures or arrivals
-			return "http://data.irail.be/spectql/MIVB/Liveboard/" + query + "/departures.limit(15):json";
+			return "http://localhost/datatank/MIVBSTIB/Departures/" + query + ".json?offset=0&rowcount=15";
 		},
 		parse : function(json) {
 			// parse ajax results
-			var liveboard = json.spectql;
+			var liveboard = json.Departures;
 
 			for ( var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
 				liveboard[i].time = this.formatTime(liveboard[i].time);
-
-				if (!liveboard[i].platform.name)
-					liveboard[i].platform.name = "-";
+				
+				if (!liveboard[i].long_name)
+					liveboard[i].long_name = "-";
 			}
 
 			return liveboard;
@@ -98,7 +98,7 @@
 			if (this.template) {
 				var data = {
 					direction : this.options.direction || "departures",
-					station : this.options.location,
+					station : this.options.station,
 					entries : this.collection.toJSON(),
 					error : this.options.error, // have there been any errors?
 					i18n : this.options.i18n
