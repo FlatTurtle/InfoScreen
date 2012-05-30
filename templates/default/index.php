@@ -19,7 +19,6 @@
 		<div id="logo"><img height="80px" src="<?php echo $infoscreen->logo; ?>" alt="<?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?>" /></div>
 		<?php endif; ?>
 	</header>
-
 	<section id="main"></section>
 </div>
 
