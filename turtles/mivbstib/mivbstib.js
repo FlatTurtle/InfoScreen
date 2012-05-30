@@ -87,7 +87,7 @@
 			// pre-fetch template file and render when ready
 			var self = this;
 			if (this.template == null) {
-				$.get("turtles/mivb/list.html", function(template) {
+				$.get("turtles/mivbstib/list.html", function(template) {
 					self.template = template;
 					self.render();
 				});
@@ -114,7 +114,7 @@
 	});
 
 	// register turtle
-	Turtles.register("mivb", {
+	Turtles.register("mivbstib", {
 		collection : collection,
 		view : view
 	});
