@@ -18,7 +18,7 @@ class Demo extends Model {
 
     function add($data){
         $alias = md5(time());
-        $q = $this->db->query("INSERT INTO `demo_infoscreens` (`id`, `customer_id`, `title`, `alias`, `logo`, `color`, `lang`, `interval`) VALUES (NULL, 1, ?, ?, ?, ?, ?, '1500');", array(0 => $data["title"], 1=> $alias, 2=> $data["logo"], 3=> $data["color"], 4=> $data["lang"]));
+        $q = $this->db->query("INSERT INTO `demo_infoscreens` (`id`, `customer_id`, `title`, `alias`, `logo`, `color`, `lang`, `interval`) VALUES (NULL, 1, ?, ?, ?, ?, ?, '6000');", array(0 => $data["title"], 1=> $alias, 2=> $data["logo"], 3=> $data["color"], 4=> $data["lang"]));
         return $alias;
     }
 
