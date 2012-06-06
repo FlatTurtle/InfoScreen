@@ -53,7 +53,7 @@ var thatmivb;
 			if (day < 10)
 				day = "0" + day;
 
-			var query = encodeURIComponent(this.options.location) + "/" + year + "/" + month + "/" + day + "/" + (hours-5) + "/" + minutes;
+			var query = encodeURIComponent(this.options.location) + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			if(isNaN(this.options.location)) {
 				this.options.station = this.capitalizeWords(this.options.location);
