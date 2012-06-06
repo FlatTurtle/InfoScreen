@@ -49,10 +49,10 @@
 			if (day < 10)
 				day = "0" + day;
 
-			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
+			var query = encodeURIComponent(this.options.location) + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			// remote source url - todo: add departures or arrivals
-			return "http://data.irail.be/DeLijn/Departures/" + query + ".json?offset=0&rowcount=15";
+			return "http://localhost/datatank/DeLijn/Departures/" + query + ".json?offset=0&rowcount=15";
 		},
 		parse : function(json) {
                     // this.options.station = json.Departures.location.name;
