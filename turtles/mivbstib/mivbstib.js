@@ -58,11 +58,11 @@ var thatmivb;
 			if(isNaN(this.options.location)) {
 				this.options.station = this.capitalizeWords(this.options.location);
 			} else {
-				$.getJSON("http://localhost/datatank/MIVBSTIB/Stations.json?id=" + encodeURIComponent(this.options.location), this.parseStationName);
+				$.getJSON("http://data.irail.be/MIVBSTIB/Stations.json?id=" + encodeURIComponent(this.options.location), this.parseStationName);
 			}
 			
 			// remote source url - todo: add departures or arrivals
-			return "http://localhost/datatank/MIVBSTIB/Departures/" + query + ".json?offset=0&rowcount=15";
+			return "http://data.irail.be/MIVBSTIB/Departures/" + query + ".json?offset=0&rowcount=15";
 		},
 		parse : function(json) {
 			// parse ajax results

@@ -57,11 +57,11 @@ var thatdl;
 			if(isNaN(this.options.location)) {
 				this.options.station = this.capitalizeWords(this.options.location);
 			} else {
-				$.getJSON("http://localhost/datatank/DeLijn/Stations.json?id=" + encodeURIComponent(this.options.location), this.parseStationName);
+				$.getJSON("http://data.irail.be/DeLijn/Stations.json?id=" + encodeURIComponent(this.options.location), this.parseStationName);
 			}
 			
 			// remote source url - todo: add departures or arrivals
-			return "http://localhost/datatank/DeLijn/Departures/" + query + ".json?offset=0&rowcount=15";
+			return "http://data.irail.be/DeLijn/Departures/" + query + ".json?offset=0&rowcount=15";
 		},
 		parse : function(json) {
                     // this.options.station = json.Departures.location.name;
