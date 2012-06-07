@@ -74,6 +74,8 @@ var thatmivb;
 				
 				if (!liveboard[i].long_name)
 					liveboard[i].long_name = "-";
+				else 
+					liveboard[i].long_name = this.capitalizeWords(liveboard[i].long_name)
 			}
 
 			return liveboard;
