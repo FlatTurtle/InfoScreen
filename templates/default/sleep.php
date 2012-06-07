@@ -19,7 +19,7 @@
 	    <img border=0 src="http://img.flatturtle.com/flatturtle/logo/FlatTurtle-slogan.png" alt="FlatTurtle.com" />
 	  </a>
 	  <h1>
-	    Your screen is currently asleep.<br/>
+	    Your display is currently asleep.<br/>
 	  </h1>
         <!-- dirty inline css.. to fix -->
 	<br/>
