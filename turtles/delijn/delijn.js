@@ -52,7 +52,7 @@ var thatdl;
 			if (day < 10)
 				day = "0" + day;
 
-			var query = encodeURIComponent(this.options.location) + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
+			var query = encodeURIComponent(this.options.location) + "/" + year + "/" + month + "/" + day + "/" + (hours - 5) + "/" + minutes;
 
 			if(isNaN(this.options.location)) {
 				this.options.station = this.capitalizeWords(this.options.location);
@@ -72,6 +72,10 @@ var thatdl;
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
 				liveboard[i].time = this.formatTime(liveboard[i].time);
 
+				if (!liveboard[i].long_name)
+					liveboard[i].long_name = "-";
+				else 
+					liveboard[i].long_name = this.parseTripName(liveboard[i].long_name)
 			}
 
 			return liveboard;
@@ -91,6 +95,15 @@ var thatdl;
 			function convertToUpper() {
 				return arguments[0].toUpperCase();
 			}
+		}, 
+		parseTripName: function (strTripName) {
+			strTripName = this.capitalizeWords(strTripName);
+			
+			if(strTripName.split("-").length == 2) {
+				strTripName = strTripName.split("-")[1];
+			}
+			
+			return strTripName
 		}
 	});
 
