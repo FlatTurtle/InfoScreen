@@ -154,6 +154,10 @@ section#main {
     display: none;
 }
 
+.turtle h3 span small {
+    font-size: 19px;
+}
+
 .group:last-child h2 .credits {
     display: inline;
 }
