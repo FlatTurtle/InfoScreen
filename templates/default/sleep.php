@@ -22,12 +22,13 @@
 	    Your screen is currently asleep.<br/>
 	  </h1>
         <!-- dirty inline css.. to fix -->
+	<br/>
           <span style="color:#2457A7;">Debug information</span>: <br />
           enableScreen(false); <br /><br />
 
           <span style="color:#2457A7;">Human readable information</span>: <br />
-          The Display is turned off at a set time, and this error page is displayed.<br />
-          If you can see this error page, it means the display did not correctly turn off.<br />
+          The Display is turned off at a set time, and this page is displayed.<br />
+          If you can see this page, it means the display did not correctly turn off.<br />
           Please get in touch with the FlatTurtle helpdesk.<br /><br /><br />
           <footer align="center">
             <div align="center">
