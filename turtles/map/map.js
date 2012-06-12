@@ -4,6 +4,7 @@
 		// hold google maps objects
 		center : null,
 		map : null,
+		trafficLayer: null,
 
 		initialize : function() {
 			// bind render event
@@ -17,6 +18,12 @@
 				window.mapsReady = false;
 				$.getScript("http://maps.googleapis.com/maps/api/js?sensor=false&callback=mapsLoaded");
 			}
+			
+			// Define self 
+			var self = this; 
+			refreshInterval = window.setInterval(function () {
+				self.renderMap();
+			}, 300000);
 		},
 		render : function() {
 			var self = this;
@@ -81,8 +88,8 @@
 			});
 			
 			// add traffic layer
-			var trafficLayer = new google.maps.TrafficLayer();
-			trafficLayer.setMap(this.map);
+			self.trafficLayer = new google.maps.TrafficLayer();
+			self.trafficLayer.setMap(self.map);
 		}
 	});
 	
