@@ -5,7 +5,7 @@
 | Base Site URL
 |--------------------------------------------------------------------------
 |
-| Your base URL with a trailing slash. If this is not set then we will 
+| Your base URL with a trailing slash. If this is not set then we will
 | guess the protocol, domain and path to your installation.
 */
 $config["base_url"]	= "";
@@ -53,4 +53,6 @@ if (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'PAGODABOX') {
     $config["database"]["password"] = $_SERVER['DB1_PASS'];
     $config["database"]["database"] = $_SERVER['DB1_NAME'];
     $config["database"]["port"] = "";
+} elseif isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'TESTING') {
+
 }
