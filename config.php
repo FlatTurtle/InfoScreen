@@ -44,7 +44,7 @@ $config["turtle_path"] = "";
 |	["username"] The username used to connect to the database
 |	["password"] The password used to connect to the database
 |	["database"] The name of the database you want to connect to
-|	["port"] 	 The port used to connect to the database
+|	["port"]     The port used to connect to the database
 */
 
 if (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'PAGODABOX') {
@@ -54,5 +54,9 @@ if (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'PAGODABOX') {
     $config["database"]["database"] = $_SERVER['DB1_NAME'];
     $config["database"]["port"] = "";
 } elseif isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'TESTING') {
-
+    $config["database"]["hostname"] = $_SERVER['AMADEUS_HOST'];
+    $config["database"]["username"] = $_SERVER['AMADEUS_USER'];
+    $config["database"]["password"] = $_SERVER['AMADEUS_PASS'];
+    $config["database"]["database"] = $_SERVER['AMADEUS_NAME'];
+    $config["database"]["port"] = $_SERVER['AMADEUS_PORT'];
 }
