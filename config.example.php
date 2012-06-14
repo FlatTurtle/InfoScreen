@@ -8,7 +8,7 @@
 | Your base URL with a trailing slash. If this is not set then we will
 | guess the protocol, domain and path to your installation.
 */
-$config["base_url"]	= "";
+$config["base_url"] = "";
 
 
 /*
