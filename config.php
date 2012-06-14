@@ -53,7 +53,7 @@ if (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'PAGODABOX') {
     $config["database"]["password"] = $_SERVER['DB1_PASS'];
     $config["database"]["database"] = $_SERVER['DB1_NAME'];
     $config["database"]["port"] = "";
-} elseif isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'TESTING') {
+} elseif (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'TESTING') {
     $config["database"]["hostname"] = $_SERVER['AMADEUS_HOST'];
     $config["database"]["username"] = $_SERVER['AMADEUS_USER'];
     $config["database"]["password"] = $_SERVER['AMADEUS_PASS'];
