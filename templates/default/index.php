@@ -35,7 +35,7 @@ echo "	var jobs = cronJobs(".json_encode($jobs).");\n";
 
 // turtles
 foreach($turtles as $turtle)
-	echo '	Turtles.grow("'.$turtle->module.'", '.json_encode($turtle->options).");\n";
+	echo '	Turtles.grow("'.$turtle->module.'", "'.$turtle->id.'", '.json_encode($turtle->options).");\n";
 ?>
 </script>
 

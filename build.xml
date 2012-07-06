@@ -62,10 +62,7 @@
     
     <target name="concat_plugins">
         <concat destfile="${js_dir}/plugins.min.js">
-            <filelist id="files" dir="${js_dir}/plugins">
-                <file name="clock.js" /> 
-                <file name="overlay.js" />
-            </filelist>
+            <fileset id="files" dir="${js_dir}/plugins" includes="*.js" />
         </concat>
     </target>
 	
