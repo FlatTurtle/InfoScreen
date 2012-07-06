@@ -49,20 +49,18 @@
 			 * This group's width is automatically calculated depending on the
 			 * total number of columns and the set colspan.
 			 */
-			var i = 0;
-			$('section.group').each(
-					function() {
-						var colspan = $(this).data('colspan');
-
-						// damn you chrome!
-						// if(!window.chrome || $('section.group').size() % 2 !=
-						// 1 || i< $('section.group').size()-1){
-						// $(this).width( ((100 / columns) * colspan) + '%');
-						// } else if($('section.group').size() % 2 == 1){
-						$(this).width((Math.floor((10000 / columns) * colspan) / 100) + '%');
-						// }
-						i++;
-					});
+			var i = 0, left = 100;
+			$('section.group').each(function() {
+				var width = Math.floor((100 / columns) * $(this).data('colspan'));
+				i++;
+				
+				if(i == $('section.group').length) {
+					$(this).width(left + '%');
+				} else {
+					$(this).width(width + '%');
+					left -= width;
+				}
+			});
 		}
 
 		// create placeholder and append it to the group
