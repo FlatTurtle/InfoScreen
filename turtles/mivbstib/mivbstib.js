@@ -54,8 +54,7 @@ var thatmivb;
 			if (day < 10)
 				day = "0" + day;
 
-			var query = encodeURIComponent(this.options.location) + "/" + year
-					+ "/" + month + "/" + day + "/" + hours + "/" + minutes;
+			var query = encodeURIComponent(this.options.location) + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
 			if (isNaN(this.options.location)) {
 				this.options.station = this.capitalizeWords(this.options.location);
@@ -70,7 +69,7 @@ var thatmivb;
 			// parse ajax results
 			var liveboard = json.Departures;
 
-			for ( var i in liveboard) {
+			for (var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
 				liveboard[i].time = this.formatTime(liveboard[i].time);
 
@@ -86,16 +85,14 @@ var thatmivb;
 			var time = new Date(timestamp * 1000);
 			var hours = time.getHours();
 			var minutes = time.getMinutes();
-			return (hours < 10 ? '0' : '') + hours + ':'
-					+ (minutes < 10 ? '0' : '') + minutes;
+			return (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
 		},
 		parseStationName : function(data) {
 			thatmivb.options.station = thatmivb
 					.capitalizeWords(data.Stations[0].name);
 		},
 		capitalizeWords : function wordToUpper(strSentence) {
-			return strSentence.toLowerCase()
-					.replace(/\b[a-z]/g, convertToUpper);
+			return strSentence.toLowerCase().replace(/\b[a-z]/g, convertToUpper);
 
 			function convertToUpper() {
 				return arguments[0].toUpperCase();
