@@ -50,6 +50,10 @@
 			 * total number of columns and the set colspan.
 			 */
 			var i = 0, left = 100;
+			
+			if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1)
+				left = 100.1;
+			
 			$('section.group').each(function() {
 				var width = Math.floor((100 / columns) * $(this).data('colspan'));
 				i++;
