@@ -1,62 +1,3 @@
-var Clock = function(hElement, mElement) {
-
-	var hElement = hElement;
-	var mElement = mElement;
-	var interval;
-	var refreshInterval;
-	var that = this;
-	var ticker = true;
-
-	var refresh = function() {
-		$(hElement).html(timeH);
-		$(mElement).html(timeM);
-	};
-
-	var timeH = function() {
-		var now = new Date(), hours = now.getHours();
-	    return (hours < 10 ? '0' : '') + hours;
-	};
-	var timeM = function() {
-		var now = new Date(), minutes = now.getMinutes();
-			return (minutes < 10 ? '0' : '') + minutes;
-	};
-
-	var initialize = function() {
-		initializeHtml();
-		addBehaviours();
-	};
-
-	var initializeHtml = function() {
-		hElement.html(that.timeH);
-            mElement.html(that.timeM);
-	};
-
-	var addBehaviours = function() {
-		interval = window.setInterval(refresh, 500);
-	};
-
-	var removeBehaviours = function() {
-		window.clearInterval(interval);
-	};
-
-	this.destroy = function() {
-		removeBehaviours();
-
-		hElement.empty();
-		hElement = null;
-	        mElement.empty();
-		mElement = null;
-	
-	}
-
-	this.update = function() {
-		this.destroy();
-		initialize();
-	}
-
-	initialize.apply(this, arguments);
-};
-
 var App = function(rootElement) {
 	
 	var rootElement = rootElement;
@@ -198,7 +139,6 @@ var App = function(rootElement) {
 
 $(document).ready(function() {
 
-    clock = new Clock($("#clockhour"), $("#clockminutes"));
 	app = new App($("#main"));
 
 });
