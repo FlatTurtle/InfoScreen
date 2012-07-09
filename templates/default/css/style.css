@@ -357,17 +357,19 @@ section#main {
     }
 }
 
-.turtle h3 ol, .turtle h3 li {
+.group ol, .group li {
     margin: 0;
     padding: 0;
 }
 
-.turtle h3 ol {
+.group ol {
     display: block;
-    float: right;
     margin: 20px 5px 0 0;
     text-align: right;
     line-height: 10px;
+    position: absolute;
+    top: 52px;
+    right: 5px;
 }
 
 /* REMOVING TICKER ANIMATION TEMPORARY ----------------------
@@ -388,7 +390,7 @@ section#main {
 
 ------------------------------------------------------------- */
 
-.turtle h3 li {
+.group li {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -396,10 +398,10 @@ section#main {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.turtle h3 li.current {
+.group li.active {
     background-color: #fff;
     border-color: #fff;
 }

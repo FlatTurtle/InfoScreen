@@ -39,18 +39,20 @@
 		var group = $('section.group#' + options.group);
 		if (group.length == 0) {
 			group = $('<section class="group" id="' + options.group + '" data-colspan="' + options.colspan + '"></section>');
-
+			
 			// add group colspan to total columns
 			columns += parseInt(options.colspan);
 
+			// add group to main container
 			$(rootElement).append(group);
-
+			
 			/*
 			 * This group's width is automatically calculated depending on the
 			 * total number of columns and the set colspan.
 			 */
 			var i = 0, left = 100;
 			
+			// chrome is a bitch
 			if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1)
 				left = 100.1;
 			
@@ -60,8 +62,10 @@
 				
 				if(i == $('section.group').length) {
 					$(this).width(left + '%');
+					$(this).attr('data-width', left);
 				} else {
 					$(this).width(width + '%');
+					$(this).attr('data-width', width);
 					left -= width;
 				}
 			});
@@ -133,9 +137,6 @@
 				}
 			});
 		}
-
-		// this is going to be the turtle instance id, soon ... just wait!
-		var instanceid;
 
 		// fetch the turtle script once
 		if (!this.registered(type)) {

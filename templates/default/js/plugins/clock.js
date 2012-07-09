@@ -50,7 +50,9 @@ var Clock = {
 		Clock.timer = null;
 	}
 
-}
+};
 
-// auto start clock
-Clock.add();
+$(document).ready(function() {
+	// auto start clock
+	Clock.add();
+});

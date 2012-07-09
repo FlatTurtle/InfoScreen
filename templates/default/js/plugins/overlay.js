@@ -25,4 +25,4 @@ var Overlay = {
 		Overlay.element.remove();
 	}
 
-}
+};

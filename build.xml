@@ -55,7 +55,6 @@
             <filelist id="files" dir="${js_dir}">
                 <file name="libs/jquery.tmpl.js" />
                 <file name="turtles.loader.js" />
-                <file name="interface.js" />
             </filelist>
         </concat>
     </target>
