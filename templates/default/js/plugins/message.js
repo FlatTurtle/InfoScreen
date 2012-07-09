@@ -1,6 +1,6 @@
 var Message = {
 
-	element : $('#message'),
+	element : $("#message"),
 	timer : null,
 
 	add : function(text, duration) {
@@ -11,15 +11,15 @@ var Message = {
 		// check if message element exists
 		if (Message.element.length == 0) {
 			Message.element = $('<div id="message"><span class="color"></span></div>').hide();
-			$('body').prepend(Message.element);
+			$("body").prepend(Message.element);
 		}
 		
 		// show
-		var span = Message.element.find('span');
+		var span = Message.element.find("span");
 		span.html(text);
 		
 		Message.element.fadeIn();
-		span.css('margin-top', '-' + (span.height()/2) + 'px');
+		span.css("margin-top", "-" + (span.height()/2) + "px");
 		
 		// remove
 		Message.timer = setTimeout(Message.remove, duration);

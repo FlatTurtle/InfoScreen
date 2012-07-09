@@ -1,6 +1,6 @@
 var Overlay = {
 
-	element : $('#overlay'),
+	element : $("#overlay"),
 	timer : null,
 
 	add : function(url, duration) {
@@ -11,10 +11,10 @@ var Overlay = {
 		// check if overlay element exists
 		if (Overlay.element.length == 0) {
 			Overlay.element = $('<div id="overlay"></div>');
-			$('body').prepend(Overlay.element);
+			$("body").prepend(Overlay.element);
 		}
 		
-		Overlay.element.css('background-image', 'url(' + url + ')');
+		Overlay.element.css("background-image", "url(" + url + ")");
 		
 		// show element
 		Overlay.element.fadeIn();

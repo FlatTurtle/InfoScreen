@@ -25,4 +25,4 @@ var Pincode = {
 		Pincode.element.remove();
 	}
 
-}
+};

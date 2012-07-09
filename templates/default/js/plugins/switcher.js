@@ -1,6 +1,6 @@
 var Switcher = {
 	
-	root : $('#main'),
+	root : $("#main"),
 	interval : false,
 	
 	rotate : function(id) {
@@ -62,12 +62,12 @@ var Switcher = {
 	},
 	
 	to : function(id) {
-		var turtle = $(root).find('.turtle#' + id);
+		var turtle = $(root).find(".turtle#" + id);
 		
 		if (turtle.length == 0)
 			return false;
 		
-		var group = turtle.parent('.group');
+		var group = turtle.parent(".group");
 		
 		// TODO
 	},
