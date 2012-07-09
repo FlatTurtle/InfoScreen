@@ -3,7 +3,7 @@ var Switcher = {
 	root : $("#main"),
 	interval : false,
 	
-	rotate : function(id) {
+	rotate : function() {
 		// iteratie each group
 		Switcher.root.find(".group").each(function() {
 			
@@ -34,27 +34,21 @@ var Switcher = {
 				// detect next turtle
 				var previous = $(this).find(".turtle.active");
 				if (previous.length == 0) {
-					var active = $(this).find(".turtle").first();
+					var next = $(this).find(".turtle").first();
 				} else {
-					var active = previous.next();
-					if (active.length == 0) {
-						active = $(this).find(".turtle").first();
+					var next = previous.next();
+					if (next.length == 0) {
+						next = $(this).find(".turtle").first();
 					}
 				}
 				
-				if (previous.length != 0) {
-					previous.removeClass("active");
-					previous.trigger("hidden");
-					previous.hide();
-				}
+				var index = $(this).find(next).index();
 				
-				// switch classes and trigger events
-				active.addClass("active");
-				active.trigger("show");
-				active.show();
+				// change turtle
+				$(this).find(".turtles").removeClass("active").hide().trigger("hide");
+				next.addClass("active").show().trigger("show");
 				
 				// change orb
-				var index = $(this).find(active).index();
 				orbs.find("li").removeClass("active");
 				orbs.find("li").eq(index - 1).addClass("active");
 			}
@@ -62,18 +56,32 @@ var Switcher = {
 	},
 	
 	to : function(id) {
+		// stop timer
+		Switcher.stop();
+		
 		var turtle = $(root).find(".turtle#" + id);
 		
 		if (turtle.length == 0)
 			return false;
 		
 		var group = turtle.parent(".group");
+		var orbs = group.find("ol");
+		var index = group.find(turtle).index();
 		
-		// TODO
+		// change orb
+		orbs.find("li").removeClass("active");
+		orbs.find("li").eq(index - 1).addClass("active");
+		
+		// change turtle
+		group.find(".turtles").removeClass("active").hide().trigger("hide");
+		group.find(".turtles").eq(index - 1).addClass("active").show().trigger("show");
+		
+		// start timer
+		Switcher.start();
 	},
 	
 	start : function() {
-		Switcher.rotate();
+		//Switcher.rotate();
 		Switcher.timer = window.setInterval(Switcher.rotate, infoScreen.interval);
 	},
 	
@@ -85,5 +93,6 @@ var Switcher = {
 
 $(document).ready(function() {
 	// start switcher
-	Switcher.start($("#main"));
+	Switcher.rotate();
+	Switcher.start();
 });
