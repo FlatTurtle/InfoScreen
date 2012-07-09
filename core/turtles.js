@@ -19,7 +19,7 @@ function TurtleManager() {
 			});
 		} else {
 			_(instances).each(function(instance, instanceid) {
-				if (instance.module = module) {
+				if (instance.module == module) {
 					if (typeof instance.collection == "object")
 						instance.collection.trigger(event);
 					if (typeof instance.view == "object")
@@ -53,40 +53,37 @@ function TurtleManager() {
 	}
 
 	// register a turtle module
-	this.register = function(id, module) {
-		if (modules[id] != null)
+	this.register = function(type, module) {
+		if (modules[type] != null)
 			throw Error("Turtle already registered");
 		else if (typeof module != "object")
-			throw Error("Cannot register turtle '" + id + "', invalid module");
+			throw Error("Cannot register turtle '" + type + "', invalid module");
 		else
-			modules[id] = module;
+			modules[type] = module;
 		
 		return true;
 	}
 
 	// check if a turtle is registered
-	this.registered = function(id) {
-		return modules[id] != null;
+	this.registered = function(type) {
+		return modules[type] != null;
 	}
 
 	// creates turtle instances
-	this.instantiate = function(id, options) {
-		if (modules[id] == null)
+	this.instantiate = function(type, id, options) {
+		if (modules[type] == null)
 			throw Error("turtle does not exist");
 		else {
-			// generate unique instance id
-			var instanceid = id + "_" + Math.random().toString(36).substr(6);
-
 			if (options == null || typeof options != "object")
 				options = {};
 
 			// fetch module description
-			module = modules[id];
+			module = modules[type];
 
 			var instance = {};
 
 			// save module name
-			instance.module = id;
+			instance.module = type;
 
 			// construct model
 			instance.model = module.model;
@@ -139,15 +136,15 @@ function TurtleManager() {
 			if (typeof instance.view == "object")
 				instance.view.trigger("born");
 
-			instances[instanceid] = instance;
-			return instanceid;
+			instances[id] = instance;
+			return instance;
 		}
 		return false;
 	}
 
 	// destroy a turtle instance, the 'destroy' event is triggered on the turtle
-	this.destroy = function(instanceid) {
-		if (instance = instances[instanceid]) {
+	this.destroy = function(id) {
+		if (instance = instances[id]) {
 			
 			// trigger destroy event
 			if (typeof instance.collection == "object")
@@ -155,8 +152,7 @@ function TurtleManager() {
 			if (typeof instance.view == "object")
 				instance.view.trigger("destroy");
 			
-			if (instance.collection != null
-					&& instance.collection.models != null) {
+			if (instance.collection != null && instance.collection.models != null) {
 				_(instance.collection.models).each(function(model) {
 					model.destroy();
 				});
@@ -164,12 +160,12 @@ function TurtleManager() {
 			delete instance.collection;
 			delete instance.view;
 			delete instance.model;
-			delete instances[instanceid];
+			delete instances[id];
 		}
 	}
 }
 
 // basic grow function, we override this in our custom loader
-TurtleManager.prototype.grow = function(id, options) {
-	return this.instantiate(id, options);
+TurtleManager.prototype.grow = function(type, id, options) {
+	return this.instantiate(type, id, options);
 }

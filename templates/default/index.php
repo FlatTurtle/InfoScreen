@@ -14,26 +14,28 @@
 
 <div class="container">
 	<header>
-		<div id="clock" class="color"><span id="clockhour"></span><img src="templates/default/img/colon.gif"><span id="clockminutes"></span></div>
 		<?php if($infoscreen->logo): ?>
 		<div id="logo"><img height="80px" src="<?php echo $infoscreen->logo; ?>" alt="<?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?>" /></div>
 		<?php endif; ?>
 	</header>
+	
 	<section id="main"></section>
 </div>
 
-<script src="<?php echo baseUrl("templates/default/js/later.min.js"); ?>"></script>
 <script src="<?php echo baseUrl("core/core.min.js"); ?>"></script>
+<script src="<?php echo baseUrl("templates/default/js/later.min.js"); ?>"></script>
 <script src="<?php echo baseUrl("templates/default/js/application.min.js"); ?>"></script>
+<script src="<?php echo baseUrl("templates/default/js/plugins.min.js"); ?>"></script>
 
 <script>
 <?php
 // infoscreen
 echo "	var infoScreen = ".json_encode($infoscreen).";\n";
 echo "	var jobs = cronJobs(".json_encode($jobs).");\n";
+
 // turtles
 foreach($turtles as $turtle)
-	echo '	Turtles.grow("'.$turtle->module.'", '.json_encode($turtle->options).");\n";
+	echo '	Turtles.grow("'.$turtle->module.'", "'.$turtle->id.'", '.json_encode($turtle->options).");\n";
 ?>
 </script>
 

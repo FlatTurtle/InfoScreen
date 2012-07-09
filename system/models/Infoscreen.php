@@ -37,7 +37,7 @@ class Infoscreen extends Model {
             }
             
             // standard options
-            $turtle->options = array("colspan" => $turtle->colspan, "group" => $turtle->group, "source" => $turtle->source);
+            $turtle->options = array("id" => $turtle->id, "colspan" => $turtle->colspan, "group" => $turtle->group, "source" => $turtle->source);
             
             // optional options
             $options = $this->turtleOptions($turtle->id);

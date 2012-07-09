@@ -48,20 +48,6 @@ header {
     overflow: hidden;
 }
 
-header #clock {
-    color: #fff;
-    border-radius: 14px 0 0 14px;
-    float: right;
-    font-size: 46px;
-    font-weight: bold;
-    height: 46px;
-    line-height: 46px;
-    margin-top: 15px;
-    padding: 13px 14px 13px 0;
-    text-align: right;
-    width: 136px;
-}
-
 header #logo {
     height: 100px;
     overflow: hidden;
@@ -109,10 +95,6 @@ section#main {
 
 .group .turtle {
     border-left: 4px solid #FFF;
-}
-
-.group .turtle.active {
-	display: block;
 }
 
 .group:first-child .turtle {
@@ -268,6 +250,70 @@ section#main {
 }
 
 /* ===================================================
+   Plugins layout
+   ================================================ */
+
+#clock {
+    color: #fff;
+    border-radius: 14px 0 0 14px;
+    float: right;
+    font-size: 46px;
+    font-weight: bold;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 15px;
+    padding: 13px 14px 13px 5px;
+    text-align: right;
+    width: 136px;
+    z-index: 0;
+}
+
+#pincode {
+    color: #fff;
+    border-radius: 14px;
+    font-size: 46px;
+    font-weight: bold;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 15px;
+    margin-left:20px;
+    margin-right:50px;
+    padding: 13px;
+    text-align: center;
+    float:right;
+    margin-right:25%;
+}
+
+#overlay {
+	background-color: #000;
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 2000;
+}
+
+#message {
+	background-color: #FFF;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2000;
+}
+
+#message span {
+	position: absolute;
+	top: 50%;
+	text-align: center;
+	display: block;
+	color: #FFF;
+	width: 100%;
+	padding: 20px;
+	font-size: 30px;
+}
+
+/* ===================================================
    Turtle ticker
    ================================================ */
 
@@ -343,17 +389,19 @@ section#main {
     }
 }
 
-.turtle h3 ol, .turtle h3 li {
+.group ol, .group li {
     margin: 0;
     padding: 0;
 }
 
-.turtle h3 ol {
+.group ol {
     display: block;
-    float: right;
     margin: 20px 5px 0 0;
     text-align: right;
     line-height: 10px;
+    position: absolute;
+    top: 52px;
+    right: 5px;
 }
 
 /* REMOVING TICKER ANIMATION TEMPORARY ----------------------
@@ -374,7 +422,7 @@ section#main {
 
 ------------------------------------------------------------- */
 
-.turtle h3 li {
+.group li {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -382,10 +430,10 @@ section#main {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.turtle h3 li.current {
+.group li.active {
     background-color: #fff;
     border-color: #fff;
 }
