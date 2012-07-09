@@ -6,7 +6,7 @@ var Message = {
 	add : function(text, duration) {
 		// default duration
 		if (duration == undefined)
-			duration = 10000;
+			duration = 30000;
 		
 		// check if message element exists
 		if (Message.element.length == 0) {

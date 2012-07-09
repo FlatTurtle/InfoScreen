@@ -6,7 +6,7 @@ var Overlay = {
 	add : function(url, duration) {
 		// default duration
 		if (duration == undefined)
-			duration = 10000;
+			duration = 30000;
 		
 		// check if overlay element exists
 		if (Overlay.element.length == 0) {
