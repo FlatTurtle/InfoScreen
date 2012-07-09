@@ -1,8 +1,13 @@
 var Overlay = {
 
 	element : $('#overlay'),
+	timer : null,
 
-	add : function(url) {
+	add : function(url, duration) {
+		// default duration
+		if (duration == undefined)
+			duration = 10000;
+		
 		// check if overlay element exists
 		if (Overlay.element.length == 0) {
 			Overlay.element = $('<div id="overlay"></div>');
@@ -12,12 +17,15 @@ var Overlay = {
 		Overlay.element.css('background-image', 'url(' + url + ')');
 		
 		// show element
-		Overlay.element.show();
+		Overlay.element.fadeIn();
+		
+		// remove
+		Overlay.timer = setTimeout(Overlay.remove, duration);
 	},
 
 	remove : function() {
 		// hide overlay
-		Overlay.element.hide();
+		Overlay.element.fadeOut();
 	},
 
 	destroy : function() {
