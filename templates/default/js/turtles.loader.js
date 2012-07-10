@@ -53,8 +53,8 @@
 			var i = 0, left = 100;
 			
 			// chrome is a bitch
-			if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1)
-				left = 100.1;
+			/*if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1)
+				left = 100.1;*/
 			
 			$('section.group').each(function() {
 				var width = Math.floor((100 / columns) * $(this).data('colspan'));
