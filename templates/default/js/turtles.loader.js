@@ -53,14 +53,14 @@
 			var i = 0, left = 100;
 			
 			$('section.group').each(function() {
-				var width = Math.floor((10000 / columns) * $(this).data('colspan') / 100);
+				var width = Math.floor((100 / columns) * $(this).data('colspan'));
 				left -= width; i++;
 				
 				if(i == $('section.group').length) {
 					width += left;
 					
 					if (columns%2 && navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
-						width += (100/$('body').width());
+						width += (100 / $('body').width());
 					}
 				}
 				
