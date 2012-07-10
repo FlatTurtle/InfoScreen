@@ -52,22 +52,20 @@
 			 */
 			var i = 0, left = 100;
 			
-			// chrome is a bitch
-			if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1)
-				left = 100.1;
-			
 			$('section.group').each(function() {
-				var width = Math.floor((100 / columns) * $(this).data('colspan'));
-				i++;
+				var width = Math.floor((10000 / columns) * $(this).data('colspan') / 100);
+				left -= width; i++;
 				
 				if(i == $('section.group').length) {
-					$(this).width(left + '%');
-					$(this).attr('data-width', left);
-				} else {
-					$(this).width(width + '%');
-					$(this).attr('data-width', width);
-					left -= width;
+					width += left;
+					
+					if (columns%2 && navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+						width += (100/$('body').width());
+					}
 				}
+				
+				$(this).width(width + '%');
+				$(this).attr('data-width', width);
 			});
 		}
 
