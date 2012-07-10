@@ -1,6 +1,10 @@
 var Magnify = {
 
-	turtle : function(id) {
+	turtle : function(id, duration) {
+		// default duration
+		if (duration == undefined)
+			duration = 10000;
+		
 		var element = $(".turtle#" + id);
 		var parent = element.parent;
 
@@ -17,7 +21,7 @@ var Magnify = {
 					$(this).animate({"width": "0%"});
 			});
 			
-			setTimeout(Magnify.reset, 3000);
+			setTimeout(Magnify.reset, duration);
 		}
 	},
 	
