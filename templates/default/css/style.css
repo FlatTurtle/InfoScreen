@@ -93,6 +93,10 @@ section#main {
     float: left;
 }
 
+.turtle.active {
+	display: block;
+}
+
 .group .turtle:first-child {
     display: block;
 }
