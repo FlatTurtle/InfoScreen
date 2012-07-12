@@ -22,8 +22,8 @@
 			// Define self 
 			var self = this; 
 			refreshInterval = window.setInterval(function () {
-				self.renderMap();
-			}, 300000);
+				self.updateTraffic();
+			}, 2000);
 		},
 		render : function() {
 			var self = this;
@@ -88,6 +88,17 @@
 			});
 			
 			// add traffic layer
+			self.trafficLayer = new google.maps.TrafficLayer();
+			self.trafficLayer.setMap(self.map);
+		},
+		updateTraffic : function() {
+			var self = this;
+			
+			// remove layer
+			self.trafficLayer.setMap(null);
+			self.trafficLayer = null;
+			
+			// add fresh layer
 			self.trafficLayer = new google.maps.TrafficLayer();
 			self.trafficLayer.setMap(self.map);
 		}

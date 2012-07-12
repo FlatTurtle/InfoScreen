@@ -45,7 +45,7 @@ var Switcher = {
 				var index = $(this).find(next).index();
 				
 				// change turtle
-				$(this).find(".turtles").removeClass("active").hide().trigger("hide");
+				$(this).find(".turtle").removeClass("active").hide().trigger("hide");
 				next.addClass("active").show().trigger("show");
 				
 				// change orb
@@ -73,8 +73,8 @@ var Switcher = {
 		orbs.find("li").eq(index - 1).addClass("active");
 		
 		// change turtle
-		group.find(".turtles").removeClass("active").hide().trigger("hide");
-		group.find(".turtles").eq(index - 1).addClass("active").show().trigger("show");
+		group.find(".turtle").removeClass("active").hide().trigger("hide");
+		group.find(".turtle").eq(index - 1).addClass("active").show().trigger("show");
 		
 		// start timer
 		Switcher.start();

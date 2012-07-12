@@ -2,10 +2,6 @@
    Main layout
    ================================================ */
 
-* {
-	zoom: 1;
-}
-
 html {
     font-family: 'FreeUniversalRegular';
     height: 100%;
@@ -83,6 +79,10 @@ section#main {
     position: relative;
 }
 
+.group:last-child {
+    float: right;
+}
+
 .turtle {
     display: none;
     overflow: hidden;
@@ -155,7 +155,7 @@ section#main {
     font-size: 29px;
     height: 54px;
     line-height: 54px;
-    padding: 0 14px;
+    padding: 0 50px 0 14px;
     overflow: hidden;
 }
 
