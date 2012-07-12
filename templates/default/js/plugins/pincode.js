@@ -6,9 +6,9 @@ var Pincode = {
 		// check if clock element exists
 		if (Pincode.element.length == 0) {
 			Pincode.element = $('<div id="pincode" class="color"></div>');
-			Pincode.element.html(code);
 			Pincode.element.insertAfter('#clock');
 		}
+        Pincode.element.text(code);
 
 		// show element
 		Pincode.element.show();
