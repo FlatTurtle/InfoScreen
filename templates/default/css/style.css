@@ -48,20 +48,6 @@ header {
     overflow: hidden;
 }
 
-header #clock {
-    color: #fff;
-    border-radius: 14px 0 0 14px;
-    float: right;
-    font-size: 46px;
-    font-weight: bold;
-    height: 46px;
-    line-height: 46px;
-    margin-top: 15px;
-    padding: 13px 14px 13px 0;
-    text-align: right;
-    width: 136px;
-}
-
 header #logo {
     height: 100px;
     overflow: hidden;
@@ -93,6 +79,10 @@ section#main {
     position: relative;
 }
 
+.group:last-child {
+    float: right;
+}
+
 .turtle {
     display: none;
     overflow: hidden;
@@ -103,16 +93,16 @@ section#main {
     float: left;
 }
 
+.turtle.active {
+	display: block;
+}
+
 .group .turtle:first-child {
     display: block;
 }
 
 .group .turtle {
     border-left: 4px solid #FFF;
-}
-
-.group .turtle.active {
-	display: block;
 }
 
 .group:first-child .turtle {
@@ -169,7 +159,7 @@ section#main {
     font-size: 29px;
     height: 54px;
     line-height: 54px;
-    padding: 0 14px;
+    padding: 0 50px 0 14px;
     overflow: hidden;
 }
 
@@ -268,6 +258,121 @@ section#main {
 }
 
 /* ===================================================
+   Plugins layout
+   ================================================ */
+
+#clock {
+    color: #fff;
+    border-radius: 14px 0 0 14px;
+    float: right;
+    font-size: 46px;
+    font-weight: bold;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 15px;
+    padding: 13px 14px 13px 5px;
+    text-align: right;
+    width: 136px;
+    z-index: 0;
+}
+
+#pincode {
+    color: #fff;
+    border-radius: 14px;
+    font-size: 46px;
+    font-weight: bold;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 15px;
+    margin-left:20px;
+    margin-right:50px;
+    padding: 13px;
+    text-align: center;
+    float:right;
+    margin-right:25%;
+}
+
+#overlay {
+	background-color: #000;
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 2000;
+}
+
+#message {
+	background-color: #FFF;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2000;
+}
+
+#message span {
+	position: absolute;
+	top: 50%;
+	text-align: center;
+	display: block;
+	color: #FFF;
+	width: 100%;
+	padding: 20px;
+	font-size: 30px;
+}
+
+.overlaymessage{
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:100;
+}
+.boxmessage{
+    position:fixed;
+    top:-200px;
+    left:30%;
+    right:30%;
+    background-color:#000;
+    color:#FFF;
+    text-align:center;
+    font-size:40px;
+    background-color:rgba(0,0,0,0.7);
+    padding:20px;
+    border:2px solid #ccc;
+    -moz-border-radius: 20px;
+    -webkit-border-radius:20px;
+    -khtml-border-radius:20px;
+    -moz-box-shadow: 0 1px 5px #333;
+    -webkit-box-shadow: 0 1px 5px #333;
+    z-index:101;
+}
+
+a.boxmessageclose{
+    float:right;
+    width:26px;
+    height:26px;
+    margin-top:-30px;
+    margin-right:-30px;
+    cursor:pointer;
+}
+
+.boxmessage h1{
+    border-bottom: 1px dashed #7F7F7F;
+    margin:-20px -20px 0px -20px;
+    padding:10px;
+    background-color:#FFEFEF;
+    color:#EF7777;
+    text-align:center;
+    -moz-border-radius:20px 20px 0px 0px;
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -khtml-border-top-left-radius: 20px;
+    -khtml-border-top-right-radius: 20px;
+}
+
+/* ===================================================
    Turtle ticker
    ================================================ */
 
@@ -343,17 +448,19 @@ section#main {
     }
 }
 
-.turtle h3 ol, .turtle h3 li {
+.group ol, .group li {
     margin: 0;
     padding: 0;
 }
 
-.turtle h3 ol {
+.group ol {
     display: block;
-    float: right;
     margin: 20px 5px 0 0;
     text-align: right;
     line-height: 10px;
+    position: absolute;
+    top: 52px;
+    right: 5px;
 }
 
 /* REMOVING TICKER ANIMATION TEMPORARY ----------------------
@@ -374,7 +481,7 @@ section#main {
 
 ------------------------------------------------------------- */
 
-.turtle h3 li {
+.group li {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -382,10 +489,10 @@ section#main {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.turtle h3 li.current {
+.group li.active {
     background-color: #fff;
     border-color: #fff;
 }

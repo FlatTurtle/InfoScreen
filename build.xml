@@ -53,16 +53,27 @@
 	<target name="concat_js">
         <concat destfile="${js_dir}/application.min.js">
             <filelist id="files" dir="${js_dir}">
-                <file name="jquery.tmpl.js" /> 
+                <file name="libs/jquery.tmpl.js" />
                 <file name="turtles.loader.js" />
-                <file name="interface.js" />
             </filelist>
+        </concat>
+    </target>
+    
+    <target name="concat_plugins">
+        <concat destfile="${js_dir}/plugins.min.js">
+            <fileset id="files" dir="${js_dir}/plugins" includes="*.js" />
         </concat>
     </target>
 	
 	<target name="compress_js" depends="concat_js">
         <antcall target="compress">
             <param name="file" value="${js_dir}/application.min.js" />
+        </antcall>
+    </target>
+    
+    <target name="compress_plugins" depends="concat_plugins">
+        <antcall target="compress">
+            <param name="file" value="${js_dir}/plugins.min.js" />
         </antcall>
     </target>
 	
@@ -95,9 +106,10 @@
 	*************************************************
 	-->
 	<target name="initialize">
+	   <antcall target="compress_core"  />
         <antcall target="compress_css" />
         <antcall target="compress_js"  />
-        <antcall target="compress_core"  />
+        <antcall target="compress_plugins"  />
         <echo>Done!</echo>
     </target>
 
