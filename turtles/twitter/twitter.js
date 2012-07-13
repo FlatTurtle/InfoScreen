@@ -31,6 +31,8 @@
 			for (var i in tweets) {
 				// time ago string
 				var minutes = parseInt(tweets[i].created_at.replace("'", ""));
+				var i18n = this.options.i18n;
+				
 				if (minutes < 1) // less than 1 minute
 					tweets[i].ago = i18n.just_now;
 				else if (minutes == 1) // 1 minute
@@ -46,9 +48,9 @@
 				else if (minutes < 10080) // less than 1 week
 					tweets[i].ago = Math.floor( minutes / 1440 ) + ' ' + i18n.days;
 				else if (minutes < 20160) // less than 2 weeks
-					tweets[i].ago = Math.floor( minutes / 1440 ) + ' ' + i18n.week;
+					tweets[i].ago = Math.floor( minutes / 10080 ) + ' ' + i18n.week;
 				else if (minutes < 44640) // less than 31 days
-					tweets[i].ago = Math.floor( minutes / 1440 ) + ' ' + i18n.weeks;
+					tweets[i].ago = Math.floor( minutes / 10080 ) + ' ' + i18n.weeks;
 				else
 					tweets[i].ago = i18n.long_time;
 				
