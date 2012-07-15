@@ -40,7 +40,6 @@
 		parse : function(json) {
             var villo = json.Villo;
             
-            console.log(villo.length);
             if(villo.length <= 0) {
                 return undefined;
             }

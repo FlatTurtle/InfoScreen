@@ -40,7 +40,6 @@
 		parse : function(json) {
             var velo = json.Velo;
             
-            console.log(velo.length);
             if(velo.length <= 0) {
                 return undefined;
             }
