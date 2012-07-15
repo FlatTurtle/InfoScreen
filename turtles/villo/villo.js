@@ -47,9 +47,17 @@
             
             for(var i in villo) {
                 villo[i].distance = Math.round(parseInt(villo[i].distance)/10)*10;
+                villo[i].name = this.capitalizeWords(villo[i].name);
             }
             
             return villo;
+		},
+		capitalizeWords: function (strSentence) {
+			return strSentence.toLowerCase().replace(/\b[a-z]/g, convertToUpper);
+		 
+			function convertToUpper() {
+				return arguments[0].toUpperCase();
+			}
 		}
 	});
 
