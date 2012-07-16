@@ -93,7 +93,7 @@
 			
 			// bind resize trigger
 			this.$el.resize(function() {
-				google.maps.event.trigger(map, "resize");
+				google.maps.event.trigger(self.map, "resize");
 			});
 		},
 		updateTraffic : function() {
