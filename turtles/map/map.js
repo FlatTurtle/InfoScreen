@@ -90,6 +90,11 @@
 			// add traffic layer
 			self.trafficLayer = new google.maps.TrafficLayer();
 			self.trafficLayer.setMap(self.map);
+			
+			// bind resize trigger
+			this.$el.resize(function() {
+				google.maps.event.trigger(map, "resize");
+			});
 		},
 		updateTraffic : function() {
 			var self = this;
