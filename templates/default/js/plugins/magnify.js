@@ -26,10 +26,14 @@ var Magnify = {
 		var element = $('.group#' + id);
 		if (element.length != 0) {
 			$(".group").each(function() {
-				if ($(this)[0] == element[0])
+				if ($(this)[0] == element[0]) {
 					element.animate({"width": "100%"});
-				else
+					
+					// trigger manual resize event
+					element.find('.turtle').trigger('resize');
+				} else {
 					$(this).animate({"width": "0%"});
+				}
 			});
 		}
 		

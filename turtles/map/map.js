@@ -69,7 +69,7 @@
 			});
 			
 			// bind resize trigger
-			this.$el.bind('resize', function() {
+			this.$el.resize(function() {
 				google.maps.event.trigger(self.map, "resize");
 				self.map.setCenter(self.center);
 			});
