@@ -61,11 +61,17 @@
 			
 			// fix when map was loading in wrong dimensions
 			this.$el.bind('shown', function() {
-				google.maps.event.trigger(self.map, 'resize');
+				google.maps.event.trigger(self.map, "resize");
 				self.map.setCenter(self.center);
 				
 				// remove jQuery event
 				self.$el.unbind('shown');
+			});
+			
+			// bind resize trigger
+			this.$el.bind('resize', function() {
+				google.maps.event.trigger(self.map, "resize");
+				self.map.setCenter(self.center);
 			});
 			
 			// get the coordinates of the location
@@ -90,11 +96,6 @@
 			// add traffic layer
 			self.trafficLayer = new google.maps.TrafficLayer();
 			self.trafficLayer.setMap(self.map);
-			
-			// bind resize trigger
-			this.$el.resize(function() {
-				google.maps.event.trigger(self.map, "resize");
-			});
 		},
 		updateTraffic : function() {
 			var self = this;
