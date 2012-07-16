@@ -5,7 +5,7 @@ var Switcher = {
 	
 	rotate : function() {
 		// iteratie each group
-		Switcher.root.find(".group").each(function() {
+		$(".group").each(function() {
 			
 			// number of panes in this turtle group
 			var panes = $(this).find(".turtle").size();
@@ -59,12 +59,12 @@ var Switcher = {
 		// stop timer
 		Switcher.stop();
 		
-		var turtle = $(root).find(".turtle#" + id);
+		var turtle = $(".turtle#" + id);
 		
 		if (turtle.length == 0)
 			return false;
 		
-		var group = turtle.parent(".group");
+		var group = turtle.parent();
 		var orbs = group.find("ol");
 		var index = group.find(turtle).index();
 		
@@ -74,7 +74,7 @@ var Switcher = {
 		
 		// change turtle
 		group.find(".turtle").removeClass("active").hide().trigger("hide");
-		group.find(".turtle").eq(index - 1).addClass("active").show().trigger("show");
+		turtle.show().trigger("show");
 		
 		// start timer
 		Switcher.start();
