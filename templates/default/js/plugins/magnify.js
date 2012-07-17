@@ -42,7 +42,9 @@ var Magnify = {
 	
 	reset : function() {
 		$(".group").each(function() {
-			$(this).animate({"width": $(this).attr("data-width") + "%"});
+			$(this).animate({"width": $(this).attr("data-width") + "%"}, 400, function() {
+				$(this).find('.turtle').trigger('resize');
+			});
 		});
 	}
 
