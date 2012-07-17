@@ -88,7 +88,8 @@ var thatmivb;
 			return (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
 		},
 		parseStationName : function(data) {
-			thatmivb.options.station = thatmivb
+			if(data.Stations[0] != undefined)
+				thatmivb.options.station = thatmivb
 					.capitalizeWords(data.Stations[0].name);
 		},
 		capitalizeWords : function wordToUpper(strSentence) {
