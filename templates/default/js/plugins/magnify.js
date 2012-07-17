@@ -1,5 +1,6 @@
-var Magnify = {
 
+var Magnify = {
+	runningTimeout : null,	
 	turtle : function(id, duration) {
 		// default duration
 		if (duration == undefined)
@@ -27,22 +28,25 @@ var Magnify = {
 		if (element.length != 0) {
 			$(".group").each(function() {
 				if ($(this)[0] == element[0]) {
-					element.animate({"width": "100%"});
-					
-					// trigger manual resize event
-					element.find('.turtle').trigger('resize');
+					element.animate({"width": "100%"}, 400, function() {
+						// trigger manual resize event
+						element.find('.turtle').trigger('resize');
+					});
 				} else {
 					$(this).animate({"width": "0%"});
 				}
 			});
 		}
 		
-		setTimeout(Magnify.reset, duration);
+		clearTimeout(this.runningTimeout);
+		this.runningTimeout = setTimeout(Magnify.reset, duration);
 	},
 	
 	reset : function() {
 		$(".group").each(function() {
-			$(this).animate({"width": $(this).attr("data-width") + "%"});
+			$(this).animate({"width": $(this).attr("data-width") + "%"}, 400, function() {
+				$(this).find('.turtle').trigger('resize');
+			});
 		});
 	}
 
