@@ -1,5 +1,6 @@
-var Magnify = {
 
+var Magnify = {
+	runningTimeout : null,	
 	turtle : function(id, duration) {
 		// default duration
 		if (duration == undefined)
@@ -37,7 +38,8 @@ var Magnify = {
 			});
 		}
 		
-		setTimeout(Magnify.reset, duration);
+		clearTimeout(this.runningTimeout);
+		this.runningTimeout = setTimeout(Magnify.reset, duration);
 	},
 	
 	reset : function() {
