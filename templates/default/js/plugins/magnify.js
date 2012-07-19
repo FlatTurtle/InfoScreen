@@ -33,11 +33,13 @@ var Magnify = {
 				if ($(this)[0] == element[0]) {
 					element.animate({"width": "100%"}, 400, function() {
 						// trigger manual resize event
-						element.find(".turtle").addClass("magnified").trigger("resize");
+						element.find(".turtle").trigger("resize");
 					});
 				} else {
 					$(this).animate({"width": "0%"});
 				}
+				
+				element.addClass("magnified");
 			});
 		}
 		
@@ -48,7 +50,7 @@ var Magnify = {
 	reset : function() {
 		$(".group").each(function() {
 			$(this).animate({"width": $(this).attr("data-width") + "%"}, 400, function() {
-				$(this).find(".turtle").removeClass("magnified").trigger("resize");
+				$(this).removeClass("magnified").find(".turtle").trigger("resize");
 			});
 		});
 	}

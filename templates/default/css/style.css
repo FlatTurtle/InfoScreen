@@ -373,8 +373,12 @@ a.boxmessageclose{
     -khtml-border-top-right-radius: 20px;
 }
 
-.turtle.magnified {
-	border-left-width: 0;
+.group.magnified .turtle {
+	border-left-width: 0 !important;
+}
+
+.group.magnified ol {
+	display: none !important;
 }
 
 /* ===================================================
