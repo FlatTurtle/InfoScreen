@@ -15,7 +15,7 @@ var Magnify = {
 			Switcher.to(id);
 			
 			// magnify turtle
-			Magnify.group(parent.attr('id'), duration);
+			Magnify.group(parent.attr("id"), duration);
 		}
 	},
 	
@@ -26,11 +26,14 @@ var Magnify = {
 		
 		var element = $('.group#' + id);
 		if (element.length != 0) {
+			
+			var border = element.find(".turtle").css("border-left-width");
+			
 			$(".group").each(function() {
 				if ($(this)[0] == element[0]) {
 					element.animate({"width": "100%"}, 400, function() {
 						// trigger manual resize event
-						element.find('.turtle').trigger('resize');
+						element.find(".turtle").addClass("magnified").trigger("resize");
 					});
 				} else {
 					$(this).animate({"width": "0%"});
@@ -45,7 +48,7 @@ var Magnify = {
 	reset : function() {
 		$(".group").each(function() {
 			$(this).animate({"width": $(this).attr("data-width") + "%"}, 400, function() {
-				$(this).find('.turtle').trigger('resize');
+				$(this).find(".turtle").removeClass("magnified").trigger("resize");
 			});
 		});
 	}
