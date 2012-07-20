@@ -63,9 +63,6 @@
 			this.$el.bind("show", function() {
 				google.maps.event.trigger(self.map, "resize");
 				self.map.setCenter(self.center);
-				
-				// remove jQuery event
-				self.$el.unbind("show");
 			});
 			
 			// bind resize trigger

@@ -242,7 +242,8 @@ section#main {
     font-weight: normal;
     overflow: hidden;
     line-height: 18px;
-    max-height: 59px;
+    height: 59px;
+    display: block;
 }
 
 .turtle .small-text small {
@@ -321,7 +322,7 @@ section#main {
 	font-size: 30px;
 }
 
-.overlaymessage{
+.overlaymessage {
     position:fixed;
     top:0px;
     bottom:0px;
@@ -329,6 +330,7 @@ section#main {
     right:0px;
     z-index:100;
 }
+
 .boxmessage{
     position:fixed;
     top:-200px;
@@ -370,6 +372,14 @@ a.boxmessageclose{
     -webkit-border-top-right-radius: 20px;
     -khtml-border-top-left-radius: 20px;
     -khtml-border-top-right-radius: 20px;
+}
+
+.group.magnified .turtle {
+	border-left-width: 0 !important;
+}
+
+.group.magnified ol {
+	display: none !important;
 }
 
 /* ===================================================
