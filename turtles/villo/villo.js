@@ -16,7 +16,7 @@
 
 			// automatic collection refresh each minute, this will 
 			// trigger the reset event
-			refreshInterval = window.setInterval(this.refresh, 30000);
+			refreshInterval = window.setInterval(this.refresh, 300000000);
 		},
 		refresh : function() {
 			var self = this;

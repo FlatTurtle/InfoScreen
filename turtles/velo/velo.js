@@ -80,6 +80,8 @@
 		render : function() {
 			// only render when template file is loaded
 			if (this.template) {
+                console.log(this.options.i18n);
+            
 				var data = {
 					entries : this.collection.toJSON(),
 					error : this.options.error, // have there been any errors?

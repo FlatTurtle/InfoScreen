@@ -1,13 +1,31 @@
 <h2>
-	<img src="turtles/delijn/bus.png" alt="De Lijn" height="28px"> 
+	<img src="turtles/velo/bike.png" alt="De Lijn" height="28px"> 
+    <small>${i18n.bikestations}</small>
 	<span class="credits">moved by <em>FlatTurtle</em></span>
 </h2>
 
-<h3 class="color"><span>Velo</span></h3>
+<h3 class="color"><span>${i18n.velo}</span></h3>
 
 <style>
     .turtle td {    
         font-size: 20px;
+    }
+    
+    .turtle td.available div, .turtle td.parked div , .turtle td.distance div{
+        float: left;
+    }
+    .turtle td.available span, .turtle td.parked span , .turtle td.distance span{
+        float: left;
+    }
+    
+    .turtle td.stationname {
+        font-weight: bold;
+        line-height: 59px;
+        height: 59px;
+        overflow: hidden;
+        display: block;
+        width: 60%;
+        /*float: right;*/
     }
 </style>
 
@@ -17,24 +35,24 @@
 			{{each entries}}
                 <tr>
                     <td class="icon-amount available">
-                        <img src="turtles/villo/bike.png" />
+                        <div><img src="turtles/villo/freebikes.png" /></div>
                         <span class="amount">
                             ${$value.freebikes}
                         </span>
                     </td>
                     <td class="icon-amount parked">
-                        <img src="turtles/villo/parked.png" />
+                        <div><img src="turtles/villo/parkedbikes.png" /></div>
                         <span class="amount">
                             ${$value.freespots}
                         </span>
                     </td>
                     <td class="icon-amount distance">
-                        <img src="turtles/villo/walk.png" />
+                        <div><img src="turtles/villo/walk.png" /></div>
                         <span class="amount">
                             ${$value.distance}m
                         </span>
                     </td>
-                    <td class="stationname">
+                    <td class="text stationname">
                         <span>
                             ${$value.name}
                         </span>
