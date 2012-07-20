@@ -242,7 +242,8 @@ section#main {
     font-weight: normal;
     overflow: hidden;
     line-height: 18px;
-    max-height: 59px;
+    height: 59px;
+    display: block;
 }
 
 .turtle .small-text small {

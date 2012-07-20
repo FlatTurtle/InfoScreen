@@ -30,8 +30,6 @@
 			options.colspan = 1;
 		}
 		
-		console.log('grow ' + type + ' in group "' + options.group + '" with colspan ' + options.colspan);
-
 		/*
 		 * All turtles instances are grouped in a separate <section> for each
 		 * turtle group. If no group is set from the options the turtle's name
