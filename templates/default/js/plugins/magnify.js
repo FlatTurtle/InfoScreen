@@ -16,7 +16,7 @@ var Magnify = {
 			Switcher.to(id);
 			
 			// magnify turtle
-			Magnify.group(parent.attr("id"), duration);
+			Magnify.group(parent.attr("data-group"), duration);
 		}
 	},
 	
