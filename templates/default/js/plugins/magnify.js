@@ -1,6 +1,7 @@
 
 var Magnify = {
-	runningTimeout : null,	
+	timer : null,
+		
 	turtle : function(id, duration) {
 		// default duration
 		if (duration == undefined)
@@ -30,21 +31,21 @@ var Magnify = {
 			var border = element.find(".turtle").css("border-left-width");
 			
 			$(".group").each(function() {
-				if ($(this)[0] == element[0]) {
-					element.animate({"width": "100%"}, 400, function() {
-						// trigger manual resize event
-						element.find(".turtle").trigger("resize");
-					});
-				} else {
+				if ($(this)[0] != element[0]) {
 					$(this).animate({"width": "0%"});
 				}
-				
-				element.addClass("magnified");
+			});
+			
+			element.animate({"width": "100%"}, 400, function() {
+				// trigger manual resize event
+				element.find(".turtle").addClass("magnified").trigger("resize");
 			});
 		}
 		
-		clearTimeout(this.runningTimeout);
-		this.runningTimeout = setTimeout(Magnify.reset, duration);
+		if (duration != 0) {
+			clearTimeout(Magnify.timer);
+			Magnify.timer = setTimeout(Magnify.reset, duration);
+		}
 	},
 	
 	reset : function() {

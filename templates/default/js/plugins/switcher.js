@@ -2,6 +2,7 @@ var Switcher = {
 	
 	root : $("#main"),
 	interval : false,
+	timer : null,
 	
 	rotate : function() {
 		// iteratie each group
@@ -81,8 +82,9 @@ var Switcher = {
 	},
 	
 	start : function() {
-		//Switcher.rotate();
-		Switcher.timer = window.setInterval(Switcher.rotate, infoScreen.interval);
+		if(!Switcher.timer) {
+			Switcher.timer = window.setInterval(Switcher.rotate, infoScreen.interval);
+		}
 	},
 	
 	stop : function() {
