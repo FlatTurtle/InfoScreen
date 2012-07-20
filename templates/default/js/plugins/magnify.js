@@ -28,8 +28,6 @@ var Magnify = {
 		var element = $('.group#' + id);
 		if (element.length != 0) {
 			
-			var border = element.find(".turtle").css("border-left-width");
-			
 			$(".group").each(function() {
 				if ($(this)[0] != element[0]) {
 					$(this).animate({"width": "0%"});
