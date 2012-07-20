@@ -25,7 +25,7 @@ var Magnify = {
 		if (duration == undefined)
 			duration = 10000;
 		
-		var element = $('.group#' + id);
+		var element = $('.group[data-group="' + id + '"]');
 		if (element.length != 0) {
 			
 			$(".group").each(function() {

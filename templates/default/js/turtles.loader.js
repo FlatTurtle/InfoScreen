@@ -26,9 +26,11 @@
 		}
 
 		// default colspan width
-		if (!options.colspan) {
+		if (!options.colspan || options.colspan == 0) {
 			options.colspan = 1;
 		}
+		
+		console.log('grow ' + type + ' in group "' + options.group + '" with colspan ' + options.colspan);
 
 		/*
 		 * All turtles instances are grouped in a separate <section> for each
@@ -36,27 +38,27 @@
 		 * is used, otherwise different turtles can be grouped in the same
 		 * column with this group name.
 		 */
-		var group = $('section.group#' + options.group);
+		var group = $('.group[data-group="' + options.group + '"]');
 		if (group.length == 0) {
-			group = $('<section class="group" id="' + options.group + '" data-colspan="' + options.colspan + '"></section>');
+			group = $('<section class="group" data-group="' + options.group + '" data-colspan="' + options.colspan + '"></section>');
+			
+			// add group to main container
+			$(rootElement).append(group);
 			
 			// add group colspan to total columns
 			columns += parseInt(options.colspan);
 
-			// add group to main container
-			$(rootElement).append(group);
-			
 			/*
 			 * This group's width is automatically calculated depending on the
 			 * total number of columns and the set colspan.
 			 */
 			var i = 0, left = 100;
 			
-			$('section.group').each(function() {
+			$('.group').each(function() {
 				var width = Math.floor((100 / columns) * $(this).data('colspan'));
 				left -= width; i++;
 				
-				if(i == $('section.group').length) {
+				if(i == $('.group').length) {
 					width += left;
 					
 					if (columns%2 && navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
