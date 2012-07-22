@@ -1,4 +1,3 @@
-
 (function($) {
 	var collection = Backbone.Collection.extend({
 		initialize : function(models, options) {
@@ -10,7 +9,7 @@
 			this.bind("refresh", this.refresh);
 
 			thatdl = this;
-			
+
 			// default error value
 			options.error = false;
 
@@ -24,7 +23,7 @@
 				error : function() {
 					// will allow the view to detect errors
 					self.options.error = true;
-					
+
 					// if there are no previous items to show, display error message
 					if(self.length == 0)
 						self.trigger("reset");
@@ -37,6 +36,13 @@
         
             return "http://data.irail.be/Bikes/Velo.json?lat=" + encodeURIComponent(latitude) + "&long=" + encodeURIComponent(longitude) + "&offset=0&rowcount=15";
 		},
+		capitalizeWords: function (strSentence) {
+			return strSentence.toLowerCase().replace(/\b[a-z]/g, convertToUpper);
+
+			function convertToUpper() {
+				return arguments[0].toUpperCase();
+			}
+		}, 
 		parse : function(json) {
             var velo = json.Velo;
             
@@ -46,17 +52,10 @@
             
             for(var i in velo) {
                 velo[i].distance = Math.round(parseInt(velo[i].distance)/10)*10;
-                velo[i].name = this.capitalizeWords(velo[i].name);
+				velo[i].name = this.capitalizeWords(jQuery.trim(velo[i].name));
             }
             
             return velo;
-		},
-		capitalizeWords: function (strSentence) {
-			return strSentence.toLowerCase().replace(/\b[a-z]/g, convertToUpper);
-		 
-			function convertToUpper() {
-				return arguments[0].toUpperCase();
-			}
 		}
 	});
 
@@ -65,7 +64,7 @@
 			// prevents loss of 'this' inside methods
 			_.bindAll(this, "render");
 			// bind render to collection reset
-		    
+
 			this.collection.bind("reset", this.render);
 
 			// pre-fetch template file and render when ready
@@ -80,8 +79,6 @@
 		render : function() {
 			// only render when template file is loaded
 			if (this.template) {
-                console.log(this.options.i18n);
-            
 				var data = {
 					entries : this.collection.toJSON(),
 					error : this.options.error, // have there been any errors?
@@ -90,7 +87,7 @@
 
 				// add html to container
 				this.$el.html($.tmpl(this.template, data));
-				
+
 				// notify listeners render completed and pass element
 				this.trigger("rendered", this.$el);
 			}

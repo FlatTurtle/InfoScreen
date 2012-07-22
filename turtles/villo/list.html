@@ -1,33 +1,48 @@
 <h2>
-	<img src="turtles/villo/bike.png" alt="De Lijn" height="28px">
-    <small>${i18n.bikestations}</small>
+	<img src="turtles/delijn/bus.png" alt="De Lijn" height="28px"> 
 	<span class="credits">moved by <em>FlatTurtle</em></span>
 </h2>
 
-<h3 class="color"><span>${i18n.villo}</span></h3>
+<h3 class="color"><span>Villo</span></h3>
 
 <style>
     .turtle td {    
-        font-size: 20px;
+        font-size: 16px;
     }
-    
-    .turtle td.available div, .turtle td.parked div, .turtle td.distance div {
-        float: left;
-        
-    }
-    
-    .turtle td.available span, .turtle td.parked span, .turtle td.distance span{
-        float:left;
-    }
-    
-    .turtle td.stationname {
-        font-weight: bold;
-        line-height: 59px;
-        height: 59px;
-        overflow: hidden;
-        display: block;
-        width: 60%;
-    }
+
+	.turtle td.available, .turtle td.parked, .turtle td.distance, .turtle td.stationname {
+		height: 52px!important;
+	}
+
+	.turtle td.available, .turtle td.parked, .turtle td.distance {
+		text-align: center;
+		vertical-align: bottom;
+		padding-bottom: 7px;		
+	}
+
+	.turtle td.available {
+		background: url(turtles/villo/bike.png);
+		background-size: 50px 50px;
+		background-repeat:no-repeat;
+		background-position:center;
+		width: 60px;
+	}
+
+	.turtle td.parked {
+		background: url(turtles/villo/parked.png);
+		background-size: 50px 50px;
+		background-repeat:no-repeat;
+		background-position:center;
+		width: 60px;
+	}
+
+	.turtle td.distance {
+		background: url(turtles/villo/walk.png);
+		background-size: 68px 50px;
+		background-repeat:no-repeat;
+		background-position:center;
+		width: 78px;
+	}
 </style>
 
 <table>
@@ -36,24 +51,19 @@
 			{{each entries}}
                 <tr>
                     <td class="icon-amount available">
-                        <div><img src="turtles/villo/freebikes.png" /></div>
                         <span class="amount">
                             ${$value.freebikes}
                         </span>
                     </td>
                     <td class="icon-amount parked">
-                        <div><img src="turtles/villo/parkedbikes.png" /></div>
                         <span class="amount">
                             ${$value.freespots}
                         </span>
                     </td>
                     <td class="icon-amount distance">
-                        <div><img src="turtles/villo/walk.png" /></div>
-                        <span class="amount">
-                            ${$value.distance}m
-                        </span>
+                        ${$value.distance}m
                     </td>
-                    <td class="text stationname">
+                    <td class="stationname">
                         <span>
                             ${$value.name}
                         </span>

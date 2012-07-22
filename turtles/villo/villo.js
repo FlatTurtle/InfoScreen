@@ -1,4 +1,3 @@
-
 (function($) {
 	var collection = Backbone.Collection.extend({
 		initialize : function(models, options) {
@@ -10,13 +9,13 @@
 			this.bind("refresh", this.refresh);
 
 			thatdl = this;
-			
+
 			// default error value
 			options.error = false;
 
 			// automatic collection refresh each minute, this will 
 			// trigger the reset event
-			refreshInterval = window.setInterval(this.refresh, 300000000);
+			refreshInterval = window.setInterval(this.refresh, 30000);
 		},
 		refresh : function() {
 			var self = this;
@@ -24,7 +23,7 @@
 				error : function() {
 					// will allow the view to detect errors
 					self.options.error = true;
-					
+
 					// if there are no previous items to show, display error message
 					if(self.length == 0)
 						self.trigger("reset");
@@ -37,6 +36,13 @@
         
             return "http://data.irail.be/Bikes/Villo.json?lat=" + encodeURIComponent(latitude) + "&long=" + encodeURIComponent(longitude) + "&offset=0&rowcount=15";
 		},
+		capitalizeWords: function (strSentence) {
+			return strSentence.toLowerCase().replace(/\b[a-z]/g, convertToUpper);
+
+			function convertToUpper() {
+				return arguments[0].toUpperCase();
+			}
+		}, 
 		parse : function(json) {
             var villo = json.Villo;
             
@@ -46,17 +52,10 @@
             
             for(var i in villo) {
                 villo[i].distance = Math.round(parseInt(villo[i].distance)/10)*10;
-                villo[i].name = this.capitalizeWords(villo[i].name);
+				villo[i].name = this.capitalizeWords(jQuery.trim(villo[i].name));
             }
             
             return villo;
-		},
-		capitalizeWords: function (strSentence) {
-			return strSentence.toLowerCase().replace(/\b[a-z]/g, convertToUpper);
-		 
-			function convertToUpper() {
-				return arguments[0].toUpperCase();
-			}
 		}
 	});
 
@@ -65,7 +64,7 @@
 			// prevents loss of 'this' inside methods
 			_.bindAll(this, "render");
 			// bind render to collection reset
-		    
+
 			this.collection.bind("reset", this.render);
 
 			// pre-fetch template file and render when ready
@@ -88,7 +87,7 @@
 
 				// add html to container
 				this.$el.html($.tmpl(this.template, data));
-				
+
 				// notify listeners render completed and pass element
 				this.trigger("rendered", this.$el);
 			}
