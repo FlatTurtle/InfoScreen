@@ -11,34 +11,50 @@
         font-size: 16px;
     }
 
-	.turtle td.available, .turtle td.parked, .turtle td.distance, .turtle td.stationname {
+	.turtle td.available, .turtle td.parked, .turtle td.available-0, .turtle td.parked-0, .turtle td.distance, .turtle td.stationname {
 		height: 52px!important;
 	}
 
-	.turtle td.available, .turtle td.parked, .turtle td.distance {
+	.turtle td.available, .turtle td.parked, .turtle td.available-0, .turtle td.parked-0, .turtle td.distance {
 		text-align: center;
 		vertical-align: bottom;
-		padding-bottom: 7px;		
+		padding-bottom: 7px;	
 	}
-
+	
 	.turtle td.available {
-		background: url(turtles/villo/bike.png);
+		background: url(turtles/velo/bike.svg);
+		width: 60px;
 		background-size: 50px 50px;
 		background-repeat:no-repeat;
-		background-position:center;
+		background-position:center;	
+	}
+	
+	.turtle td.available-0 {
+		background: url(turtles/velo/bike-0.svg);
 		width: 60px;
+		background-size: 50px 50px;
+		background-repeat:no-repeat;
+		background-position:center;	
 	}
 
 	.turtle td.parked {
-		background: url(turtles/villo/parked.png);
+		background: url(turtles/velo/parked.svg);
+		width: 60px;
 		background-size: 50px 50px;
 		background-repeat:no-repeat;
-		background-position:center;
+		background-position:center;	
+	}
+	
+	.turtle td.parked-0 {
+		background: url(turtles/velo/parked-0.svg);
 		width: 60px;
+		background-size: 50px 50px;
+		background-repeat:no-repeat;
+		background-position:center;	
 	}
 
 	.turtle td.distance {
-		background: url(turtles/villo/walk.png);
+		background: url(turtles/velo/walk.svg);
 		background-size: 68px 50px;
 		background-repeat:no-repeat;
 		background-position:center;
@@ -51,16 +67,28 @@
         {{if entries.length}}
 			{{each entries}}
                 <tr>
-                    <td class="icon-amount available">
-                        <span class="amount">
-                            ${$value.freebikes}
-                        </span>
-                    </td>
-                    <td class="icon-amount parked">
-                        <span class="amount">
-                            ${$value.freespots}
-                        </span>
-                    </td>
+                    {{if $value.freebikes != 0}}
+						<td class="icon-amount available">
+							<span class="amount">
+								${$value.freebikes}
+							</span>
+						</td>
+					{{else}}
+						<td class="icon-amount available-0">
+							<span class="amount">&nbsp;</span>
+						</td>
+					{{/if}}
+                    {{if $value.freespots != 0}}
+						<td class="icon-amount parked">
+							<span class="amount">
+								${$value.freespots}
+							</span>
+						</td>
+					{{else}}
+						<td class="icon-amount parked-0">
+							<span class="amount">&nbsp;</span>
+						</td>
+					{{/if}}
                     <td class="icon-amount distance">
                         ${$value.distance}m
                     </td>
