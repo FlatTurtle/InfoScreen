@@ -37,6 +37,13 @@
         
             return "http://data.irail.be/Bikes/Velo.json?lat=" + encodeURIComponent(latitude) + "&long=" + encodeURIComponent(longitude) + "&offset=0&rowcount=15";
 		},
+		capitalizeWords: function (strSentence) {
+			return strSentence.toLowerCase().replace(/\b[a-z]/g, convertToUpper);
+		 
+			function convertToUpper() {
+				return arguments[0].toUpperCase();
+			}
+		}, 
 		parse : function(json) {
             var velo = json.Velo;
             
@@ -46,6 +53,7 @@
             
             for(var i in velo) {
                 velo[i].distance = Math.round(parseInt(velo[i].distance)/10)*10;
+				velo[i].name = this.capitalizeWords(jQuery.trim(velo[i].name));
             }
             
             return velo;
