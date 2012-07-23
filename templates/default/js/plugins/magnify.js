@@ -1,5 +1,7 @@
-var Magnify = {
 
+var Magnify = {
+	timer : null,
+		
 	turtle : function(id, duration) {
 		// default duration
 		if (duration == undefined)
@@ -14,7 +16,7 @@ var Magnify = {
 			Switcher.to(id);
 			
 			// magnify turtle
-			Magnify.group(parent.attr('id'), duration);
+			Magnify.group(parent.attr("data-group"), duration);
 		}
 	},
 	
@@ -23,22 +25,32 @@ var Magnify = {
 		if (duration == undefined)
 			duration = 10000;
 		
-		var element = $('.group#' + id);
+		var element = $('.group[data-group="' + id + '"]');
 		if (element.length != 0) {
+			
 			$(".group").each(function() {
-				if ($(this)[0] == element[0])
-					element.animate({"width": "100%"});
-				else
+				if ($(this)[0] != element[0]) {
 					$(this).animate({"width": "0%"});
+				}
+			});
+			
+			element.animate({"width": "100%"}, 400, function() {
+				// trigger manual resize event
+				element.addClass("magnified").find(".turtle").addClass("magnified").trigger("resize");
 			});
 		}
 		
-		setTimeout(Magnify.reset, duration);
+		if (duration != 0) {
+			clearTimeout(Magnify.timer);
+			Magnify.timer = setTimeout(Magnify.reset, duration);
+		}
 	},
 	
 	reset : function() {
-		$(".group").each(function() {
-			$(this).animate({"width": $(this).attr("data-width") + "%"});
+		$(".group").removeClass("magnified").each(function() {
+			$(this).animate({"width": $(this).attr("data-width") + "%"}, 400, function() {
+				$(this).removeClass("magnified").find(".turtle").trigger("resize");
+			});
 		});
 	}
 

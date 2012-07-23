@@ -20,7 +20,10 @@ var Overlay = {
 		Overlay.element.fadeIn();
 		
 		// remove
-		if(duration!=0) Overlay.timer = setTimeout(Overlay.remove, duration);
+		if (duration != 0) {
+			clearTimeout(Overlay.timer);
+			Overlay.timer = setTimeout(Overlay.remove, duration);
+		}
 	},
 
 	remove : function() {

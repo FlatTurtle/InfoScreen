@@ -60,12 +60,15 @@
 			this.map = new google.maps.Map(canvas, options);
 			
 			// fix when map was loading in wrong dimensions
-			this.$el.bind('shown', function() {
-				google.maps.event.trigger(self.map, 'resize');
+			this.$el.bind("show", function() {
+				google.maps.event.trigger(self.map, "resize");
 				self.map.setCenter(self.center);
-				
-				// remove jQuery event
-				self.$el.unbind('shown');
+			});
+			
+			// bind resize trigger
+			this.$el.resize(function() {
+				google.maps.event.trigger(self.map, "resize");
+				self.map.setCenter(self.center);
 			});
 			
 			// get the coordinates of the location
