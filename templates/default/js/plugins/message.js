@@ -22,7 +22,10 @@ var Message = {
 		span.css("margin-top", "-" + (span.height()/2) + "px");
 		
 		// remove
-		Message.timer = setTimeout(Message.remove, duration);
+		if (duration != 0) {
+			clearTimeout(Message.timer);
+			Message.timer = setTimeout(Message.remove, duration);
+		}
 	},
 
 	remove : function() {

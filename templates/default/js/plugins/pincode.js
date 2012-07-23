@@ -8,6 +8,7 @@ var Pincode = {
 			Pincode.element = $('<div id="pincode" class="color"></div>');
 			Pincode.element.insertAfter('#clock');
 		}
+		
         Pincode.element.text(code);
 
 		// show element
