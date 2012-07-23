@@ -7,21 +7,21 @@
 <h3 class="color"><span>${i18n.villo}</span></h3>
 
 <style>
-    .turtle td {    
+    .turtle #villo td {    
         font-size: 16px;
     }
 
-	.turtle td.available, .turtle td.parked, .turtle td.available-0, .turtle td.parked-0, .turtle td.distance, .turtle td.stationname {
+	.turtle #villo td.available, .turtle #villo td.parked, .turtle #villo td.available-0, .turtle #villo td.parked-0, .turtle #villo td.distance, .turtle #villo td.stationname {
 		height: 52px!important;
 	}
 
-	.turtle td.available, .turtle td.parked, .turtle td.available-0, .turtle td.parked-0, .turtle td.distance {
+	.turtle #villo td.available, .turtle #villo td.parked, .turtle #villo td.available-0, .turtle #villo td.parked-0, .turtle #villo td.distance {
 		text-align: center;
 		vertical-align: bottom;
 		padding-bottom: 7px;	
 	}
 	
-	.turtle td.available {
+	.turtle #villo td.available {
 		background: url(turtles/velo/bike.svg);
 		width: 60px;
 		background-size: 50px 50px;
@@ -29,7 +29,7 @@
 		background-position:center;	
 	}
 	
-	.turtle td.available-0 {
+	.turtle #villo td.available-0 {
 		background: url(turtles/velo/bike-0.svg);
 		width: 60px;
 		background-size: 50px 50px;
@@ -37,7 +37,7 @@
 		background-position:center;	
 	}
 
-	.turtle td.parked {
+	.turtle #villo td.parked {
 		background: url(turtles/velo/parked.svg);
 		width: 60px;
 		background-size: 50px 50px;
@@ -45,7 +45,7 @@
 		background-position:center;	
 	}
 	
-	.turtle td.parked-0 {
+	.turtle #villo td.parked-0 {
 		background: url(turtles/velo/parked-0.svg);
 		width: 60px;
 		background-size: 50px 50px;
@@ -53,7 +53,7 @@
 		background-position:center;	
 	}
 
-	.turtle td.distance {
+	.turtle #villo td.distance {
 		background: url(turtles/velo/walk.svg);
 		background-size: 68px 50px;
 		background-repeat:no-repeat;
@@ -62,7 +62,7 @@
 	}
 </style>
 
-<table>
+<table id="villo">
 	<tbody>
         {{if entries.length}}
 			{{each entries}}
