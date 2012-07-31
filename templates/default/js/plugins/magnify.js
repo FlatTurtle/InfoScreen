@@ -36,7 +36,7 @@ var Magnify = {
 			
 			element.animate({"width": "100%"}, 400, function() {
 				// trigger manual resize event
-				element.find(".turtle").addClass("magnified").trigger("resize");
+				element.addClass("magnified").find(".turtle").addClass("magnified").trigger("resize");
 			});
 		}
 		
@@ -47,7 +47,7 @@ var Magnify = {
 	},
 	
 	reset : function() {
-		$(".group").each(function() {
+		$(".group").removeClass("magnified").each(function() {
 			$(this).animate({"width": $(this).attr("data-width") + "%"}, 400, function() {
 				$(this).removeClass("magnified").find(".turtle").trigger("resize");
 			});
