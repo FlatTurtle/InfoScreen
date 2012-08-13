@@ -12,7 +12,7 @@ class Infoscreen extends Model {
      * @return object
      */
     function get($alias) {
-        $query = $this->db->query("SELECT * FROM infoscreens WHERE alias = ? LIMIT 0,1", array($alias));
+        $query = $this->db->query("SELECT * FROM screens WHERE alias = ? LIMIT 0,1", array($alias));
         return $query->row();
     }
     
@@ -22,7 +22,7 @@ class Infoscreen extends Model {
      * @return array
      */
     function turtles($infoscreen_id) {
-        $query = $this->db->query("SELECT * FROM turtles WHERE infoscreen_id = ? ORDER BY CASE WHEN `order`<0 THEN id ELSE `order` END ASC", $infoscreen_id);
+        $query = $this->db->query("SELECT * FROM turtles WHERE screen_id = ? ORDER BY CASE WHEN `order`<0 THEN id ELSE `order` END ASC", $infoscreen_id);
         $turtles = $query->result();
         
         // default turtle path location
@@ -33,7 +33,7 @@ class Infoscreen extends Model {
         foreach ($turtles as &$turtle) {
             // set the turtle source location
             if (!$turtle->source) {
-                $turtle->source = baseUrl($turtle_path . $turtle->module . "/" . $turtle->module . ".js");
+                $turtle->source = baseUrl($turtle_path . $turtle->module_alias . "/" . $turtle->module_alias . ".js");
             }
             
             // standard options
@@ -64,7 +64,7 @@ class Infoscreen extends Model {
      * @return array
      */
     function turtleOptions($turtle_id) {
-        $query = $this->db->query("SELECT * FROM turtle_options WHERE turtle_id = ?", $turtle_id);
+        $query = $this->db->query("SELECT * FROM (SELECT * FROM turtle_config INNER JOIN options ON turtle_config.option_id = options.id) AS a WHERE a.turtle_id = ?", $turtle_id);
         return $query->result();
     }
 
@@ -72,7 +72,7 @@ class Infoscreen extends Model {
      * Get all cron jobs
      */
     function jobs($infoscreen_id) {
-        $query = $this->db->query("SELECT * FROM jobs JOIN jobtab ON jobs.id like jobtab.job_id WHERE jobtab.infoscreen_id = ?", $infoscreen_id);
+        $query = $this->db->query("SELECT * FROM scheduled_tasks JOIN tasks ON tasks.alias like scheduled_tasks.job_alias WHERE scheduled_tasks.screen_id = ?", $infoscreen_id);
         return $query->result();
     }
 
