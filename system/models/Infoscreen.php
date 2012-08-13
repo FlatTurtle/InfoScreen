@@ -44,13 +44,19 @@ class Infoscreen extends Model {
             foreach ($options as $option) {
                 // if multiple options are found with the same name they are storred in an array
                 if (isset($turtle->options[$option->key])) {
-                    if (is_array($turtle->options[$option->key])) {
-                        $turtle->options[$option->key][] = $option->value;
+                    if (isset($option->extra_value)) {
+                        $turtle->options[$option->key] = array($turtle->options[$option->key], $option->extra_value);
                     } else {
                         $turtle->options[$option->key] = array($turtle->options[$option->key], $option->value);
                     }
                 } else {
-                    $turtle->options[$option->key] = $option->value;
+					if (isset($option->extra_value)) {
+						$turtle->options[$option->key] = $option->extra_value;
+					}
+					else{
+						$turtle->options[$option->key] = $option->value;
+					}
+                    
                 }
             }
         }
