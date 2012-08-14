@@ -1,9 +1,37 @@
 (function($) {
 
 	var view = Backbone.View.extend({
+		first: 0,
+		speed: 1000,
+		pause: 3000,
+
+		removeFirst : function() {
+			var self = this;
+			first = $('div#listticker div:first').html();
+			$('div#listticker div:first').slideUp('slow', function() {
+				$(this).remove();
+			});
+			this.addLast(first);
+		},
+
+		addLast: function(first) {
+			last = '<div>' + first + '</div>';
+			$('div#listticker').append(last)
+			$('div#listticker div:last').animate({
+				opacity : 1
+			}, this.speed).fadeIn('slow');
+		},
+		
 		initialize : function() {
+			//bind this to all functions so it keeps track of this
+			_.bindAll(this);
+			
 			// bind render event
 			this.bind("born", this.render);
+			
+			if(this.options.speed != null) this.speed = this.options.speed;
+			if(this.options.speed != null) this.pause = this.options.pause;
+			
 
 		},
 		render : function() {
@@ -20,9 +48,8 @@
 				str = str.replace(/\./g,"<br><br></div><div>");
 				if(str.charAt(str.length-1) == '>') str+='</div>';
 				$('div#listticker').html(str);
-
-				// notify listeners render completed and pass element
-				// self.trigger("rendered", self.$el);
+				
+				interval = setInterval(self.removeFirst, self.pause);
 			});
 		}
 	});
