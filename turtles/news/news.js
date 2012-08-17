@@ -5,6 +5,26 @@
 		speed: 1000,
 		pause: 3000,
 		refreshInterval:'',
+		
+		resize: function(){
+        	var self = this;
+			var textSpan = $('div#listticker div');
+			var textdiv = $('div#listticker');
+
+	        //textSpan.style.fontSize = 64;
+			var font = 64;
+			textSpan.css('font-size','64pt');
+			if(textSpan.height() == '0'){
+				return false;
+			}
+	        while(textSpan.height() > textdiv.height())
+	        {
+	        		font--;
+	                textSpan.css('font-size',font+'pt');
+	        }
+	        window.clearInterval(this.refreshInterval);
+	        return true;
+		},
 
 		/*removeFirst : function() {
 			var self = this;
@@ -35,26 +55,6 @@
 			//if(this.options.speed != null) this.pause = this.options.pause;
 			
 
-		},
-		
-        resize: function(){
-        	var self = this;
-			var textSpan = $('div#listticker div');
-			var textdiv = $('div#listticker');
-
-	        //textSpan.style.fontSize = 64;
-			var font = 64;
-			textSpan.css('font-size','64pt');
-			if(textSpan.height() == '0'){
-				return false;
-			}
-	        while(textSpan.height() > textdiv.height())
-	        {
-	        		font--;
-	                textSpan.css('font-size',font+'pt');
-	        }
-	        window.clearInterval(this.refreshInterval);
-	        return true;
 		},
 		
 		render : function() {
