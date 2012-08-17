@@ -1,3 +1,4 @@
 var i18n = {
-		title : "nieuws"
+		title : "nieuws",
+		subtitle : "Aankondiging"
 }

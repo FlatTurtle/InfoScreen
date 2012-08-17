@@ -4,6 +4,7 @@
 		first: 0,
 		speed: 1000,
 		pause: 3000,
+		refreshInterval:'',
 
 		/*removeFirst : function() {
 			var self = this;
@@ -28,6 +29,7 @@
 			
 			// bind render event
 			this.bind("born", this.render);
+			this.refreshInterval = window.setInterval(this.resize, 100);
 			
 			//if(this.options.speed != null) this.speed = this.options.speed;
 			//if(this.options.speed != null) this.pause = this.options.pause;
@@ -36,17 +38,23 @@
 		},
 		
         resize: function(){
+        	var self = this;
 			var textSpan = $('div#listticker div');
 			var textdiv = $('div#listticker');
 
 	        //textSpan.style.fontSize = 64;
 			var font = 64;
 			textSpan.css('font-size','64pt');
+			if(textSpan.height() == '0'){
+				return false;
+			}
 	        while(textSpan.height() > textdiv.height())
 	        {
 	        		font--;
 	                textSpan.css('font-size',font+'pt');
 	        }
+	        window.clearInterval(this.refreshInterval);
+	        return true;
 		},
 		
 		render : function() {
@@ -64,7 +72,8 @@
 				if(str.charAt(str.length-1) == '>') str+='</div>';
 				var div = $('<div></div>').html(str);
 				$('div#listticker').append(div);
-				self.resize();
+				resize();
+				//$('div#listticker div').watch("display,visibility", function() { alert('visible') });
 				//interval = setInterval(self.removeFirst, self.pause);
 			});
 		}
