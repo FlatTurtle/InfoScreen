@@ -72,7 +72,7 @@
 				if(str.charAt(str.length-1) == '>') str+='</div>';
 				var div = $('<div></div>').html(str);
 				$('div#listticker').append(div);
-				resize();
+				//resize();
 				//$('div#listticker div').watch("display,visibility", function() { alert('visible') });
 				//interval = setInterval(self.removeFirst, self.pause);
 			});
