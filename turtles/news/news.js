@@ -5,7 +5,7 @@
 		speed: 1000,
 		pause: 3000,
 
-		removeFirst : function() {
+		/*removeFirst : function() {
 			var self = this;
 			first = $('div#listticker div:first').html();
 			$('div#listticker div:first').slideUp('slow', function() {
@@ -20,7 +20,7 @@
 			$('div#listticker div:last').animate({
 				opacity : 1
 			}, this.speed).fadeIn('slow');
-		},
+		},*/
 		
 		initialize : function() {
 			//bind this to all functions so it keeps track of this
@@ -29,11 +29,26 @@
 			// bind render event
 			this.bind("born", this.render);
 			
-			if(this.options.speed != null) this.speed = this.options.speed;
-			if(this.options.speed != null) this.pause = this.options.pause;
+			//if(this.options.speed != null) this.speed = this.options.speed;
+			//if(this.options.speed != null) this.pause = this.options.pause;
 			
 
 		},
+		
+        resize: function(){
+			var textSpan = $('div#listticker div');
+			var textdiv = $('div#listticker');
+
+	        //textSpan.style.fontSize = 64;
+			var font = 64;
+			textSpan.css('font-size','64pt');
+	        while(textSpan.height() > textdiv.height())
+	        {
+	        		font--;
+	                textSpan.css('font-size',font+'pt');
+	        }
+		},
+		
 		render : function() {
 			var self = this;
 			// self.$el.html('hello');
@@ -47,9 +62,10 @@
 				str = '<div>'+ str;
 				str = str.replace(/\./g,"<br><br></div><div>");
 				if(str.charAt(str.length-1) == '>') str+='</div>';
-				$('div#listticker').html(str);
-				
-				interval = setInterval(self.removeFirst, self.pause);
+				var div = $('<div></div>').html(str);
+				$('div#listticker').append(div);
+				self.resize();
+				//interval = setInterval(self.removeFirst, self.pause);
 			});
 		}
 	});
