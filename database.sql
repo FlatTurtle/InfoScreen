@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 13, 2012 at 05:33 PM
--- Server version: 5.5.25a
--- PHP Version: 5.4.4
+-- Generation Time: Aug 21, 2012 at 07:25 PM
+-- Server version: 5.5.24
+-- PHP Version: 5.3.10-1ubuntu3.2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `new_db`
+-- Database: `newdb`
 --
 
 -- --------------------------------------------------------
@@ -45,7 +45,6 @@ CREATE TABLE IF NOT EXISTS `available_screens` (
   PRIMARY KEY (`type_name`,`screen_id`),
   KEY `screen_id` (`screen_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -76,6 +75,35 @@ CREATE TABLE IF NOT EXISTS `available_users` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ci_sessions`
+--
+
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+  `session_id` varchar(40) COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `ip_address` varchar(16) COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `user_agent` varchar(150) COLLATE utf8_bin NOT NULL,
+  `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
+  `user_data` text COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_attempts`
+--
+
+CREATE TABLE IF NOT EXISTS `login_attempts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(40) COLLATE utf8_bin NOT NULL,
+  `login` varchar(50) COLLATE utf8_bin NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `modules`
 --
 
@@ -83,10 +111,9 @@ CREATE TABLE IF NOT EXISTS `modules` (
   `alias` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text,
-  `screenshot` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`alias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -101,8 +128,7 @@ CREATE TABLE IF NOT EXISTS `options` (
   `module_alias` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `module_name` (`module_alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 -- --------------------------------------------------------
 
@@ -125,8 +151,6 @@ CREATE TABLE IF NOT EXISTS `scheduled_tasks` (
   KEY `job_alias` (`job_alias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -146,9 +170,7 @@ CREATE TABLE IF NOT EXISTS `screens` (
   `hostname` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `pincode` (`pincode`,`hostname`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
-
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 -- --------------------------------------------------------
 
@@ -231,6 +253,31 @@ CREATE TABLE IF NOT EXISTS `types` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) COLLATE utf8_bin NOT NULL,
+  `email` varchar(100) COLLATE utf8_bin NOT NULL,
+  `activated` tinyint(1) NOT NULL DEFAULT '1',
+  `banned` tinyint(1) NOT NULL DEFAULT '0',
+  `ban_reason` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `new_password_key` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `new_password_requested` datetime DEFAULT NULL,
+  `new_email` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `new_email_key` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `last_ip` varchar(40) COLLATE utf8_bin NOT NULL,
+  `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users2`
+--
+
+CREATE TABLE IF NOT EXISTS `users2` (
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `type_name` varchar(255) DEFAULT NULL,
@@ -238,6 +285,35 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `type_name` (`type_name`(191)),
   KEY `type_name_2` (`type_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_autologin`
+--
+
+CREATE TABLE IF NOT EXISTS `user_autologin` (
+  `key_id` char(32) COLLATE utf8_bin NOT NULL,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `user_agent` varchar(150) COLLATE utf8_bin NOT NULL,
+  `last_ip` varchar(40) COLLATE utf8_bin NOT NULL,
+  `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`key_id`,`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_profiles`
+--
+
+CREATE TABLE IF NOT EXISTS `user_profiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `country` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `website` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
 --
 -- Constraints for dumped tables
@@ -247,15 +323,15 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Constraints for table `available_modules`
 --
 ALTER TABLE `available_modules`
-  ADD CONSTRAINT `available_modules_ibfk_2` FOREIGN KEY (`module_alias`) REFERENCES `modules` (`alias`) ON DELETE CASCADE,
-  ADD CONSTRAINT `available_modules_ibfk_1` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE;
+  ADD CONSTRAINT `available_modules_ibfk_1` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE,
+  ADD CONSTRAINT `available_modules_ibfk_2` FOREIGN KEY (`module_alias`) REFERENCES `modules` (`alias`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `available_screens`
 --
 ALTER TABLE `available_screens`
-  ADD CONSTRAINT `available_screens_ibfk_2` FOREIGN KEY (`screen_id`) REFERENCES `screens` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `available_screens_ibfk_1` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE;
+  ADD CONSTRAINT `available_screens_ibfk_1` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE,
+  ADD CONSTRAINT `available_screens_ibfk_2` FOREIGN KEY (`screen_id`) REFERENCES `screens` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `available_tasks`
@@ -293,14 +369,14 @@ ALTER TABLE `turtles`
 -- Constraints for table `turtle_config`
 --
 ALTER TABLE `turtle_config`
-  ADD CONSTRAINT `turtle_config_ibfk_2` FOREIGN KEY (`turtle_id`) REFERENCES `turtles` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `turtle_config_ibfk_1` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `turtle_config_ibfk_1` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `turtle_config_ibfk_2` FOREIGN KEY (`turtle_id`) REFERENCES `turtles` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `users`
+-- Constraints for table `users2`
 --
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE;
+ALTER TABLE `users2`
+  ADD CONSTRAINT `users2_ibfk_1` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
