@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 21, 2012 at 07:25 PM
+-- Generation Time: Aug 26, 2012 at 09:38 AM
 -- Server version: 5.5.24
 -- PHP Version: 5.3.10-1ubuntu3.2
 
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `options` (
   `module_alias` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `module_name` (`module_alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 -- --------------------------------------------------------
 
@@ -145,9 +145,9 @@ CREATE TABLE IF NOT EXISTS `scheduled_tasks` (
   `day_of_week` varchar(50) NOT NULL,
   `hours` varchar(50) NOT NULL,
   `minutes` varchar(50) NOT NULL,
+  `activated` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `screen_id` (`screen_id`),
-  KEY `screen_id_2` (`screen_id`),
   KEY `job_alias` (`job_alias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -208,18 +208,18 @@ CREATE TABLE IF NOT EXISTS `tokens` (
 --
 
 CREATE TABLE IF NOT EXISTS `turtles` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `module_alias` varchar(255) NOT NULL,
   `screen_id` int(11) NOT NULL,
   `colspan` int(11) NOT NULL,
   `order` tinyint(4) NOT NULL,
-  `group` varchar(255) DEFAULT NULL,
-  `source` varchar(255) DEFAULT NULL,
+  `group` int(11) DEFAULT NULL,
+  `source` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `module_name` (`module_alias`,`screen_id`),
   KEY `module_alias` (`module_alias`),
   KEY `screen_id` (`screen_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=204 ;
 
 -- --------------------------------------------------------
 
@@ -268,23 +268,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `type_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `type_name` (`type_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users2`
---
-
-CREATE TABLE IF NOT EXISTS `users2` (
-  `name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `type_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`name`),
-  KEY `type_name` (`type_name`(191)),
-  KEY `type_name_2` (`type_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -337,7 +324,8 @@ ALTER TABLE `available_screens`
 -- Constraints for table `available_tasks`
 --
 ALTER TABLE `available_tasks`
-  ADD CONSTRAINT `available_tasks_ibfk_2` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE;
+  ADD CONSTRAINT `available_tasks_ibfk_2` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE,
+  ADD CONSTRAINT `available_tasks_ibfk_3` FOREIGN KEY (`job_alias`) REFERENCES `tasks` (`alias`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `available_users`
@@ -373,10 +361,10 @@ ALTER TABLE `turtle_config`
   ADD CONSTRAINT `turtle_config_ibfk_2` FOREIGN KEY (`turtle_id`) REFERENCES `turtles` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `users2`
+-- Constraints for table `users`
 --
-ALTER TABLE `users2`
-  ADD CONSTRAINT `users2_ibfk_1` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE;
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`type_name`) REFERENCES `types` (`name`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
