@@ -102,8 +102,8 @@
 
   <div class="container">
     <header>
-      <div id="clock" class="color"><span id="clockhours"><?php echo $mode; ?></span></div>
-      <div id="logo"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" /></div>
+      <div id="clock" style="width:150px" class="color"><span id="hour">00</span><img src="templates/default/img/colon.gif"><span id="minutes">00</span></div>
+      <div id="logo" style="width:50%"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" /></div>
     </header>
     <section id="main">
       <br />
@@ -191,8 +191,22 @@
         else form.submit();
         
     }
+    
+    function refresh() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+
+        $("#hour").html(hours);
+        $("#minutes").html(minutes);
+    }
+    var timer = window.setInterval(refresh, 500);
 var infoScreen = "";
 var turtles = "";
+Clock.add();
 </script>
 
 </body>
