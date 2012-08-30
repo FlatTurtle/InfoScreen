@@ -45,7 +45,7 @@ class Demo extends Model {
         $stationnames = $this->getStationNames(5.31,3.14);
         $turtles = array();
         
-        $max_columns = 3;
+        $max_columns = 2;
         $order = 0;
         foreach ($needed_turtles as $index => $item) {
             $i = $index % $max_columns;
@@ -87,7 +87,7 @@ class Demo extends Model {
                 $key = "hashtag";
                 $value = "iRail";
             }
-            else if($item == "villo"){
+            else if($item == "villo" || $item == "velo"){
                 $key = "location";
                 $value = "50.866249327319;4.3109249597703";
             }

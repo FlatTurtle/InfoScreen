@@ -51,10 +51,10 @@
         text-align: right;
         display: inline;
         padding: 4.5625em 13.5416667% 0  0;
-        font-size: 0.8em;
+        font-size: 1.05em;
         font-family: "Soho Gothic W01 Light", sans-serif;
     /* using Soho Gothic W01 Light makes IE8 go to quirks mode on reload */
-        line-height: 1.25em;
+        line-height: .25em;
     }
     /* line 1612, ../sass/partials/_page.scss */
     footer .vcard .adr {
@@ -66,7 +66,7 @@
     }
     /* line 1618, ../sass/partials/_page.scss */
     footer .vcard p:last-child {
-        font-size: 0.75em;
+        font-size: 1.10em;
     /* 12/16 */
     }
     
@@ -109,7 +109,7 @@
       <form name="form" action="index.php/api/" method="POST">
         <label>Infoscreen name:</label><br/><input type="text" value="<?php if($mode == "edit") {echo $infoscreen->title;}else{echo "FlatTurtle";} ?>" name="title"/><br/>
         <label>Logo url:</label><br/><input type="text" value="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" name="logo"/><br/>
-        <label>Color picker:</label><br/><input id="color" style="display:none" type="text" value="#2057A7" name="color"/>
+        <label>Color picker:</label><br/><input id="color" style="" type="text" value="#2057A7" name="color"/>
         <div id="colorSelector" style="height:50px;width:50px;display: block;margin-left: auto;margin-right: auto;">
             <div style="height: 100%;width:100%;background-color: #2057A7;border: 1pt solid black"></div>
         </div>
@@ -122,11 +122,12 @@
                 <tr><td><input type="checkbox" name="turtle[]" value="delijn"/><label> de lijn</label><br></td></tr>
                 <tr><td><input type="checkbox" name="turtle[]" value="map"/><label> map</label><br></td></tr>
                 <tr><td><input type="checkbox" name="turtle[]" value="mivbstib"/><label> mivbstib</label><br></td></tr>
-                <!--<tr><td><input type="checkbox" name="turtle[]" value="news"/><label> news</label><br></td></tr>-->
+                <tr><td><input type="checkbox" name="turtle[]" value="news"/><label> news</label><br></td></tr>
                 <tr><td><input type="checkbox" name="turtle[]" value="nmbs"/><label> nmbs</label><br></td></tr>
                 <tr><td><input type="checkbox" name="turtle[]" value="ttshuttles"/><label> company shuttle</label><br></td></tr>
                 <tr><td><input type="checkbox" name="turtle[]" value="twitter"/><label> twitter</label><br></td></tr>
                 <tr><td><input type="checkbox" name="turtle[]" value="villo"/><label> villo</label><br></td></tr>
+                <tr><td><input type="checkbox" name="turtle[]" value="velo"/><label> vélo</label><br></td></tr>
             
             </table>
         </div>
@@ -155,6 +156,9 @@
   </div>
   
 <script>
+    $('#color').live('change',function() {
+      console.log('Handler for .change() called.');
+    });
     $('#colorSelector').ColorPicker({
         color: '#0000ff',
         onShow: function (colpkr) {
