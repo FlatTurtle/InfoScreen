@@ -23,7 +23,7 @@
         max-width: 960px;
         overflow: hidden;
         margin: 0 auto;
-        padding: 0 0 3.55em 0;
+        padding: 0 0 0.55em 0;
         color: #0578bd;
     }
     /* line 1586, ../sass/partials/_page.scss */
@@ -33,7 +33,7 @@
         float: left;
         display: inline;
         background: url(../img/logo_960_1x.gif) no-repeat;
-        margin: 2.9em 0 0 3.125%;
+        margin: 0.9em 0 0 1.125%;
     }
     /* line 1593, ../sass/partials/_page.scss */
     footer h1 img {
@@ -51,7 +51,7 @@
         float: right;
         text-align: right;
         display: inline;
-        padding: 4.5625em 13.5416667% 0  0;
+        padding: 1.5625em 13.5416667% 0  0;
         font-size: 1.05em;
         font-family: "Soho Gothic W01 Light", sans-serif;
     /* using Soho Gothic W01 Light makes IE8 go to quirks mode on reload */
@@ -88,12 +88,26 @@
     }
     /* line 1640, ../sass/partials/_page.scss */
     footer h1 {
-        margin: 3.55em 0 3.35em 0;
+        margin: 3.55em 0 0.35em 0;
     }
     /* line 1643, ../sass/partials/_page.scss */
     footer .vcard {
         padding: 4.5625em 0 00;
     }
+    }
+    #clock {
+        color: #fff;
+        border-radius: 14px 0 0 14px;
+        float: right;
+        font-size: 46px;
+        font-weight: bold;
+        height: 46px;
+        line-height: 46px;
+        margin-top: 15px;
+        padding: 13px 14px 13px 5px;
+        text-align: right;
+        width: 136px;
+        z-index: 0;
     }
     #popup{background-color:#fff;border-radius:10px 10px 10px 10px;box-shadow:0 0 25px 5px #999;color:#111;display:none;min-width:450px;padding:25px}
         </style>
@@ -120,16 +134,20 @@
             <label>Select turtles to be displayed</label><br>
             <table style="margin-left: auto;margin-right: auto;text-align: left">
                 
-                <tr><td><input type="checkbox" name="turtle[]" value="airport"/><label> airport</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="delijn"/><label> de lijn</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="map"/><label> map</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="mivbstib"/><label> mivbstib</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="news"/><label> news</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="nmbs"/><label> nmbs</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="ttshuttles"/><label> company shuttle</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="twitter"/><label> twitter</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="villo"/><label> villo</label><br></td></tr>
-                <tr><td><input type="checkbox" name="turtle[]" value="velo"/><label> vélo</label><br></td></tr>
+                <tr><td><input type="checkbox" name="turtle[]" value="airport"/><label> airport</label></td>
+                <td><input type="checkbox" name="turtle[]" value="delijn"/><label> de lijn</label></td></tr>
+                
+                <tr><td><input type="checkbox" name="turtle[]" value="map"/><label> map</label></td>
+                <td><input type="checkbox" name="turtle[]" value="mivbstib"/><label> mivbstib</label></td></tr>
+                
+                <tr><td><input type="checkbox" name="turtle[]" value="news"/><label> news</label></td>
+                <td><input type="checkbox" name="turtle[]" value="nmbs"/><label> nmbs</label></td></tr>
+                
+                <tr><td><input type="checkbox" name="turtle[]" value="ttshuttles"/><label> company shuttle</label></td>
+                <td><input type="checkbox" name="turtle[]" value="twitter"/><label> twitter</label></td></tr>
+                
+                <tr><td><input type="checkbox" name="turtle[]" value="villo"/><label> villo</label></td>
+                <td><input type="checkbox" name="turtle[]" value="velo"/><label> vélo</label></td></tr>
             
             </table>
         </div>
@@ -206,7 +224,6 @@
     var timer = window.setInterval(refresh, 500);
 var infoScreen = "";
 var turtles = "";
-Clock.add();
 </script>
 
 </body>
