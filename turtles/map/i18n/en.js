@@ -1,3 +1,3 @@
 var i18n = {
-		title : "verkeer"
+		title : "traffic"
 }
