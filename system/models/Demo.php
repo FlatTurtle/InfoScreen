@@ -65,7 +65,7 @@ class Demo extends Model {
             }
             else if($item == "map"){
                 $key = "location";
-                $value = "Venusstraat 35 Antwerpen";
+                $value = "Avenue du Port 86c - 18 Brussels";
             }
             else if($item == "mivbstib"){
                 $key = "location";
