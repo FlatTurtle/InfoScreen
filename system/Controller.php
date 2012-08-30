@@ -6,11 +6,12 @@
  * @author Pieter Colpaert
  */
 class Controller {
-    
+
     /**
      * Constructor, decides which infoscreen and turtles to be loaded
      */
     public function __construct() {
+
         $secondargument = $this->uri->segment(2)?$this->uri->segment(2):"";
 
         // get infoscreen alias from uri
@@ -28,19 +29,7 @@ class Controller {
             if($referencenumber == ""){
                 //create new one
                 $referencenumber = $this->demo->add($_POST);
-                if(!array_key_exists("color", $_POST)){
-                    header("location: ../");
-                    exit(0);
-                }
-                if(array_key_exists("turtle", $_POST)) $needed_turtles = $_POST["turtle"];
-                else $needed_turtles = array();
-                //header("Location: ../" . $referencenumber);
-                //get turtles
-                $infoscreen = $this->demo->get($referencenumber);
-                $turtles = $this->demo->turtles($referencenumber,$needed_turtles);
-                $template = "templates/" . $this->config->item("default_template") . "/index.php";
-                $this->load->view($template, array("infoscreen" => $infoscreen, "turtles" => $turtles));
-                
+                header("Location: ../" . $referencenumber);
             }else if($this->uri->segment(3) == "export"){
                 //export into a json string
                 if (!$infoscreen = $this->demo->get($referencenumber)) {
@@ -54,18 +43,22 @@ class Controller {
             }
             exit(0);
         }
-        
-        if(!$referencenumber){
-            
-        }
 
         // get infoscreen information
         if (!$infoscreen = $this->demo->get($referencenumber)) {
             header("location: ../");
         }
         
+        //get turtles
+        $turtles = $this->demo->turtles($referencenumber);
 
-            
+        // render the infoscreen or edit panel
+        if($secondargument == "edit"){
+            $this->load->view("templates/" . $this->config->item("default_template") . "/config.php", array("mode"=>"Edit","referencenumber" => $referencenumber, "infoscreen" => $infoscreen, "turtles" => $turtles));
+        }else{
+            $template = "templates/" . $this->config->item("default_template") . "/index.php";
+            $this->load->view($template, array("infoscreen" => $infoscreen, "turtles" => $turtles));
+        }
         
     }
     

@@ -122,7 +122,7 @@
     <section id="main">
       <br />
 	Here you can create your own screen for test purposes.<br/><br />
-      <form name="form" action="index.php/api/" method="POST">
+      <form name="form" action="api/" method="POST">
         <label>Infoscreen name:</label><br/><input type="text" value="<?php if($mode == "edit") {echo $infoscreen->title;}else{echo "FlatTurtle";} ?>" name="title"/><br/>
         <label>Logo url:</label><br/><input type="text" value="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" name="logo"/><br/>
         <label>Color picker:</label><br/><input id="color" style="" type="text" value="#2057A7" name="color"/>
@@ -137,11 +137,11 @@
                 <tr><td><input type="checkbox" name="turtle[]" value="airport"/><label> airport</label></td>
                 <td><input type="checkbox" name="turtle[]" value="delijn"/><label> de lijn</label></td></tr>
                 
-                <tr><td><input type="checkbox" name="turtle[]" value="map"/><label> map</label></td>
+                <tr><td><input type="checkbox" checked="checked" name="turtle[]" value="map"/><label> map</label></td>
                 <td><input type="checkbox" name="turtle[]" value="mivbstib"/><label> mivbstib</label></td></tr>
                 
                 <tr><td><input type="checkbox" name="turtle[]" value="news"/><label> news</label></td>
-                <td><input type="checkbox" name="turtle[]" value="nmbs"/><label> nmbs</label></td></tr>
+                <td><input type="checkbox" checked="checked" name="turtle[]" value="nmbs"/><label> nmbs</label></td></tr>
                 
                 <tr><td><input type="checkbox" name="turtle[]" value="ttshuttles"/><label> company shuttle</label></td>
                 <td><input type="checkbox" name="turtle[]" value="twitter"/><label> twitter</label></td></tr>

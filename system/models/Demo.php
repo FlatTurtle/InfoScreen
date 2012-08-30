@@ -24,8 +24,9 @@ class Demo extends Model {
         $alias = md5(time());
         if (@getimagesize($data["logo"]))  $logo = $data["logo"];
         else $logo = "http://img.flatturtle.com/infoscreen/logos/flatturtle.png";
+        $turtle_field = json_encode($_POST["turtle"]);
         
-        $q = $this->db->query("INSERT INTO `demo_infoscreens` (`id`, `customer_id`, `title`, `alias`, `logo`, `color`, `lang`, `interval`) VALUES (NULL, 1, ?, ?, ?, ?, ?, '6000');", array(0 => $data["title"], 1=> $alias, 2=> $logo, 3=> $data["color"], 4=> $data["lang"]));
+        $q = $this->db->query("INSERT INTO `demo_infoscreens` (`id`, `customer_id`, `title`, `alias`, `logo`, `color`, `lang`, `interval`,`turtles`) VALUES (NULL, 1, ?, ?, ?, ?, ?, '6000',?);", array(0 => $data["title"], 1=> $alias, 2=> $logo, 3=> $data["color"], 4=> $data["lang"],5 => $turtle_field));
         $this->needed_turtles = $data["title"];
         return $alias;
     }
@@ -39,15 +40,15 @@ class Demo extends Model {
      * @param int $infoscreen_id
      * @return array
      */
-    function turtles($referencenumber,$needed_turtles) {
+    function turtles($referencenumber) {
         //$keys = array("airport","delijn","map","mivstib","news","nmbs","ttshuttles","twitter","villo");
         
         $stationnames = $this->getStationNames(5.31,3.14);
-        $turtles = array();
+        $turtles = json_decode($this->get($referencenumber)->turtles);
         
         $max_columns = 2;
         $order = 0;
-        foreach ($needed_turtles as $index => $item) {
+        foreach ($turtles as $index => $item) {
             $i = $index % $max_columns;
             $turtles[$index] = new stdClass();
             $turtles[$index]->id = $index;
