@@ -104,7 +104,8 @@
       <div id="logo"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" /></div>
     </header>
     <section id="main">
-      Here you can create your own screen for test purposes.<br/><br />
+      <br />
+	Here you can create your own screen for test purposes.<br/><br />
       <form name="form" action="index.php/api/" method="POST">
         <label>Infoscreen name:</label><br/><input type="text" value="<?php if($mode == "edit") {echo $infoscreen->title;}else{echo "FlatTurtle";} ?>" name="title"/><br/>
         <label>Logo url:</label><br/><input type="text" value="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" name="logo"/><br/>
@@ -132,7 +133,8 @@
 	<br />
         <div>
         <!-- Add this to the database -->
-        <input type="button" onclick="javascript:saveAll()" id="submitbtn" value="Experience your display"/><br/><small>(Warning: This is only a simulation. It does not use real-time data. For real-time data you need a set-top box which you can order at <a href="http://flatturtle.com#slideshow">FlatTurtle.com</a>).<br/>For a better demo experience, use <a href="https://www.google.com/intl/en/chrome/browser/" taget="_blank">Google Chrome</a> and press F-11 or CMD-Shift-F</small>
+	<br />
+        <input type="button" onclick="javascript:saveAll()" id="submitbtn" value="Experience your display"/><br/><small>(Warning: This is only a simulation. It does not use real-time data. For real-time data you need a set-top box which you can order at <a href="http://flatturtle.com#slideshow">FlatTurtle.com</a>).<br/>For a better demo experience, use <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> and press F-11 or CMD-Shift-F</small>
         </div>
       </form>
 
