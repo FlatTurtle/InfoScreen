@@ -60,7 +60,7 @@ header #logo img {
 }
 
 section#main {
-    min-height: 100%;
+    min-height: 60%;
     width: 100%;
     overflow: hidden;
     height: auto;

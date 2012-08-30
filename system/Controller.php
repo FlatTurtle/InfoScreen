@@ -28,6 +28,10 @@ class Controller {
             if($referencenumber == ""){
                 //create new one
                 $referencenumber = $this->demo->add($_POST);
+                if(!array_key_exists("color", $_POST)){
+                    header("location: ../");
+                    exit(0);
+                }
                 if(array_key_exists("turtle", $_POST)) $needed_turtles = $_POST["turtle"];
                 else $needed_turtles = array();
                 //header("Location: ../" . $referencenumber);
@@ -49,6 +53,10 @@ class Controller {
                 $this->demo->update($referencenumber, $_POST);
             }
             exit(0);
+        }
+        
+        if(!$referencenumber){
+            
         }
 
         // get infoscreen information

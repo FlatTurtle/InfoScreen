@@ -11,9 +11,90 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo baseUrl("templates/default/colorpicker/js/colorpicker.js");?>"></script>
     <style>
-	  .color { background-color: #2057A7; }
-      .text-color { color: #2057A7;}
-	</style>
+    .color {
+        background-color: #2057A7;
+    }
+    .text-color {
+        color: #2057A7;
+    }
+    footer {
+        width: 90%;
+        max-width: 960px;
+        overflow: hidden;
+        margin: 0 auto;
+        padding: 0 0 3.55em 0;
+        color: #0578bd;
+    }
+    /* line 1586, ../sass/partials/_page.scss */
+    footer h1 {
+        width: 369px;
+        height: 89px;
+        float: left;
+        display: inline;
+        background: url(../img/logo_960_1x.gif) no-repeat;
+        margin: 2.9em 0 0 3.125%;
+    }
+    /* line 1593, ../sass/partials/_page.scss */
+    footer h1 img {
+        float: left;
+        width: 100%;
+        max-width: 369px;
+    }
+    /* line 1599, ../sass/partials/_page.scss */
+    footer h2 {
+    position: absolute;
+    left: -9999px;
+    }
+    /* line 1603, ../sass/partials/_page.scss */
+    footer .vcard {
+        float: right;
+        text-align: right;
+        display: inline;
+        padding: 4.5625em 13.5416667% 0  0;
+        font-size: 0.8em;
+        font-family: "Soho Gothic W01 Light", sans-serif;
+    /* using Soho Gothic W01 Light makes IE8 go to quirks mode on reload */
+        line-height: 1.25em;
+    }
+    /* line 1612, ../sass/partials/_page.scss */
+    footer .vcard .adr {
+        padding: 0 0 1.25em 0;
+    }
+    /* line 1614, ../sass/partials/_page.scss */
+    footer .vcard .adr p:last-child {
+        font-size: 1em;
+    }
+    /* line 1618, ../sass/partials/_page.scss */
+    footer .vcard p:last-child {
+        font-size: 0.75em;
+    /* 12/16 */
+    }
+    
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    /* line 1627, ../sass/partials/_page.scss */
+    footer h1 {
+        background-image: url(../img/logo_960_2x.gif);
+        -webkit-background-size: 369px 89px;
+        background-size: 369px 89px;
+    }
+    }
+    /* tablet */
+    @media screen and (max-width: 768px) {
+    /* line 1637, ../sass/partials/_page.scss */
+    footer {
+        width: 93%;
+        max-width: 720px;
+    }
+    /* line 1640, ../sass/partials/_page.scss */
+    footer h1 {
+        margin: 3.55em 0 3.35em 0;
+    }
+    /* line 1643, ../sass/partials/_page.scss */
+    footer .vcard {
+        padding: 4.5625em 0 00;
+    }
+    }
+        </style>
 </head>
 <body>
 
@@ -34,24 +115,43 @@
         <!--label>Language</label><br/>--><input type="hidden" value="en" name="lang"/><!--<br/><small>Your language <a href="mailto:support@FlatTurtle.com">not supported?</a></small><br/>-->
         <div>
             <label>Select turtles to be displayed</label><br>
-            <input type="checkbox" name="turtle[]" value="airport"/><label> airport</label><br>
-            <input type="checkbox" name="turtle[]" value="delijn"/><label> de lijn</label><br>
-            <input type="checkbox" name="turtle[]" value="map"/><label> map</label><br>
-            <input type="checkbox" name="turtle[]" value="mivbstib"/><label> mivbstib</label><br>
-            <input type="checkbox" name="turtle[]" value="news"/><label> news</label><br>
-            <input type="checkbox" name="turtle[]" value="nmbs"/><label> nmbs</label><br>
-            <input type="checkbox" name="turtle[]" value="ttshuttles"/><label> ttshuttles</label><br>
-            <input type="checkbox" name="turtle[]" value="twitter"/><label> twitter</label><br>
-            <input type="checkbox" name="turtle[]" value="villo"/><label> villo</label><br>
+            <table style="margin-left: auto;margin-right: auto;text-align: left">
+                
+                <tr><td><input type="checkbox" name="turtle[]" value="airport"/><label> airport</label><br></td></tr>
+                <tr><td><input type="checkbox" name="turtle[]" value="delijn"/><label> de lijn</label><br></td></tr>
+                <tr><td><input type="checkbox" name="turtle[]" value="map"/><label> map</label><br></td></tr>
+                <tr><td><input type="checkbox" name="turtle[]" value="mivbstib"/><label> mivbstib</label><br></td></tr>
+                <!--<tr><td><input type="checkbox" name="turtle[]" value="news"/><label> news</label><br></td></tr>-->
+                <tr><td><input type="checkbox" name="turtle[]" value="nmbs"/><label> nmbs</label><br></td></tr>
+                <tr><td><input type="checkbox" name="turtle[]" value="ttshuttles"/><label> company shuttle</label><br></td></tr>
+                <tr><td><input type="checkbox" name="turtle[]" value="twitter"/><label> twitter</label><br></td></tr>
+                <tr><td><input type="checkbox" name="turtle[]" value="villo"/><label> villo</label><br></td></tr>
+            
+            </table>
         </div>
         
         <div>
         <!-- Add this to the database -->
-        <input type="button" onclick="javascript:saveAll()" id="submitbtn" value="Experience your display"/><br/><small>(! Warning: This is only a simulation. It does not use real-time data. For real-time data you need a set-top box which you can order at <a href="http://flatturtle.com#sales">FlatTurtle.com</a>).<br/>For a better demo experience, press f11 or cmd-shift-F</small>
+        <input type="button" onclick="javascript:saveAll()" id="submitbtn" value="Experience your display"/><br/><small>(! Warning: This is only a simulation. It does not use real-time data. For real-time data you need a set-top box which you can order at <a href="http://flatturtle.com#slideshow">FlatTurtle.com</a>).<br/>For a better demo experience, press f11 or cmd-shift-F</small>
         </div>
       </form>
+      
     </section>
+    <footer>
+      <h1><img src="http://flatturtle.com/themes/site/img/logo_320_2x.gif" alt="Flat Turtle"></h1>
+      <h2>Data &gt; Info &gt;&gt; Comfort</h2>
+        <section id="company_address" class="vcard">
+        <p class="fn org">sprl FlatTurtle bvba</p>
+          <div class="adr">
+          <p class="street-address">Avenue du Port 86c - 18 Havenlaan</p>
+          <p><span class="postal-code">1000</span> <span class="locality">Brussels</span> - <span class="country-name">Belgium</span></p>
+          </div>
+        <p>BTW/VAT BE 0445 781 910</p>
+        </section>
+     </footer>
+    
   </div>
+  
 <script>
     $('#colorSelector').ColorPicker({
         color: '#0000ff',
