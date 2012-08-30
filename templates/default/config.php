@@ -10,6 +10,7 @@
     <link rel="stylesheet" media="screen" type="text/css" href="<?php echo baseUrl("templates/default/colorpicker/css/colorpicker.css");?>" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo baseUrl("templates/default/colorpicker/js/colorpicker.js");?>"></script>
+    <script type="text/javascript" src="<?php echo baseUrl("templates/default/js/jquery.bpopup-0.7.0.min.js");?>"></script>
     <style>
     .color {
         background-color: #2057A7;
@@ -94,6 +95,7 @@
         padding: 4.5625em 0 00;
     }
     }
+    #popup{background-color:#fff;border-radius:10px 10px 10px 10px;box-shadow:0 0 25px 5px #999;color:#111;display:none;min-width:450px;padding:25px}
         </style>
 </head>
 <body>
@@ -130,6 +132,13 @@
                 <tr><td><input type="checkbox" name="turtle[]" value="velo"/><label> vélo</label><br></td></tr>
             
             </table>
+        </div>
+        <div id ="popup" style="display:none;left:550px;position: absolute;top 351px">
+            <div style="text-align: center">
+                <div>
+                    <b>This demo is only supported on Google Chrome.</b>
+                </div>
+            </div>
         </div>
 	<br />
         <div>
@@ -175,7 +184,12 @@
         }
     });
     function saveAll(){
-        form.submit();
+        //form.submit();
+        if($.browser.msie || $.browser.opera){
+            $('#popup').bPopup();
+        }
+        else form.submit();
+        
     }
 var infoScreen = "";
 var turtles = "";
