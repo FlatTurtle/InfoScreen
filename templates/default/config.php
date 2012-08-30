@@ -104,11 +104,11 @@
       <div id="logo"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" /></div>
     </header>
     <section id="main">
-      Over here you can create your own screen for test purposes.<br/>
+      Here you can create your own screen for test purposes.<br/><br />
       <form name="form" action="index.php/api/" method="POST">
-        <label>Infoscreen name</label><br/><input type="text" value="<?php if($mode == "edit") {echo $infoscreen->title;}else{echo "FlatTurtle";} ?>" name="title"/><br/>
-        <label>Logo url</label><br/><input type="text" value="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" name="logo"/><br/>
-        <label>Color</label><br/><input id="color" style="display:none" type="text" value="#2057A7" name="color"/>
+        <label>Infoscreen name:</label><br/><input type="text" value="<?php if($mode == "edit") {echo $infoscreen->title;}else{echo "FlatTurtle";} ?>" name="title"/><br/>
+        <label>Logo url:</label><br/><input type="text" value="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" name="logo"/><br/>
+        <label>Color picker:</label><br/><input id="color" style="display:none" type="text" value="#2057A7" name="color"/>
         <div id="colorSelector" style="height:50px;width:50px;display: block;margin-left: auto;margin-right: auto;">
             <div style="height: 100%;width:100%;background-color: #2057A7;border: 1pt solid black"></div>
         </div>
@@ -129,13 +129,13 @@
             
             </table>
         </div>
-        
+	<br />
         <div>
         <!-- Add this to the database -->
-        <input type="button" onclick="javascript:saveAll()" id="submitbtn" value="Experience your display"/><br/><small>(! Warning: This is only a simulation. It does not use real-time data. For real-time data you need a set-top box which you can order at <a href="http://flatturtle.com#slideshow">FlatTurtle.com</a>).<br/>For a better demo experience, press f11 or cmd-shift-F</small>
+        <input type="button" onclick="javascript:saveAll()" id="submitbtn" value="Experience your display"/><br/><small>(Warning: This is only a simulation. It does not use real-time data. For real-time data you need a set-top box which you can order at <a href="http://flatturtle.com#slideshow">FlatTurtle.com</a>).<br/>For a better demo experience, use <a href="https://www.google.com/intl/en/chrome/browser/" taget="_blank">Google Chrome</a> and press F-11 or CMD-Shift-F</small>
         </div>
       </form>
-      
+
     </section>
     <footer>
       <h1><img src="http://flatturtle.com/themes/site/img/logo_320_2x.gif" alt="Flat Turtle"></h1>
