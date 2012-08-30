@@ -5,6 +5,7 @@
 	<title><?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?></title>
 	<base href="<?php echo baseUrl(); ?>">
 	<link rel="stylesheet" href="<?php echo baseUrl("templates/default/css/style.min.css"); ?>" />
+	<script src="<?php echo baseUrl("templates/default/js/google.analytics.js"); ?>"></script>
 	<style>
 		.color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
         .text-color { color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }	
@@ -26,12 +27,10 @@
 <script src="<?php echo baseUrl("templates/default/js/later.min.js"); ?>"></script>
 <script src="<?php echo baseUrl("templates/default/js/application.min.js"); ?>"></script>
 <script src="<?php echo baseUrl("templates/default/js/plugins.min.js"); ?>"></script>
-
 <script>
 <?php
 // infoscreen
 echo "	var infoScreen = ".json_encode($infoscreen).";\n";
-echo "	var jobs = cronJobs(".json_encode($jobs).");\n";
 
 // turtles
 foreach($turtles as $turtle)
