@@ -103,7 +103,7 @@
 				var data = {
 					direction : this.options.direction || "departures",
 					station : this.options.location,
-					entries : this.collection.toJSON(),
+					entries : this.collection.toJSON().slice(0,15),
 					error : this.options.error, // have there been any errors?
 					i18n : this.options.i18n
 				};
