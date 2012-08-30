@@ -81,7 +81,7 @@
         font-size: 1.10em;
     /* 12/16 */
     }
-    
+
     @media screen and (-webkit-min-device-pixel-ratio: 2) {
     /* line 1627, ../sass/partials/_page.scss */
     footer h1 {
@@ -128,7 +128,7 @@
   <div class="container">
     <header>
       <div id="clock" style="width:150px" class="color"><span id="hour">00</span><img src="templates/default/img/colon.gif"><span id="minutes">00</span></div>
-      <div id="logo" style="width:50%"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" /></div>
+      <div id="logo" style="width:50%"><a href="http://demo.flatturtle.com/"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" border="0" /></a></div>
     </header>
     <section id="main">
       <br />
