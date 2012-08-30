@@ -4,6 +4,7 @@
 		// hold google maps objects
 		center : null,
 		map : null,
+		trafficLayer: null,
 
 		initialize : function() {
 			// bind render event
@@ -17,6 +18,12 @@
 				window.mapsReady = false;
 				$.getScript("http://maps.googleapis.com/maps/api/js?sensor=false&callback=mapsLoaded");
 			}
+			
+			// Define self 
+			var self = this; 
+			refreshInterval = window.setInterval(function () {
+				self.updateTraffic();
+			}, 2000);
 		},
 		render : function() {
 			var self = this;
@@ -53,12 +60,15 @@
 			this.map = new google.maps.Map(canvas, options);
 			
 			// fix when map was loading in wrong dimensions
-			this.$el.bind('shown', function() {
-				google.maps.event.trigger(self.map, 'resize');
+			this.$el.bind("show", function() {
+				google.maps.event.trigger(self.map, "resize");
 				self.map.setCenter(self.center);
-				
-				// remove jQuery event
-				self.$el.unbind('shown');
+			});
+			
+			// bind resize trigger
+			this.$el.resize(function() {
+				google.maps.event.trigger(self.map, "resize");
+				self.map.setCenter(self.center);
 			});
 			
 			// get the coordinates of the location
@@ -81,8 +91,19 @@
 			});
 			
 			// add traffic layer
-			var trafficLayer = new google.maps.TrafficLayer();
-			trafficLayer.setMap(this.map);
+			self.trafficLayer = new google.maps.TrafficLayer();
+			self.trafficLayer.setMap(self.map);
+		},
+		updateTraffic : function() {
+			var self = this;
+			
+			// remove layer
+			self.trafficLayer.setMap(null);
+			self.trafficLayer = null;
+			
+			// add fresh layer
+			self.trafficLayer = new google.maps.TrafficLayer();
+			self.trafficLayer.setMap(self.map);
 		}
 	});
 	

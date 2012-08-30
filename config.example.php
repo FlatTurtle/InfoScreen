@@ -5,10 +5,10 @@
 | Base Site URL
 |--------------------------------------------------------------------------
 |
-| Your base URL with a trailing slash. If this is not set then we will 
+| Your base URL with a trailing slash. If this is not set then we will
 | guess the protocol, domain and path to your installation.
 */
-$config["base_url"]	= "";
+$config["base_url"] = "";
 
 
 /*
@@ -44,7 +44,7 @@ $config["turtle_path"] = "";
 |	["username"] The username used to connect to the database
 |	["password"] The password used to connect to the database
 |	["database"] The name of the database you want to connect to
-|	["port"] 	 The port used to connect to the database
+|	["port"]     The port used to connect to the database
 */
 $config["database"]["hostname"] = "localhost";
 $config["database"]["username"] = "flatturtle";

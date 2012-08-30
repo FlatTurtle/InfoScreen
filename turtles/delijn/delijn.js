@@ -1,5 +1,6 @@
-(function($) {
+var thatdl;
 
+(function($) {
 	var collection = Backbone.Collection.extend({
 		initialize : function(models, options) {
 			// prevents loss of 'this' inside methods
@@ -9,6 +10,8 @@
 			this.bind("born", this.refresh);
 			this.bind("refresh", this.refresh);
 
+			thatdl = this;
+			
 			// default error value
 			options.error = false;
 
@@ -49,20 +52,30 @@
 			if (day < 10)
 				day = "0" + day;
 
-			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
+			var query = encodeURIComponent(this.options.location) + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
 
+			if(isNaN(this.options.location)) {
+				this.options.station = this.capitalizeWords(this.options.location);
+			} else {
+				$.getJSON("http://data.irail.be/DeLijn/Stations.json?id=" + encodeURIComponent(this.options.location), this.parseStationName);
+			}
+			
 			// remote source url - todo: add departures or arrivals
-			return "http://data.irail.be/DL/Liveboard/" + query + ".json";
+			return "http://data.irail.be/DeLijn/Departures/" + query + ".json?offset=0&rowcount=15";
 		},
 		parse : function(json) {
-                    this.options.station = json.Liveboard.location.name;
+                    // this.options.station = json.Departures.location.name;
 			// parse ajax results
-			var liveboard = json.Liveboard.departures;
+			var liveboard = json.Departures;
 
 			for ( var i in liveboard) {
 				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
 				liveboard[i].time = this.formatTime(liveboard[i].time);
 
+				if (!liveboard[i].long_name)
+					liveboard[i].long_name = "-";
+				else 
+					liveboard[i].long_name = this.parseTripName(liveboard[i].long_name)
 			}
 
 			return liveboard;
@@ -72,6 +85,25 @@
 			var hours = time.getHours();
 			var minutes = time.getMinutes();
 			return (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+		},
+		parseStationName : function (data) {
+			thatdl.options.station = thatdl.capitalizeWords(data.Stations[0].name);
+		},
+		capitalizeWords: function (strSentence) {
+			return strSentence.toLowerCase().replace(/\b[a-z]/g, convertToUpper);
+		 
+			function convertToUpper() {
+				return arguments[0].toUpperCase();
+			}
+		}, 
+		parseTripName: function (strTripName) {
+			strTripName = this.capitalizeWords(strTripName);
+			
+			if(strTripName.split("-").length == 2) {
+				strTripName = strTripName.split("-")[1];
+			}
+			
+			return strTripName
 		}
 	});
 

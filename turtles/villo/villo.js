@@ -1,5 +1,5 @@
-(function($) {
 
+(function($) {
 	var collection = Backbone.Collection.extend({
 		initialize : function(models, options) {
 			// prevents loss of 'this' inside methods
@@ -9,12 +9,14 @@
 			this.bind("born", this.refresh);
 			this.bind("refresh", this.refresh);
 
+			thatdl = this;
+			
 			// default error value
 			options.error = false;
 
 			// automatic collection refresh each minute, this will 
 			// trigger the reset event
-			refreshInterval = window.setInterval(this.refresh, 60000);
+			refreshInterval = window.setInterval(this.refresh, 30000);
 		},
 		refresh : function() {
 			var self = this;
@@ -30,49 +32,24 @@
 			});
 		},
 		url : function() {
-			var today = new Date();
-			var month = today.getMonth() + 1;
-			var day = today.getDate();
-			var year = today.getFullYear();
-			var minutes = today.getMinutes();
-			var hours = today.getHours();
-
-			if (minutes < 10)
-				minutes = "0" + minutes;
-
-			if (hours < 10)
-				hours = "0" + hours;
-
-			if (month < 10)
-				month = "0" + month;
-
-			if (day < 10)
-				day = "0" + day;
-
-			var query = this.options.location + "/" + year + "/" + month + "/" + day + "/" + hours + "/" + minutes;
-
-			// remote source url - todo: add departures or arrivals
-			return "http://data.irail.be/spectql/MIVB/Liveboard/" + query + "/departures.limit(15):json";
+            var latitude = this.options.location.split(';')[0];
+            var longitude = this.options.location.split(';')[1];
+        
+            return "http://data.irail.be/Bikes/Villo.json?lat=" + encodeURIComponent(latitude) + "&long=" + encodeURIComponent(longitude) + "&offset=0&rowcount=15";
 		},
 		parse : function(json) {
-			// parse ajax results
-			var liveboard = json.spectql;
-
-			for ( var i in liveboard) {
-				liveboard[i].delay = liveboard[i].delay ? this.formatTime(liveboard[i].time + liveboard[i].delay) : false;
-				liveboard[i].time = this.formatTime(liveboard[i].time);
-
-				if (!liveboard[i].platform.name)
-					liveboard[i].platform.name = "-";
-			}
-
-			return liveboard;
-		},
-		formatTime : function(timestamp) {
-			var time = new Date(timestamp * 1000);
-			var hours = time.getHours();
-			var minutes = time.getMinutes();
-			return (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+            var villo = json.Villo;
+            
+            console.log(villo.length);
+            if(villo.length <= 0) {
+                return undefined;
+            }
+            
+            for(var i in villo) {
+                villo[i].distance = Math.round(parseInt(villo[i].distance)/10)*10;
+            }
+            
+            return villo;
 		}
 	});
 
@@ -87,7 +64,7 @@
 			// pre-fetch template file and render when ready
 			var self = this;
 			if (this.template == null) {
-				$.get("turtles/mivb/list.html", function(template) {
+				$.get("turtles/villo/list.html", function(template) {
 					self.template = template;
 					self.render();
 				});
@@ -97,8 +74,6 @@
 			// only render when template file is loaded
 			if (this.template) {
 				var data = {
-					direction : this.options.direction || "departures",
-					station : this.options.location,
 					entries : this.collection.toJSON(),
 					error : this.options.error, // have there been any errors?
 					i18n : this.options.i18n
@@ -114,7 +89,7 @@
 	});
 
 	// register turtle
-	Turtles.register("mivb", {
+	Turtles.register("villo", {
 		collection : collection,
 		view : view
 	});

@@ -54,7 +54,11 @@
 	    var liveboard = new Array();
 	    var i = 0;
 	    $.each(departures,function(key,val){
-		if(key.substr(0,2) >= hours){
+                var ttshuttlestime = new Date();
+                ttshuttlestime.setHours(key.substr(0,2));
+                ttshuttlestime.setMinutes(key.substr(3,2));
+                var timenow = new Date();
+		if(ttshuttlestime > timenow){
 		    liveboard[i] = new Object();
 		    liveboard[i].time = key;
 		    liveboard[i].direction = val;
