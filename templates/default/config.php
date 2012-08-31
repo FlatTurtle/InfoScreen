@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>FlatTurtle</title>
 	<base href="<?php echo baseUrl(); ?>">
 	<link rel="stylesheet" href="<?php echo baseUrl("templates/default/css/style.css"); ?>" />
@@ -12,6 +12,18 @@
     <script type="text/javascript" src="<?php echo baseUrl("templates/default/colorpicker/js/colorpicker.js");?>"></script>
     <script type="text/javascript" src="<?php echo baseUrl("templates/default/js/jquery.bpopup-0.7.0.min.js");?>"></script>
     <style>
+    html{
+    }
+    body{
+        height:100%
+    }
+    section#main{
+        margin-top:10px;
+    }
+    .container{
+        height:100%;
+        overflow:auto;
+    }
     .color {
         background-color: #2057A7;
     }
@@ -26,7 +38,6 @@
         padding: 0 0 0.55em 0;
         color: #0578bd;
     }
-    /* line 1586, ../sass/partials/_page.scss */
     footer h1 {
         width: 369px;
         height: 89px;
@@ -35,62 +46,49 @@
         background: url(../img/logo_960_1x.gif) no-repeat;
         margin: 0.9em 0 0 1.125%;
     }
-    /* line 1593, ../sass/partials/_page.scss */
     footer h1 img {
         float: left;
         width: 100%;
         max-width: 369px;
     }
-    /* line 1599, ../sass/partials/_page.scss */
     footer h2 {
     position: absolute;
     left: -9999px;
     }
-    /* line 1603, ../sass/partials/_page.scss */
     footer .vcard {
         float: right;
         text-align: right;
         display: inline;
-        padding: 1.5625em 13.5416667% 0  0;
+        padding: 1.0em 13.5416667% 0  0;
         font-size: 1.05em;
         font-family: "Soho Gothic W01 Light", sans-serif;
-    /* using Soho Gothic W01 Light makes IE8 go to quirks mode on reload */
         line-height: .25em;
     }
-    /* line 1612, ../sass/partials/_page.scss */
     footer .vcard .adr {
-        padding: 0 0 1.25em 0;
+        padding: 0 0 0.45em 0;
     }
-    /* line 1614, ../sass/partials/_page.scss */
     footer .vcard .adr p:last-child {
         font-size: 1em;
     }
-    /* line 1618, ../sass/partials/_page.scss */
     footer .vcard p:last-child {
         font-size: 1.10em;
-    /* 12/16 */
     }
     
     @media screen and (-webkit-min-device-pixel-ratio: 2) {
-    /* line 1627, ../sass/partials/_page.scss */
     footer h1 {
         background-image: url(../img/logo_960_2x.gif);
         -webkit-background-size: 369px 89px;
         background-size: 369px 89px;
     }
     }
-    /* tablet */
     @media screen and (max-width: 768px) {
-    /* line 1637, ../sass/partials/_page.scss */
     footer {
         width: 93%;
         max-width: 720px;
     }
-    /* line 1640, ../sass/partials/_page.scss */
     footer h1 {
         margin: 3.55em 0 0.35em 0;
     }
-    /* line 1643, ../sass/partials/_page.scss */
     footer .vcard {
         padding: 4.5625em 0 00;
     }
@@ -108,25 +106,36 @@
         text-align: right;
         width: 136px;
         z-index: 0;
+        font-family:'FreeUniversalRegular';
+    }
+    @media screen and (max-width: 500px) {
+        #colorSelector {
+            display: none;
+        }
+    }
+    @media screen and (min-width: 500px) {
+        #color {
+            display: none;
+        }
     }
     #popup{background-color:#fff;border-radius:10px 10px 10px 10px;box-shadow:0 0 25px 5px #999;color:#111;display:none;min-width:450px;padding:25px}
-        </style>
+    </style>
 </head>
 <body>
 
   <div class="container">
     <header>
-      <div id="clock" style="width:150px" class="color"><span id="hour">00</span><img src="templates/default/img/colon.gif"><span id="minutes">00</span></div>
+      <div id="clock" class="color"><span id="hour">00</span><img src="templates/default/img/colon.gif"><span id="minutes">00</span></div>
       <div id="logo" style="width:50%"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" /></div>
     </header>
     <section id="main">
       <br />
 	Here you can create your own screen for test purposes.<br/><br />
-      <form name="form" action="api/" method="POST">
+      <form name="form" action="index.php/api/" method="POST">
         <label>Infoscreen name:</label><br/><input type="text" value="<?php if($mode == "edit") {echo $infoscreen->title;}else{echo "FlatTurtle";} ?>" name="title"/><br/>
         <label>Logo url:</label><br/><input type="text" value="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" name="logo"/><br/>
         <label>Color picker:</label><br/><input id="color" style="" type="text" value="#2057A7" name="color"/>
-        <div id="colorSelector" style="height:50px;width:50px;display: block;margin-left: auto;margin-right: auto;">
+        <div id="colorSelector" style="height:50px;width:50px;margin-left: auto;margin-right: auto;">
             <div style="height: 100%;width:100%;background-color: #2057A7;border: 1pt solid black"></div>
         </div>
         <!--label>Language</label><br/>--><input type="hidden" value="en" name="lang"/><!--<br/><small>Your language <a href="mailto:support@FlatTurtle.com">not supported?</a></small><br/>-->
@@ -166,7 +175,6 @@
       </form>
 
     </section>
-<br />
     <footer>
       <h1><img src="http://flatturtle.com/themes/site/img/logo_320_2x.gif" alt="Flat Turtle"></h1>
       <h2>Data &gt; Info &gt;&gt; Comfort</h2>
