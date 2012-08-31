@@ -11,6 +11,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo baseUrl("templates/default/colorpicker/js/colorpicker.js");?>"></script>
     <script type="text/javascript" src="<?php echo baseUrl("templates/default/js/jquery.bpopup-0.7.0.min.js");?>"></script>
+    <script type="text/javascript" src="<?php echo baseUrl("templates/default/js/google.analytics.js"); ?>"></script>
     <style>
     html{
     }
@@ -73,7 +74,7 @@
     footer .vcard p:last-child {
         font-size: 1.10em;
     }
-    
+
     @media screen and (-webkit-min-device-pixel-ratio: 2) {
     footer h1 {
         background-image: url(../img/logo_960_2x.gif);
@@ -126,7 +127,7 @@
   <div class="container">
     <header>
       <div id="clock" class="color"><span id="hour">00</span><img src="templates/default/img/colon.gif"><span id="minutes">00</span></div>
-      <div id="logo" style="width:50%"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" /></div>
+      <div id="logo" style="width:50%"><a href="http://demo.flatturtle.com/"><img height="80px" src="http://img.flatturtle.com/infoscreen/logos/flatturtle.png" alt="FlatTurtle" border="0" /></a></div>
     </header>
     <section id="main">
       <br />
