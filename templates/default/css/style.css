@@ -303,7 +303,7 @@ section#main {
 	z-index: 2000;
 }
 
-#message {
+#message{
 	background-color: #FFF;
     width: 100%;
     height: 100%;
@@ -311,7 +311,7 @@ section#main {
     z-index: 2000;
 }
 
-#message span {
+#message span{
 	position: absolute;
 	top: 50%;
 	text-align: center;
@@ -380,6 +380,18 @@ a.boxmessageclose{
 
 .group.magnified ol {
 	display: none !important;
+}
+#popup, .bMulti {
+}
+#popup, #popup2, .bMulti {
+    background-color: white;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 25px 5px #999;
+    color: #111;
+    display: none;
+    min-width: 450px;
+    padding: 25px;
+    font-size: 30px;
 }
 
 /* ===================================================
