@@ -7,7 +7,7 @@ var Twitter = {
 	pendingTweets: new Array(),
 	running: false,
 
-	add : function(text, duration) {
+	add : function(text, showDuration,refreshInterval) {
 		$.getScript("http://dinbror.dk/downloads/jquery.bpopup-0.7.0.min.js", function(data, textStatus, jqxhr) {
 			   console.log(data); //data returned
 			   console.log(textStatus); //success
@@ -16,14 +16,17 @@ var Twitter = {
 		});
 		running = true;
 		// default duration
-		/*if (duration == undefined)
-			duration = 30000;*/
+		if (showDuration == undefined)
+			Twitter.showDuration = 10000;
+		if(refreshInterval == undefined)
+			Twitter.refreshInterval = 60000;
 		
+		Twitter.refresh(text);
 		// start timer if needed
 		if (Twitter.timer == null) {
 			Twitter.timer = window.setInterval(function(){
 				Twitter.refresh(text)
-				}, 5000);
+				}, Twitter.refreshInterval);
 			}	
 	},
 
@@ -76,7 +79,7 @@ var Twitter = {
 	showMessage: function(tweet){
 		// check if message element exists
 		if (Twitter.element.length == 0) {
-			Twitter.element = $('<div id="popup" display="none"><div id="content"><img style="height:100px;width:100px"></img><div id="username"></div><div id="text"></div><div class="color" style="width:100%;height:5px;margin:5px"/></div></div>').hide();
+			Twitter.element = $('<div id="popup" display="none"><div id="content" style="width:400px"><img style="height:100px;width:100px"></img><div id="username"></div><div id="text"></div><div class="color" style="width:100%;height:5px;margin:5px"/></div></div>').hide();
 			$("body").prepend(Twitter.element);
 		}
 		//var span = Twitter.element.find("#wrap");
@@ -93,7 +96,7 @@ var Twitter = {
 		$('#popup').bPopup();
 
 		clearTimeout(Twitter.showTimer);
-		Twitter.showTimer = setTimeout(Twitter.remove, 15000);
+		Twitter.showTimer = setTimeout(Twitter.remove, Twitter.showDuration);
 	}
 
 };
