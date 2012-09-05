@@ -159,10 +159,10 @@
                 </div>
             </div>
         </div>
-	<br />
+	<div>Clicking the button below will create a unique link you can use to share your creation with other people.</div>
         <div>
         <!-- Add this to the database -->
-        <input type="button" onclick="javascript:saveAll()" id="submitbtn" value="Experience your display"/><br/><small>(Warning: This is only a simulation. It does not use real-time data. For real-time data you need a set-top box which you can order at <a href="http://flatturtle.com#slideshow">FlatTurtle.com</a>).<br/>For a better demo experience, use <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> and press F-11 or CMD-Shift-F</small>
+        <input type="button" onclick="javascript:saveAll()" id="submitbtn" value="Experience your display"/><br/><small><br />(Warning: This is only a simulation. It does not use real-time data. For real-time data you need a set-top box which you can order at <a href="http://flatturtle.com#slideshow">FlatTurtle.com</a>).<br/>For a better demo experience, use <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> and press F-11 or CMD-Shift-F</small>
         </div>
       </form>
 
