@@ -3,6 +3,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>FlatTurtle</title>
+<!--[if IE]>
+<script type="text/javascript">
+     alert("We are sorry to inform you that this demo does not support Internet Explorer at this time. Please use Firefox or Chrome.");
+</script>
+<![endif]-->
 	<base href="<?php echo baseUrl(); ?>">
 	<link rel="stylesheet" href="<?php echo baseUrl("templates/default/css/style.css"); ?>" />
 	<link rel="stylesheet" href="<?php echo baseUrl("templates/default/css/demo.css"); ?>" />
