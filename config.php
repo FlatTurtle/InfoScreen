@@ -46,8 +46,17 @@ $config["turtle_path"] = "";
 |	["database"] The name of the database you want to connect to
 |	["port"]     The port used to connect to the database
 */
-$config["database"]["hostname"] = "localhost";
-$config["database"]["username"] = "flatturtle";
-$config["database"]["password"] = "password";
-$config["database"]["database"] = "flatturtle";
-$config["database"]["port"] = "";
+
+if (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'PAGODABOX') {
+    $config["database"]["hostname"] = $_SERVER['DB1_HOST'];
+    $config["database"]["username"] = $_SERVER['DB1_USER'];
+    $config["database"]["password"] = $_SERVER['DB1_PASS'];
+    $config["database"]["database"] = $_SERVER['DB1_NAME'];
+    $config["database"]["port"] = "";
+} elseif (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'TESTING') {
+    $config["database"]["hostname"] = $_SERVER['AMADEUS_HOST'];
+    $config["database"]["username"] = $_SERVER['AMADEUS_USER'];
+    $config["database"]["password"] = $_SERVER['AMADEUS_PASS'];
+    $config["database"]["database"] = $_SERVER['AMADEUS_NAME'];
+    $config["database"]["port"] = $_SERVER['AMADEUS_PORT'];
+}

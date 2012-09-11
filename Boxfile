@@ -1,0 +1,6 @@
+web1:
+  index_list: [index.php]
+  php_extensions: [curl, gd, mysqli]
+  php_date_timezone: Europe/Brussels
+  php_max_execution_time: 60
+  php_max_input_time: 60
