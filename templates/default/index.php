@@ -5,10 +5,10 @@
 	<title><?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?></title>
 	<base href="<?php echo baseUrl(); ?>">
 	<link rel="stylesheet" href="<?php echo baseUrl("templates/default/css/style.min.css"); ?>" />
-	<script src="<?php echo baseUrl("templates/default/js/google.analytics.js"); ?>"></script>
+	<?php echo $this->config->item("google_analytics"); ?>
 	<style>
-		.color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
-        .text-color { color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }	
+	.color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
+        .text-color { color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
 	</style>
 </head>
 <body>
@@ -19,7 +19,6 @@
 		<div id="logo"><img height="80px" src="<?php echo $infoscreen->logo; ?>" alt="<?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?>" /></div>
 		<?php endif; ?>
 	</header>
-	
 	<section id="main"></section>
 </div>
 
@@ -37,6 +36,5 @@ foreach($turtles as $turtle)
 	echo '	Turtles.grow("'.$turtle->module.'", "'.$turtle->id.'", '.json_encode($turtle->options).");\n";
 ?>
 </script>
-
 </body>
 </html>
