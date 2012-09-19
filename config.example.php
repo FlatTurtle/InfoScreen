@@ -51,3 +51,16 @@ $config["database"]["username"] = "flatturtle";
 $config["database"]["password"] = "password";
 $config["database"]["database"] = "flatturtle";
 $config["database"]["port"] = "";
+
+/*
+|--------------------------------------------------------------------------
+| Google Analytics
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to use Google Analytics
+| Insert the *whole* JS line in one single line for this to work
+*/
+$config["google_analytics"] = "";
+
+// EOF
+?>

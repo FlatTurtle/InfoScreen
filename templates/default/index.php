@@ -5,9 +5,9 @@
 	<title><?php echo $infoscreen->title ? $infoscreen->title : "FlatTurtle"; ?></title>
 	<base href="<?php echo baseUrl(); ?>">
 	<link rel="stylesheet" href="<?php echo baseUrl("templates/default/css/style.min.css"); ?>" />
-	<script src="<?php echo baseUrl("templates/default/js/google.analytics.js"); ?>"></script>
+	<?php echo $this->config->item("google_analytics"); ?>
 	<style>
-		.color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
+	.color { background-color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }
         .text-color { color: <?php echo $infoscreen->color ? $infoscreen->color : "#FB8B1A"; ?>; }	
 	</style>
 </head>
