@@ -46,7 +46,6 @@ $config["turtle_path"] = "";
 |	["database"] The name of the database you want to connect to
 |	["port"]     The port used to connect to the database
 */
-
 if (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'PAGODABOX') {
     $config["database"]["hostname"] = $_SERVER['DB1_HOST'];
     $config["database"]["username"] = $_SERVER['DB1_USER'];
@@ -60,3 +59,16 @@ if (isset($_SERVER['PLATFORM']) && $_SERVER['PLATFORM'] == 'PAGODABOX') {
     $config["database"]["database"] = $_SERVER['AMADEUS_NAME'];
     $config["database"]["port"] = $_SERVER['AMADEUS_PORT'];
 }
+
+/*
+|--------------------------------------------------------------------------
+| Google Analytics
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to use Google Analytics
+| Insert the *whole* JS line in one single line for this to work
+*/
+$config["google_analytics"] = '<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-31282630-1"]);_gaq.push(["_setDomainName","flatturtle.com"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})()</script>';
+
+// EOF
+?>

@@ -9,7 +9,7 @@
     <style>
       .color { background-color: #2057A7; }
     </style>
-    <script src="<?php echo baseUrl("templates/default/js/google.analytics.js"); ?>"></script>
+    <?php echo $this->config->item("google_analytics"); ?>
   </head>
   <body>
 
