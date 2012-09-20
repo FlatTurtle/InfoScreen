@@ -16,7 +16,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo baseUrl("templates/default/colorpicker/js/colorpicker.js");?>"></script>
     <script type="text/javascript" src="<?php echo baseUrl("templates/default/js/jquery.bpopup-0.7.0.min.js");?>"></script>
-    <script type="text/javascript" src="<?php echo baseUrl("templates/default/js/google.analytics.js"); ?>"></script>
+    <?php echo $this->config->item("google_analytics"); ?>
+<script type="text/javascript" src="<?php echo baseUrl("templates/default/js/google.analytics.js"); ?>"></script>
     <style>
     html{
     }
