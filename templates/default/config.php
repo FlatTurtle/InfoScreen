@@ -172,7 +172,7 @@ You should download the latest version of Google Chrome at http://yeri.be/vx.");
             <div style="text-align: center">
                 <div>
                     <b>We are sorry to inform you that this demo is to advanced to support Internet Explorer at this time.
-You should download the latest version of Google Chrome <a href="http://yeri.be/vx">here<a/>.</b>
+You should download the latest version of Google Chrome <a style="color:blue;" href="http://yeri.be/vx">here<a/>.</b>
                 </div>
             </div>
         </div>
