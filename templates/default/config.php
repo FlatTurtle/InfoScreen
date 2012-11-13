@@ -171,7 +171,8 @@ You should download the latest version of Google Chrome at http://yeri.be/vx.");
         <div id ="popup" style="display:none;left:550px;position: absolute;top 351px">
             <div style="text-align: center">
                 <div>
-                    <b>This demo is only supported on Google Chrome.</b>
+                    <b>We are sorry to inform you that this demo is to advanced to support Internet Explorer at this time.
+You should download the latest version of Google Chrome <a href="http://yeri.be/vx">here<a/>.</b>
                 </div>
             </div>
         </div>
