@@ -6,7 +6,7 @@
 <!--[if IE]>
 <script type="text/javascript">
      alert("We are sorry to inform you that this demo is to advanced to support Internet Explorer at this time.
-You should download the latest version of Google Chrome at http://yeri.be/vx.");
+You should download the latest version of Google Chrome at http://yeri.be/vx. You can also use Firefox, Safari or your iPad.");
 </script>
 <![endif]-->
 	<base href="<?php echo baseUrl(); ?>">

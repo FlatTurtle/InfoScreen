@@ -29,22 +29,15 @@
 			
 			// bind render event
 			this.bind("born", this.render);
-			//this.refreshInterval = window.setInterval(this.resize, 100);
+			this.refreshInterval = window.setInterval(this.resize, 100);
 			
 			//if(this.options.speed != null) this.speed = this.options.speed;
 			//if(this.options.speed != null) this.pause = this.options.pause;
-			var self = this;
-			if (this.template == null) {
-				$.get("turtles/news/news.html", function(template) {
-					self.template = template;
-					self.render();
-				});
-			}
+			
 
 		},
 		
-        resize: function(){
-        	console.log("resize");
+        	resize: function(){
 			var self = this;
 				var textSpan = $('div#listticker div');
 				var textdiv = $('div#listticker');
@@ -57,7 +50,6 @@
 				}
 			while(textSpan.height() > textdiv.height())
 			{
-					//console.log(font);
 					font--;
 			        textSpan.css('font-size',font+'pt');
 			}
@@ -67,23 +59,23 @@
 		
 		render : function() {
 			var self = this;
-			console.log("render");
-			if (this.template) {
+			// self.$el.html('hello');
+			$.get('turtles/news/news.html', function(template) {
 				var data = {
 					i18n : self.options.i18n
 				};
 
-				self.$el.html($.tmpl(this.template, data));
+				self.$el.html($.tmpl(template, data));
 				var str = self.options.info;
 				str = '<div>'+ str;
 				str = str.replace(/\./g,"<br><br></div><div>");
 				if(str.charAt(str.length-1) == '>') str+='</div>';
 				var div = $('<div></div>').html(str);
 				$('div#listticker').append(div);
-				self.refreshInterval = window.setInterval(self.resize, 100);
+				self.resize();
 				//$('div#listticker div').watch("display,visibility", function() { alert('visible') });
 				//interval = setInterval(self.removeFirst, self.pause);
-			}
+			});
 		}
 	});
 

@@ -121,7 +121,7 @@
 				var data = {
 					direction : self.options.direction || "departures",
 					airport : self.options.airport || self.options.location,
-					entries : self.collection.toJSON().slice(0,15),
+					entries : self.collection.toJSON(),
 					error : self.options.error, // have there been any errors?
 					i18n : self.options.i18n
 			    };
